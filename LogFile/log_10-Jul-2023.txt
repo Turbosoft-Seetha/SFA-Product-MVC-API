@@ -1,0 +1,62 @@
+10-07-2023 01:33:42 PM +05:30-GetPickingComplete STARTED 
+10-07-2023 01:33:42 PM +05:30-===========================
+10-07-2023 01:33:42 PM +05:30-GetBatchDetails inparas - [{"ProductId":"6140","ProductHUOM":"21","ProductLUOM":"0","ProductHQty":"4.420","ProductLQty":"0.000","ReasonId":"0","UserId":"1","ModifiedOn":"20230710","LineNumber":"10000"}]10-07-2023 01:33:42 PM
+10-07-2023 01:33:42 PM +05:30-GetBatchDetails inparas - [{"ProductId":"6140","itemLineNo":"10000","Number":"99415936","PickedQty":"2.420","AdjustedQty":"0.000","ReasonId":"0","BatchMode":"B","ExpiryDate":"","UserId":"1","ModifiedOn":"20230710","BatchID":"959","pid_ID":"913","SalesPerson":"","EligibleQty":"0","BaseUOM":"21","ReservationLineNo":"0"},{"ProductId":"6140","itemLineNo":"10000","Number":"99409501","PickedQty":"2.000","AdjustedQty":"0.000","ReasonId":"0","BatchMode":"B","ExpiryDate":"","UserId":"1","ModifiedOn":"20230710","BatchID":"960","pid_ID":"913","SalesPerson":"","EligibleQty":"0","BaseUOM":"21","ReservationLineNo":"0"}]10-07-2023 01:33:42 PM
+10-07-2023 01:33:42 PM +05:30-GetBatchDetails FE API Call started At - 10-07-2023 01:33:42 PM
+10-07-2023 01:33:43 PM +05:30-The request failed with HTTP status 401: Unauthorized.
+10-07-2023 01:33:43 PM +05:30-GetPickingComplete ENDED 
+10-07-2023 01:33:43 PM +05:30-=========================
+10-07-2023 01:33:58 PM +05:30-GetPickingComplete STARTED 
+10-07-2023 01:33:59 PM +05:30-===========================
+10-07-2023 01:33:59 PM +05:30-GetBatchDetails inparas - [{"ProductId":"6140","ProductHUOM":"21","ProductLUOM":"0","ProductHQty":"4.420","ProductLQty":"0.000","ReasonId":"0","UserId":"1","ModifiedOn":"20230710","LineNumber":"10000"}]10-07-2023 01:33:59 PM
+10-07-2023 01:33:59 PM +05:30-GetBatchDetails inparas - [{"ProductId":"6140","itemLineNo":"10000","Number":"99415936","PickedQty":"2.420","AdjustedQty":"0.000","ReasonId":"0","BatchMode":"B","ExpiryDate":"","UserId":"1","ModifiedOn":"20230710","BatchID":"959","pid_ID":"913","SalesPerson":"","EligibleQty":"0","BaseUOM":"21","ReservationLineNo":"0"},{"ProductId":"6140","itemLineNo":"10000","Number":"99409501","PickedQty":"2.000","AdjustedQty":"0.000","ReasonId":"0","BatchMode":"B","ExpiryDate":"","UserId":"1","ModifiedOn":"20230710","BatchID":"960","pid_ID":"913","SalesPerson":"","EligibleQty":"0","BaseUOM":"21","ReservationLineNo":"0"}]10-07-2023 01:33:59 PM
+10-07-2023 01:40:28 PM +05:30-GetPickingComplete STARTED 
+10-07-2023 01:40:28 PM +05:30-===========================
+10-07-2023 01:40:28 PM +05:30-GetBatchDetails inparas - [{"ProductId":"6140","ProductHUOM":"21","ProductLUOM":"0","ProductHQty":"4.420","ProductLQty":"0.000","ReasonId":"0","UserId":"1","ModifiedOn":"20230710","LineNumber":"10000"}]10-07-2023 01:40:28 PM
+10-07-2023 01:40:28 PM +05:30-GetBatchDetails inparas - [{"ProductId":"6140","itemLineNo":"10000","Number":"99415936","PickedQty":"2.420","AdjustedQty":"0.000","ReasonId":"0","BatchMode":"B","ExpiryDate":"","UserId":"1","ModifiedOn":"20230710","BatchID":"959","pid_ID":"913","SalesPerson":"","EligibleQty":"0","BaseUOM":"21","ReservationLineNo":"0"},{"ProductId":"6140","itemLineNo":"10000","Number":"99409501","PickedQty":"2.000","AdjustedQty":"0.000","ReasonId":"0","BatchMode":"B","ExpiryDate":"","UserId":"1","ModifiedOn":"20230710","BatchID":"960","pid_ID":"913","SalesPerson":"","EligibleQty":"0","BaseUOM":"21","ReservationLineNo":"0"}]10-07-2023 01:40:28 PM
+10-07-2023 01:40:35 PM +05:30-GetBatchDetails FE API Call started At - 10-07-2023 01:40:35 PM
+10-07-2023 01:42:11 PM +05:30-The request failed with HTTP status 401: Unauthorized.
+10-07-2023 01:42:11 PM +05:30-GetPickingComplete ENDED 
+10-07-2023 01:42:11 PM +05:30-=========================
+10-07-2023 01:43:45 PM +05:30-SelectDashboardCounts STARTED -10-07-2023 01:43:45 PM
+10-07-2023 01:43:45 PM +05:30-====================
+10-07-2023 05:08:27 PM +05:30-PostCompleteDispatch STARTED 10-07-2023 05:08:27 PM
+10-07-2023 05:08:27 PM +05:30-=============================
+10-07-2023 05:08:27 PM +05:30-PostCompleteDispatch-JSONString inparas - [{"ItemId":"8883","AdjustedHigherUOM":"4","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"2","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"30000"},{"ItemId":"8884","AdjustedHigherUOM":"0","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"7","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"10000"},{"ItemId":"8886","AdjustedHigherUOM":"0","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"5","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"20000"}]10-07-2023 05:08:27 PM
+10-07-2023 05:08:27 PM +05:30-PostCompleteDispatch-BatchData inparas - [{"DispBatSerialId":"9","DisDetailId":"8","Number":"99431302","AdjustedQty":"0","LoadInQty":"5"}]10-07-2023 05:08:27 PM
+10-07-2023 05:10:19 PM +05:30-Object reference not set to an instance of an object.
+10-07-2023 05:10:19 PM +05:30-PostCompleteDispatch ENDED 10-07-2023 05:10:19 PM
+10-07-2023 05:10:19 PM +05:30-===============================================
+10-07-2023 05:10:24 PM +05:30-PostCompleteDispatch STARTED 10-07-2023 05:10:24 PM
+10-07-2023 05:10:24 PM +05:30-=============================
+10-07-2023 05:10:24 PM +05:30-PostCompleteDispatch-JSONString inparas - [{"ItemId":"8883","AdjustedHigherUOM":"4","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"2","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"30000"},{"ItemId":"8884","AdjustedHigherUOM":"0","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"7","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"10000"},{"ItemId":"8886","AdjustedHigherUOM":"0","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"5","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"20000"}]10-07-2023 05:10:24 PM
+10-07-2023 05:10:24 PM +05:30-PostCompleteDispatch-BatchData inparas - [{"DispBatSerialId":"9","DisDetailId":"8","Number":"99431302","AdjustedQty":"0","LoadInQty":"5"}]10-07-2023 05:10:24 PM
+10-07-2023 05:12:12 PM +05:30-Column 'dln_DeliveryNumber' does not belong to table TT.
+10-07-2023 05:12:12 PM +05:30-PostCompleteDispatch ENDED 10-07-2023 05:12:12 PM
+10-07-2023 05:12:12 PM +05:30-===============================================
+10-07-2023 05:12:22 PM +05:30-PostCompleteDispatch STARTED 10-07-2023 05:12:22 PM
+10-07-2023 05:12:22 PM +05:30-=============================
+10-07-2023 05:12:22 PM +05:30-PostCompleteDispatch-JSONString inparas - [{"ItemId":"8883","AdjustedHigherUOM":"4","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"2","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"30000"},{"ItemId":"8884","AdjustedHigherUOM":"0","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"7","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"10000"},{"ItemId":"8886","AdjustedHigherUOM":"0","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"5","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"20000"}]10-07-2023 05:12:22 PM
+10-07-2023 05:12:22 PM +05:30-PostCompleteDispatch-BatchData inparas - [{"DispBatSerialId":"9","DisDetailId":"8","Number":"99431302","AdjustedQty":"0","LoadInQty":"5"}]10-07-2023 05:12:22 PM
+10-07-2023 05:13:33 PM +05:30-Column 'dln_DeliveryNumber' does not belong to table TT.
+10-07-2023 05:13:33 PM +05:30-PostCompleteDispatch ENDED 10-07-2023 05:13:33 PM
+10-07-2023 05:13:33 PM +05:30-===============================================
+10-07-2023 05:13:41 PM +05:30-PostCompleteDispatch STARTED 10-07-2023 05:13:41 PM
+10-07-2023 05:13:41 PM +05:30-=============================
+10-07-2023 05:13:41 PM +05:30-PostCompleteDispatch-JSONString inparas - [{"ItemId":"8883","AdjustedHigherUOM":"4","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"2","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"30000"},{"ItemId":"8884","AdjustedHigherUOM":"0","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"7","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"10000"},{"ItemId":"8886","AdjustedHigherUOM":"0","AdjustedHigherQty":"0","AdjustedLowerUOM":"0","AdjustedLowerQty":"0","LoadInHigherUOM":"4","LoadInHigherQty":"5","LoadInLowerUOM":"0","LoadInLowerQty":"0","LineNumber":"20000"}]10-07-2023 05:13:41 PM
+10-07-2023 05:13:41 PM +05:30-PostCompleteDispatch-BatchData inparas - [{"DispBatSerialId":"9","DisDetailId":"8","Number":"99431302","AdjustedQty":"0","LoadInQty":"5"}]10-07-2023 05:13:41 PM
+10-07-2023 08:47:15 PM +05:30- SelPriceUpdateHeader STARTED -10-07-2023 08:47:15 PM
+10-07-2023 08:47:15 PM +05:30-====================
+10-07-2023 08:52:22 PM +05:30- SelPriceUpdateHeader STARTED -10-07-2023 08:52:22 PM
+10-07-2023 08:52:22 PM +05:30-====================
+10-07-2023 08:52:40 PM +05:30-  SelPriceUpdateHeader Exception - Object reference not set to an instance of an object.
+10-07-2023 08:52:40 PM +05:30- SelPriceUpdateHeader ENDED - 10-07-2023 08:52:40 PM
+10-07-2023 08:52:40 PM +05:30-==================
+10-07-2023 08:52:43 PM +05:30- SelPriceUpdateHeader STARTED -10-07-2023 08:52:43 PM
+10-07-2023 08:52:43 PM +05:30-====================
+10-07-2023 09:53:00 PM +05:30- SelPriceUpdateHeader STARTED -10-07-2023 09:53:00 PM
+10-07-2023 09:53:00 PM +05:30-====================
+10-07-2023 09:53:05 PM +05:30- SelPriceUpdateHeader ENDED - 10-07-2023 09:53:05 PM
+10-07-2023 09:53:05 PM +05:30-==================
+10-07-2023 10:17:46 PM +05:30- SelPriceUpdateHeader STARTED -10-07-2023 10:17:46 PM
+10-07-2023 10:17:46 PM +05:30-====================

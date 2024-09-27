@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="get_IsSingleInstance">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="get_IsSingleInstance_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReceiptFromProduction">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="salesOrderNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReceiptFromProduction_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CalCulateBOMItemStandardCost">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CalCulateBOMItemStandardCost_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReleaseProdOrder">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="dateFilter" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReleaseProdOrder_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CreateProductionJournal">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="prodOrderNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateProductionJournal_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CloseProdOrder">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CloseProdOrder_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CreateOfflineProdOutputJnl">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="salesOrderNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateOfflineProdOutputJnl_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PostOutputJournalManual">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PostOutputJournalManual_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CheckOutputJournaiFrmPicklist">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CheckOutputJournaiFrmPicklist_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PostOutputJournalNAS">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PostOutputJournalNAS_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetPDTOffLineTime">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetPDTOffLineTime_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateProductionBOMCost">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="bOMNO" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bOMCost" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateProductionBOMCost_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="bOMCost" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrackingQtyInConsumption">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetTrackingQtyInConsumption_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetLatestBatchCode">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetLatestBatchCode_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateProductionOrderLine">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="salesOrderNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateProductionOrderLine_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CreateEComDeliveryLog">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="salesInvNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateEComDeliveryLog_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CreateProductionOrder">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="newStatus" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="quantity" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="assemblyOrderNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="assemblyOrderLineNo" type="int" />
+            <element minOccurs="1" maxOccurs="1" name="tempOrder" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="prodOrderNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateProductionOrder_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="prodOrderNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="HidePostedMessage">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="hidePostedMsg" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="HidePostedMessage_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="get_IsSingleInstance">
+    <part name="parameters" element="tns:get_IsSingleInstance" />
+  </message>
+  <message name="get_IsSingleInstance_Result">
+    <part name="parameters" element="tns:get_IsSingleInstance_Result" />
+  </message>
+  <message name="ReceiptFromProduction">
+    <part name="parameters" element="tns:ReceiptFromProduction" />
+  </message>
+  <message name="ReceiptFromProduction_Result">
+    <part name="parameters" element="tns:ReceiptFromProduction_Result" />
+  </message>
+  <message name="CalCulateBOMItemStandardCost">
+    <part name="parameters" element="tns:CalCulateBOMItemStandardCost" />
+  </message>
+  <message name="CalCulateBOMItemStandardCost_Result">
+    <part name="parameters" element="tns:CalCulateBOMItemStandardCost_Result" />
+  </message>
+  <message name="ReleaseProdOrder">
+    <part name="parameters" element="tns:ReleaseProdOrder" />
+  </message>
+  <message name="ReleaseProdOrder_Result">
+    <part name="parameters" element="tns:ReleaseProdOrder_Result" />
+  </message>
+  <message name="CreateProductionJournal">
+    <part name="parameters" element="tns:CreateProductionJournal" />
+  </message>
+  <message name="CreateProductionJournal_Result">
+    <part name="parameters" element="tns:CreateProductionJournal_Result" />
+  </message>
+  <message name="CloseProdOrder">
+    <part name="parameters" element="tns:CloseProdOrder" />
+  </message>
+  <message name="CloseProdOrder_Result">
+    <part name="parameters" element="tns:CloseProdOrder_Result" />
+  </message>
+  <message name="CreateOfflineProdOutputJnl">
+    <part name="parameters" element="tns:CreateOfflineProdOutputJnl" />
+  </message>
+  <message name="CreateOfflineProdOutputJnl_Result">
+    <part name="parameters" element="tns:CreateOfflineProdOutputJnl_Result" />
+  </message>
+  <message name="PostOutputJournalManual">
+    <part name="parameters" element="tns:PostOutputJournalManual" />
+  </message>
+  <message name="PostOutputJournalManual_Result">
+    <part name="parameters" element="tns:PostOutputJournalManual_Result" />
+  </message>
+  <message name="CheckOutputJournaiFrmPicklist">
+    <part name="parameters" element="tns:CheckOutputJournaiFrmPicklist" />
+  </message>
+  <message name="CheckOutputJournaiFrmPicklist_Result">
+    <part name="parameters" element="tns:CheckOutputJournaiFrmPicklist_Result" />
+  </message>
+  <message name="PostOutputJournalNAS">
+    <part name="parameters" element="tns:PostOutputJournalNAS" />
+  </message>
+  <message name="PostOutputJournalNAS_Result">
+    <part name="parameters" element="tns:PostOutputJournalNAS_Result" />
+  </message>
+  <message name="GetPDTOffLineTime">
+    <part name="parameters" element="tns:GetPDTOffLineTime" />
+  </message>
+  <message name="GetPDTOffLineTime_Result">
+    <part name="parameters" element="tns:GetPDTOffLineTime_Result" />
+  </message>
+  <message name="UpdateProductionBOMCost">
+    <part name="parameters" element="tns:UpdateProductionBOMCost" />
+  </message>
+  <message name="UpdateProductionBOMCost_Result">
+    <part name="parameters" element="tns:UpdateProductionBOMCost_Result" />
+  </message>
+  <message name="GetTrackingQtyInConsumption">
+    <part name="parameters" element="tns:GetTrackingQtyInConsumption" />
+  </message>
+  <message name="GetTrackingQtyInConsumption_Result">
+    <part name="parameters" element="tns:GetTrackingQtyInConsumption_Result" />
+  </message>
+  <message name="GetLatestBatchCode">
+    <part name="parameters" element="tns:GetLatestBatchCode" />
+  </message>
+  <message name="GetLatestBatchCode_Result">
+    <part name="parameters" element="tns:GetLatestBatchCode_Result" />
+  </message>
+  <message name="UpdateProductionOrderLine">
+    <part name="parameters" element="tns:UpdateProductionOrderLine" />
+  </message>
+  <message name="UpdateProductionOrderLine_Result">
+    <part name="parameters" element="tns:UpdateProductionOrderLine_Result" />
+  </message>
+  <message name="CreateEComDeliveryLog">
+    <part name="parameters" element="tns:CreateEComDeliveryLog" />
+  </message>
+  <message name="CreateEComDeliveryLog_Result">
+    <part name="parameters" element="tns:CreateEComDeliveryLog_Result" />
+  </message>
+  <message name="CreateProductionOrder">
+    <part name="parameters" element="tns:CreateProductionOrder" />
+  </message>
+  <message name="CreateProductionOrder_Result">
+    <part name="parameters" element="tns:CreateProductionOrder_Result" />
+  </message>
+  <message name="HidePostedMessage">
+    <part name="parameters" element="tns:HidePostedMessage" />
+  </message>
+  <message name="HidePostedMessage_Result">
+    <part name="parameters" element="tns:HidePostedMessage_Result" />
+  </message>
+  <portType name="ProductionAddOn_Port">
+    <operation name="get_IsSingleInstance">
+      <input name="get_IsSingleInstance" message="tns:get_IsSingleInstance" />
+      <output name="get_IsSingleInstance_Result" message="tns:get_IsSingleInstance_Result" />
+    </operation>
+    <operation name="ReceiptFromProduction">
+      <input name="ReceiptFromProduction" message="tns:ReceiptFromProduction" />
+      <output name="ReceiptFromProduction_Result" message="tns:ReceiptFromProduction_Result" />
+    </operation>
+    <operation name="CalCulateBOMItemStandardCost">
+      <input name="CalCulateBOMItemStandardCost" message="tns:CalCulateBOMItemStandardCost" />
+      <output name="CalCulateBOMItemStandardCost_Result" message="tns:CalCulateBOMItemStandardCost_Result" />
+    </operation>
+    <operation name="ReleaseProdOrder">
+      <input name="ReleaseProdOrder" message="tns:ReleaseProdOrder" />
+      <output name="ReleaseProdOrder_Result" message="tns:ReleaseProdOrder_Result" />
+    </operation>
+    <operation name="CreateProductionJournal">
+      <input name="CreateProductionJournal" message="tns:CreateProductionJournal" />
+      <output name="CreateProductionJournal_Result" message="tns:CreateProductionJournal_Result" />
+    </operation>
+    <operation name="CloseProdOrder">
+      <input name="CloseProdOrder" message="tns:CloseProdOrder" />
+      <output name="CloseProdOrder_Result" message="tns:CloseProdOrder_Result" />
+    </operation>
+    <operation name="CreateOfflineProdOutputJnl">
+      <input name="CreateOfflineProdOutputJnl" message="tns:CreateOfflineProdOutputJnl" />
+      <output name="CreateOfflineProdOutputJnl_Result" message="tns:CreateOfflineProdOutputJnl_Result" />
+    </operation>
+    <operation name="PostOutputJournalManual">
+      <input name="PostOutputJournalManual" message="tns:PostOutputJournalManual" />
+      <output name="PostOutputJournalManual_Result" message="tns:PostOutputJournalManual_Result" />
+    </operation>
+    <operation name="CheckOutputJournaiFrmPicklist">
+      <input name="CheckOutputJournaiFrmPicklist" message="tns:CheckOutputJournaiFrmPicklist" />
+      <output name="CheckOutputJournaiFrmPicklist_Result" message="tns:CheckOutputJournaiFrmPicklist_Result" />
+    </operation>
+    <operation name="PostOutputJournalNAS">
+      <input name="PostOutputJournalNAS" message="tns:PostOutputJournalNAS" />
+      <output name="PostOutputJournalNAS_Result" message="tns:PostOutputJournalNAS_Result" />
+    </operation>
+    <operation name="GetPDTOffLineTime">
+      <input name="GetPDTOffLineTime" message="tns:GetPDTOffLineTime" />
+      <output name="GetPDTOffLineTime_Result" message="tns:GetPDTOffLineTime_Result" />
+    </operation>
+    <operation name="UpdateProductionBOMCost">
+      <input name="UpdateProductionBOMCost" message="tns:UpdateProductionBOMCost" />
+      <output name="UpdateProductionBOMCost_Result" message="tns:UpdateProductionBOMCost_Result" />
+    </operation>
+    <operation name="GetTrackingQtyInConsumption">
+      <input name="GetTrackingQtyInConsumption" message="tns:GetTrackingQtyInConsumption" />
+      <output name="GetTrackingQtyInConsumption_Result" message="tns:GetTrackingQtyInConsumption_Result" />
+    </operation>
+    <operation name="GetLatestBatchCode">
+      <input name="GetLatestBatchCode" message="tns:GetLatestBatchCode" />
+      <output name="GetLatestBatchCode_Result" message="tns:GetLatestBatchCode_Result" />
+    </operation>
+    <operation name="UpdateProductionOrderLine">
+      <input name="UpdateProductionOrderLine" message="tns:UpdateProductionOrderLine" />
+      <output name="UpdateProductionOrderLine_Result" message="tns:UpdateProductionOrderLine_Result" />
+    </operation>
+    <operation name="CreateEComDeliveryLog">
+      <input name="CreateEComDeliveryLog" message="tns:CreateEComDeliveryLog" />
+      <output name="CreateEComDeliveryLog_Result" message="tns:CreateEComDeliveryLog_Result" />
+    </operation>
+    <operation name="CreateProductionOrder">
+      <input name="CreateProductionOrder" message="tns:CreateProductionOrder" />
+      <output name="CreateProductionOrder_Result" message="tns:CreateProductionOrder_Result" />
+    </operation>
+    <operation name="HidePostedMessage">
+      <input name="HidePostedMessage" message="tns:HidePostedMessage" />
+      <output name="HidePostedMessage_Result" message="tns:HidePostedMessage_Result" />
+    </operation>
+  </portType>
+  <binding name="ProductionAddOn_Binding" type="tns:ProductionAddOn_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="get_IsSingleInstance">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:get_IsSingleInstance" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="get_IsSingleInstance">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="get_IsSingleInstance_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ReceiptFromProduction">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:ReceiptFromProduction" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ReceiptFromProduction">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ReceiptFromProduction_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CalCulateBOMItemStandardCost">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:CalCulateBOMItemStandardCost" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CalCulateBOMItemStandardCost">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CalCulateBOMItemStandardCost_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ReleaseProdOrder">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:ReleaseProdOrder" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ReleaseProdOrder">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ReleaseProdOrder_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CreateProductionJournal">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:CreateProductionJournal" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CreateProductionJournal">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CreateProductionJournal_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CloseProdOrder">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:CloseProdOrder" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CloseProdOrder">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CloseProdOrder_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CreateOfflineProdOutputJnl">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:CreateOfflineProdOutputJnl" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CreateOfflineProdOutputJnl">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CreateOfflineProdOutputJnl_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostOutputJournalManual">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:PostOutputJournalManual" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PostOutputJournalManual">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PostOutputJournalManual_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckOutputJournaiFrmPicklist">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:CheckOutputJournaiFrmPicklist" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckOutputJournaiFrmPicklist">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckOutputJournaiFrmPicklist_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostOutputJournalNAS">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:PostOutputJournalNAS" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PostOutputJournalNAS">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PostOutputJournalNAS_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPDTOffLineTime">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:GetPDTOffLineTime" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPDTOffLineTime">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPDTOffLineTime_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateProductionBOMCost">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:UpdateProductionBOMCost" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateProductionBOMCost">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateProductionBOMCost_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetTrackingQtyInConsumption">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:GetTrackingQtyInConsumption" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetTrackingQtyInConsumption">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetTrackingQtyInConsumption_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetLatestBatchCode">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:GetLatestBatchCode" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetLatestBatchCode">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetLatestBatchCode_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateProductionOrderLine">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:UpdateProductionOrderLine" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateProductionOrderLine">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateProductionOrderLine_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CreateEComDeliveryLog">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:CreateEComDeliveryLog" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CreateEComDeliveryLog">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CreateEComDeliveryLog_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CreateProductionOrder">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:CreateProductionOrder" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CreateProductionOrder">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CreateProductionOrder_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="HidePostedMessage">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/ProductionAddOn:HidePostedMessage" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="HidePostedMessage">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="HidePostedMessage_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ProductionAddOn">
+    <port name="ProductionAddOn_Port" binding="tns:ProductionAddOn_Binding">
+      <address location="http://192.168.150.32:3047/FXUAT/WS/FRESH%20EXPRESS/Codeunit/ProductionAddOn" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

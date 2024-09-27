@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50028" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50028" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="ItemCategory">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Description" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="ProductGroup">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="ItemCategoryCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Description" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="SubProductGroup">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="ItemCategoryCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ProductGroup" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Description" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="SubProductGroup2">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="ItemCategoryCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ProductGroup" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SubProdGroup" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Description" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="ItemUnitOfMeasure">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="ItemNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="UOM" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="QtyPerUOM" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="PickingZone">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="ZoneCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Name" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="StorageTag">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="ZoneCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Name" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="DepartmentMaster">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="DeptCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="DeptName" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="SalesLineCancelReasonCodes">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Description" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="ItemMaster">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="ItemNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ItemName" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ItemSpecification" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="BaseUOM" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SalesUOM" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ItemCategoryCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ProductGroupCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SubProductGroupCode1" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SubProductGroupCode2" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Department" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="PickingZone" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="StorageTag" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="DeliveryTolerance" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ItemTrackingCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ShelfNo" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="Root" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="ItemCategory" type="tns:ItemCategory" />
+          <element minOccurs="1" maxOccurs="unbounded" name="ProductGroup" type="tns:ProductGroup" />
+          <element minOccurs="1" maxOccurs="unbounded" name="SubProductGroup" type="tns:SubProductGroup" />
+          <element minOccurs="1" maxOccurs="unbounded" name="SubProductGroup2" type="tns:SubProductGroup2" />
+          <element minOccurs="1" maxOccurs="unbounded" name="ItemUnitOfMeasure" type="tns:ItemUnitOfMeasure" />
+          <element minOccurs="1" maxOccurs="unbounded" name="PickingZone" type="tns:PickingZone" />
+          <element minOccurs="1" maxOccurs="unbounded" name="StorageTag" type="tns:StorageTag" />
+          <element minOccurs="1" maxOccurs="unbounded" name="DepartmentMaster" type="tns:DepartmentMaster" />
+          <element minOccurs="1" maxOccurs="unbounded" name="SalesLineCancelReasonCodes" type="tns:SalesLineCancelReasonCodes" />
+          <element minOccurs="1" maxOccurs="unbounded" name="ItemMaster" type="tns:ItemMaster" />
+        </sequence>
+      </complexType>
+      <element name="Root" type="tns:Root" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50027" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50027" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="SalesDvision">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Name" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="SalesSubDivision">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="SalesDivisionCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Name" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="BusinessSegment">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="SalesDivisionCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SalesSubDivisionCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Name" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="SubBusinessSegment">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="SalesDivisionCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SalesSubDivisionCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="BusinessSegmentCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Name" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="ShipmentMethods">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Description" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Type" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="CustomerRegion">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Name" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="SalesPersonMaster">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Name" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Email" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Phone" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Disabled" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="PaymentMethodMaster">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Description" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="PaymentTerms">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="Code" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Description" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="Customer">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="CustomerNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="CustomerName" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Address" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Address_1" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="City" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Phone" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="CustomerRegion" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="PaymentTerms" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SalesPersonFood" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SalesPersonBev" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="InvDisplayName" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SampleCustomer" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ShipmentMethod" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Blocked" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="BilltoCustomerNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="VATRegNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="HoldingCompany" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="HoldingCompanyNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SalesDivisionCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SalesSubDivisionCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="BusinessSegmentCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="SubBusinessSegmentCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="CurrencyCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="CostCentre" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="Outlet">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="CustomerNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="OutletCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="OutletName" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Address" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Address1" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="City" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Contact" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Phone" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ShipmentMethodCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Email" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="DeliveryZoneCode" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="Customer_Master" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="SalesDvision" type="tns:SalesDvision" />
+          <element minOccurs="1" maxOccurs="unbounded" name="SalesSubDivision" type="tns:SalesSubDivision" />
+          <element minOccurs="1" maxOccurs="unbounded" name="BusinessSegment" type="tns:BusinessSegment" />
+          <element minOccurs="1" maxOccurs="unbounded" name="SubBusinessSegment" type="tns:SubBusinessSegment" />
+          <element minOccurs="1" maxOccurs="unbounded" name="ShipmentMethods" type="tns:ShipmentMethods" />
+          <element minOccurs="1" maxOccurs="unbounded" name="CustomerRegion" type="tns:CustomerRegion" />
+          <element minOccurs="1" maxOccurs="unbounded" name="SalesPersonMaster" type="tns:SalesPersonMaster" />
+          <element minOccurs="1" maxOccurs="unbounded" name="PaymentMethodMaster" type="tns:PaymentMethodMaster" />
+          <element minOccurs="1" maxOccurs="unbounded" name="PaymentTerms" type="tns:PaymentTerms" />
+          <element minOccurs="1" maxOccurs="unbounded" name="Customer" type="tns:Customer" />
+          <element minOccurs="1" maxOccurs="unbounded" name="Outlet" type="tns:Outlet" />
+        </sequence>
+      </complexType>
+      <element name="Customer_Master" type="tns:Customer_Master" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50026" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50026" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="BatchDetails">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="ItemNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="BatchCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="AvailQty" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ExpirationDate" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="Root" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="BatchDetails" type="tns:BatchDetails" />
+        </sequence>
+      </complexType>
+      <element name="Root" type="tns:Root" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50029" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50029" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="SalesLine">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="DocumentNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="Status" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="OrderStatus" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="SalesLine" type="tns:SalesLine" />
+        </sequence>
+      </complexType>
+      <element name="OrderStatus" type="tns:OrderStatus" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50030" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50030" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="BatchAvailability">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="DeviceUser" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="TransType" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="DocumentNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="ItemNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="BatchNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="SerialNo" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="AvailQty" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ExtraQty" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="QtyPicked" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Status" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="Description" type="string" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="batchLineNo" type="int" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="ReservationEntryNo" type="int" />
+        </sequence>
+      </complexType>
+      <complexType name="OrderStatus" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="BatchAvailability" type="tns:BatchAvailability" />
+        </sequence>
+      </complexType>
+      <element name="OrderStatus" type="tns:OrderStatus" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50031" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50031" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="CancelLine">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="TransactionType" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="OrderNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="OrderLineNo" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="ItemNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="BatchNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ReasonCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="QtyToCancel" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="Root" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="CancelLine" type="tns:CancelLine" />
+        </sequence>
+      </complexType>
+      <element name="Root" type="tns:Root" />
+    </schema>
+    <schema xmlns:tns="urn:microsoft-dynamics-nav/xmlports/x50032" elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-nav/xmlports/x50032" xmlns="http://www.w3.org/2001/XMLSchema">
+      <complexType name="DeliveryOrderLines">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="DONo" type="string" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="LineNo" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="SalesOrderNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" default="0" name="SalesOrderLineNo" type="int" />
+          <element minOccurs="1" maxOccurs="1" name="ItemNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="UnitOfMeasureCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="BatchCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="QuantityShipped" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="QtyInvoiced" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="UnitPrice" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="DiscountPercentage" type="string" />
+        </sequence>
+      </complexType>
+      <complexType name="DeliveryOrderHeader">
+        <sequence>
+          <element minOccurs="1" maxOccurs="1" name="DONo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="CustomerNo" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="ShiptoAddress" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="DriverCode" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="CreatedBy" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="DeliveryDate" type="string" />
+          <element minOccurs="1" maxOccurs="1" name="DeliveryTime" type="string" />
+          <element minOccurs="1" maxOccurs="unbounded" name="DeliveryOrderLines" type="tns:DeliveryOrderLines" />
+        </sequence>
+      </complexType>
+      <complexType name="DeliveryOrder" mixed="true">
+        <sequence>
+          <element minOccurs="1" maxOccurs="unbounded" name="DeliveryOrderHeader" type="tns:DeliveryOrderHeader" />
+        </sequence>
+      </complexType>
+      <element name="DeliveryOrder" type="tns:DeliveryOrder" />
+    </schema>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="get_IsSingleInstance">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="get_IsSingleInstance_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateLog">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="tableNo" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdateLog_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetItemMaster">
+        <complexType>
+          <sequence>
+            <element xmlns:q1="urn:microsoft-dynamics-nav/xmlports/x50028" minOccurs="1" maxOccurs="1" name="itemMaster" type="q1:Root" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetItemMaster_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="int" />
+            <element xmlns:q2="urn:microsoft-dynamics-nav/xmlports/x50028" minOccurs="1" maxOccurs="1" name="itemMaster" type="q2:Root" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetCustomerMaster">
+        <complexType>
+          <sequence>
+            <element xmlns:q3="urn:microsoft-dynamics-nav/xmlports/x50027" minOccurs="1" maxOccurs="1" name="customerAndOutlets" type="q3:Customer_Master" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetCustomerMaster_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q4="urn:microsoft-dynamics-nav/xmlports/x50027" minOccurs="1" maxOccurs="1" name="customerAndOutlets" type="q4:Customer_Master" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBatchList">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="asofDate" type="date" />
+            <element xmlns:q5="urn:microsoft-dynamics-nav/xmlports/x50026" minOccurs="1" maxOccurs="1" name="getAvailableBatch" type="q5:Root" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBatchList_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q6="urn:microsoft-dynamics-nav/xmlports/x50026" minOccurs="1" maxOccurs="1" name="getAvailableBatch" type="q6:Root" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateOrders">
+        <complexType>
+          <sequence>
+            <element xmlns:q7="urn:microsoft-dynamics-nav/xmlports/x50029" minOccurs="1" maxOccurs="1" name="updateOrderStatus" type="q7:OrderStatus" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateOrders_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PostPickList">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="pickListNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PostPickList_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="POSTFORTOKEN">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="POSTFORTOKEN_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ConfirmPicking">
+        <complexType>
+          <sequence>
+            <element xmlns:q8="urn:microsoft-dynamics-nav/xmlports/x50030" minOccurs="1" maxOccurs="1" name="orderBatches" type="q8:OrderStatus" />
+            <element minOccurs="1" maxOccurs="1" name="deviceUser" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ConfirmPicking_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q9="urn:microsoft-dynamics-nav/xmlports/x50030" minOccurs="1" maxOccurs="1" name="orderBatches" type="q9:OrderStatus" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CancelSalesLineReservation">
+        <complexType>
+          <sequence>
+            <element xmlns:q10="urn:microsoft-dynamics-nav/xmlports/x50031" minOccurs="1" maxOccurs="1" name="cancelBatchQuantityInSalesOrder" type="q10:Root" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CancelSalesLineReservation_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q11="urn:microsoft-dynamics-nav/xmlports/x50031" minOccurs="1" maxOccurs="1" name="cancelBatchQuantityInSalesOrder" type="q11:Root" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImportDeliveryOrder">
+        <complexType>
+          <sequence>
+            <element xmlns:q12="urn:microsoft-dynamics-nav/xmlports/x50032" minOccurs="1" maxOccurs="1" name="deliveryOrder" type="q12:DeliveryOrder" />
+            <element minOccurs="1" maxOccurs="1" name="deviceUserID" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ImportDeliveryOrder_Result">
+        <complexType>
+          <sequence>
+            <element xmlns:q13="urn:microsoft-dynamics-nav/xmlports/x50032" minOccurs="1" maxOccurs="1" name="deliveryOrder" type="q13:DeliveryOrder" />
+          </sequence>
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="get_IsSingleInstance">
+    <part name="parameters" element="tns:get_IsSingleInstance" />
+  </message>
+  <message name="get_IsSingleInstance_Result">
+    <part name="parameters" element="tns:get_IsSingleInstance_Result" />
+  </message>
+  <message name="UpdateLog">
+    <part name="parameters" element="tns:UpdateLog" />
+  </message>
+  <message name="UpdateLog_Result">
+    <part name="parameters" element="tns:UpdateLog_Result" />
+  </message>
+  <message name="GetItemMaster">
+    <part name="parameters" element="tns:GetItemMaster" />
+  </message>
+  <message name="GetItemMaster_Result">
+    <part name="parameters" element="tns:GetItemMaster_Result" />
+  </message>
+  <message name="GetCustomerMaster">
+    <part name="parameters" element="tns:GetCustomerMaster" />
+  </message>
+  <message name="GetCustomerMaster_Result">
+    <part name="parameters" element="tns:GetCustomerMaster_Result" />
+  </message>
+  <message name="GetBatchList">
+    <part name="parameters" element="tns:GetBatchList" />
+  </message>
+  <message name="GetBatchList_Result">
+    <part name="parameters" element="tns:GetBatchList_Result" />
+  </message>
+  <message name="ValidateOrders">
+    <part name="parameters" element="tns:ValidateOrders" />
+  </message>
+  <message name="ValidateOrders_Result">
+    <part name="parameters" element="tns:ValidateOrders_Result" />
+  </message>
+  <message name="PostPickList">
+    <part name="parameters" element="tns:PostPickList" />
+  </message>
+  <message name="PostPickList_Result">
+    <part name="parameters" element="tns:PostPickList_Result" />
+  </message>
+  <message name="POSTFORTOKEN">
+    <part name="parameters" element="tns:POSTFORTOKEN" />
+  </message>
+  <message name="POSTFORTOKEN_Result">
+    <part name="parameters" element="tns:POSTFORTOKEN_Result" />
+  </message>
+  <message name="ConfirmPicking">
+    <part name="parameters" element="tns:ConfirmPicking" />
+  </message>
+  <message name="ConfirmPicking_Result">
+    <part name="parameters" element="tns:ConfirmPicking_Result" />
+  </message>
+  <message name="CancelSalesLineReservation">
+    <part name="parameters" element="tns:CancelSalesLineReservation" />
+  </message>
+  <message name="CancelSalesLineReservation_Result">
+    <part name="parameters" element="tns:CancelSalesLineReservation_Result" />
+  </message>
+  <message name="ImportDeliveryOrder">
+    <part name="parameters" element="tns:ImportDeliveryOrder" />
+  </message>
+  <message name="ImportDeliveryOrder_Result">
+    <part name="parameters" element="tns:ImportDeliveryOrder_Result" />
+  </message>
+  <portType name="MasterMgmntDigits_Port">
+    <operation name="get_IsSingleInstance">
+      <input name="get_IsSingleInstance" message="tns:get_IsSingleInstance" />
+      <output name="get_IsSingleInstance_Result" message="tns:get_IsSingleInstance_Result" />
+    </operation>
+    <operation name="UpdateLog">
+      <input name="UpdateLog" message="tns:UpdateLog" />
+      <output name="UpdateLog_Result" message="tns:UpdateLog_Result" />
+    </operation>
+    <operation name="GetItemMaster">
+      <input name="GetItemMaster" message="tns:GetItemMaster" />
+      <output name="GetItemMaster_Result" message="tns:GetItemMaster_Result" />
+    </operation>
+    <operation name="GetCustomerMaster">
+      <input name="GetCustomerMaster" message="tns:GetCustomerMaster" />
+      <output name="GetCustomerMaster_Result" message="tns:GetCustomerMaster_Result" />
+    </operation>
+    <operation name="GetBatchList">
+      <input name="GetBatchList" message="tns:GetBatchList" />
+      <output name="GetBatchList_Result" message="tns:GetBatchList_Result" />
+    </operation>
+    <operation name="ValidateOrders">
+      <input name="ValidateOrders" message="tns:ValidateOrders" />
+      <output name="ValidateOrders_Result" message="tns:ValidateOrders_Result" />
+    </operation>
+    <operation name="PostPickList">
+      <input name="PostPickList" message="tns:PostPickList" />
+      <output name="PostPickList_Result" message="tns:PostPickList_Result" />
+    </operation>
+    <operation name="POSTFORTOKEN">
+      <input name="POSTFORTOKEN" message="tns:POSTFORTOKEN" />
+      <output name="POSTFORTOKEN_Result" message="tns:POSTFORTOKEN_Result" />
+    </operation>
+    <operation name="ConfirmPicking">
+      <input name="ConfirmPicking" message="tns:ConfirmPicking" />
+      <output name="ConfirmPicking_Result" message="tns:ConfirmPicking_Result" />
+    </operation>
+    <operation name="CancelSalesLineReservation">
+      <input name="CancelSalesLineReservation" message="tns:CancelSalesLineReservation" />
+      <output name="CancelSalesLineReservation_Result" message="tns:CancelSalesLineReservation_Result" />
+    </operation>
+    <operation name="ImportDeliveryOrder">
+      <input name="ImportDeliveryOrder" message="tns:ImportDeliveryOrder" />
+      <output name="ImportDeliveryOrder_Result" message="tns:ImportDeliveryOrder_Result" />
+    </operation>
+  </portType>
+  <binding name="MasterMgmntDigits_Binding" type="tns:MasterMgmntDigits_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="get_IsSingleInstance">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:get_IsSingleInstance" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="get_IsSingleInstance">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="get_IsSingleInstance_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdateLog">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:UpdateLog" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdateLog">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdateLog_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetItemMaster">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:GetItemMaster" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetItemMaster">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetItemMaster_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetCustomerMaster">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:GetCustomerMaster" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetCustomerMaster">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetCustomerMaster_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetBatchList">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:GetBatchList" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetBatchList">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetBatchList_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ValidateOrders">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:ValidateOrders" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ValidateOrders">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ValidateOrders_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostPickList">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:PostPickList" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PostPickList">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PostPickList_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="POSTFORTOKEN">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:POSTFORTOKEN" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="POSTFORTOKEN">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="POSTFORTOKEN_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ConfirmPicking">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:ConfirmPicking" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ConfirmPicking">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ConfirmPicking_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CancelSalesLineReservation">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:CancelSalesLineReservation" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CancelSalesLineReservation">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CancelSalesLineReservation_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ImportDeliveryOrder">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/MasterMgmntDigits:ImportDeliveryOrder" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ImportDeliveryOrder">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ImportDeliveryOrder_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="MasterMgmntDigits">
+    <port name="MasterMgmntDigits_Port" binding="tns:MasterMgmntDigits_Binding">
+      <address location="http://192.168.150.32:3047/FXUAT/WS/FRESH%20EXPRESS/Codeunit/MasterMgmntDigits" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

@@ -1,0 +1,18 @@
+29-Aug-2024 15.22.30-SelectCustomerCouponDetail STARTED 2024-08-29 3.22.30 PM
+29-Aug-2024 15.22.30-======================================
+29-Aug-2024 15.25.44-SelectCustomerCouponDetail STARTED 2024-08-29 3.25.44 PM
+29-Aug-2024 15.25.44-======================================
+29-Aug-2024 15.26.13-SelectCustomerCouponDetail - Error :   Exception of type 'System.OutOfMemoryException' was thrown.
+29-Aug-2024 15.26.13-SelectCustomerCouponDetail ENDED 
+29-Aug-2024 15.26.13-======================================
+29-Aug-2024 15.26.29-SelectCustomerCouponDetail STARTED 2024-08-29 3.26.29 PM
+29-Aug-2024 15.26.29-======================================
+29-Aug-2024 15.46.28-SelectCustomerCouponDetail STARTED 2024-08-29 3.46.28 PM
+29-Aug-2024 15.46.28-======================================
+29-Aug-2024 15.55.37-SelectCustomerCouponDetail STARTED 2024-08-29 3.55.37 PM
+29-Aug-2024 15.55.37-======================================
+29-Aug-2024 15.55.40-SelectCustomerCouponDetail - Error :   Column 'cac_ID' does not belong to table Table.
+29-Aug-2024 15.55.40-SelectCustomerCouponDetail ENDED 
+29-Aug-2024 15.55.40-======================================
+29-Aug-2024 15.57.04-SelectCustomerCouponDetail STARTED 2024-08-29 3.57.04 PM
+29-Aug-2024 15.57.04-======================================

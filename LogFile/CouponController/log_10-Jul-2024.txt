@@ -1,0 +1,14 @@
+10-Jul-2024 14.40.49-SelectCouponCollectionDetail STARTED 2024-07-10 2.40.49 PM
+10-Jul-2024 14.40.49-======================================
+10-Jul-2024 14.40.51-SelectCouponCollectionDetail - Error :   Column 'cpd_cph_ID' does not belong to table Table1.
+10-Jul-2024 14.40.51-SelectCouponCollectionDetail ENDED 
+10-Jul-2024 14.40.51-======================================
+10-Jul-2024 14.43.56-SelectCouponCollectionDetail STARTED 2024-07-10 2.43.56 PM
+10-Jul-2024 14.43.56-======================================
+10-Jul-2024 14.43.58-SelectCouponCollectionDetail - Error :   Column 'cpd_ID' does not belong to table Table1.
+10-Jul-2024 14.43.58-SelectCouponCollectionDetail ENDED 
+10-Jul-2024 14.43.58-======================================
+10-Jul-2024 14.45.06-SelectCouponCollectionDetail STARTED 2024-07-10 2.45.06 PM
+10-Jul-2024 14.45.06-======================================
+10-Jul-2024 14.47.52-SelectCouponCollectionDetail STARTED 2024-07-10 2.47.52 PM
+10-Jul-2024 14.47.52-======================================

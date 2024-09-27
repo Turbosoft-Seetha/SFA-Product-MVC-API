@@ -1,0 +1,8 @@
+26-05-2023 16:29:47 +05:30-InsVanToVanTransferInCompletion STARTED -26-05-2023 16:29:47
+26-05-2023 16:29:48 +05:30-====================
+26-05-2023 16:33:57 +05:30- InsVanToVanTransferInCompletion Exception - Column 'Res' does not belong to table TT.
+26-05-2023 16:33:57 +05:30-Column 'Res' does not belong to table TT.
+26-05-2023 16:33:57 +05:30-InsVanToVanTransferInCompletion ENDED - 26-05-2023 16:33:57
+26-05-2023 16:33:57 +05:30-==================
+26-05-2023 16:40:32 +05:30-InsVanToVanTransferInCompletion STARTED -26-05-2023 16:40:32
+26-05-2023 16:40:33 +05:30-====================

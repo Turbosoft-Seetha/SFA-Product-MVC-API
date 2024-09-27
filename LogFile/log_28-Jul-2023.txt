@@ -1,0 +1,9 @@
+28-07-2023 01:20:47 PM +05:30-PostTransactionalImage STARTED 
+28-07-2023 01:20:47 PM +05:30-==============================
+28-07-2023 01:21:40 PM +05:30-Response from Sql Procedure : Mode=1 and Status=Success
+28-07-2023 01:24:32 PM +05:30-PostTransactionalImage STARTED 
+28-07-2023 01:24:32 PM +05:30-==============================
+28-07-2023 01:25:03 PM +05:30-Response from Sql Procedure : Mode=1 and Status=Success
+28-07-2023 01:53:52 PM +05:30-PostTransactionalImage STARTED 
+28-07-2023 01:53:52 PM +05:30-==============================
+28-07-2023 01:53:56 PM +05:30-Response from Sql Procedure : Mode=1 and Status=Success

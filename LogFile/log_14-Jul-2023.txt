@@ -1,0 +1,14 @@
+14-07-2023 03:04:58 PM +05:30-GetTransferInItemBatch STARTED 14-07-2023 03:04:58 PM
+14-07-2023 03:04:58 PM +05:30-============================
+14-07-2023 03:05:01 PM +05:30-NoDataSQL - Column 'dsd_LineNo' does not belong to table Table1.
+14-07-2023 03:05:01 PM +05:30-GetTransferInItemBatch ENDED 14-07-2023 03:05:01 PM
+14-07-2023 03:05:01 PM +05:30-==========================
+14-07-2023 03:08:20 PM +05:30-GetTransferInItemBatch STARTED 14-07-2023 03:08:20 PM
+14-07-2023 03:08:20 PM +05:30-============================
+14-07-2023 03:15:42 PM +05:30-GetTransferInItemBatch STARTED 14-07-2023 03:15:42 PM
+14-07-2023 03:15:43 PM +05:30-============================
+14-07-2023 03:20:23 PM +05:30-NoDataSQL - Column 'dsd_LineNo' does not belong to table Table1.
+14-07-2023 03:20:23 PM +05:30-GetTransferInItemBatch ENDED 14-07-2023 03:20:23 PM
+14-07-2023 03:20:23 PM +05:30-==========================
+14-07-2023 03:20:36 PM +05:30-GetTransferInItemBatch STARTED 14-07-2023 03:20:36 PM
+14-07-2023 03:20:36 PM +05:30-============================

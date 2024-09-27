@@ -1,0 +1,37 @@
+19-06-2023 01:40:12 PM +05:30-SelectDashboardCounts STARTED -19-06-2023 01:40:12 PM
+19-06-2023 01:40:12 PM +05:30-====================
+19-06-2023 01:40:13 PM +05:30- SelectDashboardCounts Exception - Column 'LoadInFullLoadInPartial' does not belong to table TT.
+19-06-2023 01:40:13 PM +05:30-SelectDashboardCounts ENDED - 19-06-2023 01:40:13 PM
+19-06-2023 01:40:13 PM +05:30-==================
+19-06-2023 01:40:44 PM +05:30-SelectDashboardCounts STARTED -19-06-2023 01:40:44 PM
+19-06-2023 01:40:44 PM +05:30-====================
+19-06-2023 01:40:44 PM +05:30- SelectDashboardCounts Exception - Column 'LoadInFullLoadInPartial' does not belong to table TT.
+19-06-2023 01:40:44 PM +05:30-SelectDashboardCounts ENDED - 19-06-2023 01:40:44 PM
+19-06-2023 01:40:44 PM +05:30-==================
+19-06-2023 01:42:32 PM +05:30-SelectDashboardCounts STARTED -19-06-2023 01:42:32 PM
+19-06-2023 01:42:32 PM +05:30-====================
+19-06-2023 01:42:32 PM +05:30- SelectDashboardCounts Exception - Column 'LoadInFullLoadInPartial' does not belong to table TT.
+19-06-2023 01:42:32 PM +05:30-SelectDashboardCounts ENDED - 19-06-2023 01:42:32 PM
+19-06-2023 01:42:32 PM +05:30-==================
+19-06-2023 01:49:56 PM +05:30-SelectDashboardCounts STARTED -19-06-2023 01:49:56 PM
+19-06-2023 01:49:56 PM +05:30-====================
+19-06-2023 02:09:32 PM +05:30-SelectDashboardCounts STARTED -19-06-2023 02:09:32 PM
+19-06-2023 02:09:32 PM +05:30-====================
+19-06-2023 02:14:18 PM +05:30-SelectDashboardCounts STARTED -19-06-2023 02:14:18 PM
+19-06-2023 02:14:18 PM +05:30-====================
+19-06-2023 02:14:38 PM +05:30-SelectDashboardCounts STARTED -19-06-2023 02:14:38 PM
+19-06-2023 02:14:38 PM +05:30-====================
+19-06-2023 02:25:13 PM +05:30-SelectDashboardCounts STARTED -19-06-2023 02:25:13 PM
+19-06-2023 02:25:13 PM +05:30-====================
+19-06-2023 02:57:39 PM +05:30-SelectPickingHeader STARTED -19-06-2023 02:57:39 PM
+19-06-2023 02:57:39 PM +05:30-====================
+19-06-2023 04:08:09 PM +05:30-SelectDespatchHeader STARTED -19-06-2023 04:08:09 PM
+19-06-2023 04:08:09 PM +05:30-====================
+19-06-2023 04:08:10 PM +05:30-SelectDespatchHeader ENDED - 19-06-2023 04:08:10 PM
+19-06-2023 04:08:10 PM +05:30-==================
+19-06-2023 04:09:10 PM +05:30-SelectLoadInHeader STARTED -19-06-2023 04:09:10 PM
+19-06-2023 04:09:10 PM +05:30-====================
+19-06-2023 04:09:28 PM +05:30-SelectDespatchHeader STARTED -19-06-2023 04:09:28 PM
+19-06-2023 04:09:28 PM +05:30-====================
+19-06-2023 04:12:30 PM +05:30-SelectDeliveryHeader STARTED -19-06-2023 04:12:30 PM
+19-06-2023 04:12:30 PM +05:30-====================

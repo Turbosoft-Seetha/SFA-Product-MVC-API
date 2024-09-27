@@ -1,0 +1,41 @@
+24-07-2023 02:02:48 PM +05:30-PostVoidDeliveryNote STARTED 
+24-07-2023 02:02:48 PM +05:30-==============================
+24-07-2023 02:02:48 PM +05:30-Unexpected character encountered while parsing number: J. Path '[0].VoidDate', line 1, position 77.
+24-07-2023 02:02:48 PM +05:30-PostVoidDeliveryNote ENDED 
+24-07-2023 02:02:48 PM +05:30-==========================
+24-07-2023 02:03:10 PM +05:30-PostVoidDeliveryNote STARTED 
+24-07-2023 02:03:10 PM +05:30-==============================
+24-07-2023 02:03:13 PM +05:30-Column names in each table must be unique. Column name 'VoidMode' in table '#TempVoidDelivery' is specified more than once.
+24-07-2023 02:03:25 PM +05:30-Object reference not set to an instance of an object.
+24-07-2023 02:03:25 PM +05:30-PostVoidDeliveryNote ENDED 
+24-07-2023 02:03:25 PM +05:30-==========================
+24-07-2023 02:04:28 PM +05:30-PostVoidDeliveryNote STARTED 
+24-07-2023 02:04:28 PM +05:30-==============================
+24-07-2023 02:04:28 PM +05:30-After parsing a value an unexpected character was encountered: ". Path '[0].dlnID', line 1, position 25.
+24-07-2023 02:04:28 PM +05:30-PostVoidDeliveryNote ENDED 
+24-07-2023 02:04:28 PM +05:30-==========================
+24-07-2023 02:05:02 PM +05:30-PostVoidDeliveryNote STARTED 
+24-07-2023 02:05:02 PM +05:30-==============================
+24-07-2023 02:05:02 PM +05:30-Column names in each table must be unique. Column name 'VoidMode' in table '#TempVoidDelivery' is specified more than once.
+24-07-2023 02:05:06 PM +05:30-Object reference not set to an instance of an object.
+24-07-2023 02:05:06 PM +05:30-PostVoidDeliveryNote ENDED 
+24-07-2023 02:05:06 PM +05:30-==========================
+24-07-2023 02:05:32 PM +05:30-PostVoidDeliveryNote STARTED 
+24-07-2023 02:05:32 PM +05:30-==============================
+24-07-2023 02:06:30 PM +05:30-Column names in each table must be unique. Column name 'VoidMode' in table '#TempVoidDelivery' is specified more than once.
+24-07-2023 02:14:55 PM +05:30-Object reference not set to an instance of an object.
+24-07-2023 02:14:55 PM +05:30-PostVoidDeliveryNote ENDED 
+24-07-2023 02:14:55 PM +05:30-==========================
+24-07-2023 04:34:07 PM +05:30-PostVoidDeliveryNote STARTED 
+24-07-2023 04:34:07 PM +05:30-==============================
+24-07-2023 04:37:01 PM +05:30-Column names in each table must be unique. Column name 'VoidMode' in table '#TempVoidDelivery' is specified more than once.
+24-07-2023 04:55:26 PM +05:30-Column names in each table must be unique. Column name 'VoidMode' in table '#TempVoidDelivery' is specified more than once.
+24-07-2023 04:55:28 PM +05:30-Object reference not set to an instance of an object.
+24-07-2023 04:55:28 PM +05:30-PostVoidDeliveryNote ENDED 
+24-07-2023 04:55:28 PM +05:30-==========================
+24-07-2023 07:01:39 PM +05:30-GetLoadInData STARTED 24-07-2023 07:01:39 PM
+24-07-2023 07:01:39 PM +05:30-======================================
+24-07-2023 07:07:42 PM +05:30-GetLoadInData STARTED 24-07-2023 07:07:42 PM
+24-07-2023 07:07:42 PM +05:30-======================================
+24-07-2023 07:14:49 PM +05:30-GetLoadInData STARTED 24-07-2023 07:14:49 PM
+24-07-2023 07:14:49 PM +05:30-======================================

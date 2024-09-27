@@ -1,0 +1,1992 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <schema elementFormDefault="qualified" targetNamespace="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn" xmlns="http://www.w3.org/2001/XMLSchema">
+      <element name="ProductionPrePostValidations">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="prodOrderPrintNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemBarcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="quantity" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ProductionPrePostValidations_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetProductionBarcode">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchBarcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="prodOrderPrintNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="quantity" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="planned_Del_Date" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="order_Qty" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description2" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="reserved" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="uOMCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetProductionBarcode_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="quantity" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="planned_Del_Date" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="order_Qty" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description2" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="reserved" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="uOMCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetPODoc">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="pONum" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="shipmentDoc" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="vendorName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="shipperName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="forceQuantityScan" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPODoc_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="shipmentDoc" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="vendorName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="shipperName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="forceQuantityScan" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPOItemDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qtyOrdered" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyReceived" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyScanned" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyOutStanding" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyExtra" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPOItemDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="qtyOrdered" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyReceived" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyScanned" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyOutStanding" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyExtra" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SavePORecLine">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SavePORecLine_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PostPOReciept">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PostPOReciept_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetReceiveDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="purchaseOrder" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetReceiveDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReadSupplierBarcode">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="barcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="supplierCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="boxNumber" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ReadSupplierBarcode_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="boxNumber" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertReceiveDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="pOCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="boxbarcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="supplierCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertReceiveDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetSoStartDispatch">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="customerName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="outletName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="deliveryZone" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetSoStartDispatch_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="customerName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="outletName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="deliveryZone" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetSalesOrderData">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="prodOrderPrintNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="customer_Name" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="outLet_Name" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetSalesOrderData_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="customer_Name" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="outLet_Name" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetSoBatchCode">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="systemBatchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="barcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecs" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="barUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="baseUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bar2BaseConversion" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOMConversionRate" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyOrdered" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyPending" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyScanned" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDue" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyVerify" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDispatched" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetSoBatchCode_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="systemBatchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="barcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecs" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="barUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="baseUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bar2BaseConversion" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOMConversionRate" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyOrdered" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyPending" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyScanned" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDue" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyVerify" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDispatched" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SOCheckLines">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="dOCNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOMConversionRate" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyOrdered" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyPending" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyScanned" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDue" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyVerify" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDispatched" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SOCheckLines_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="dOCNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOMConversionRate" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyOrdered" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyPending" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyScanned" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDue" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyVerify" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDispatched" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SOSaveScannedQuantity">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="SOSaveScannedQuantity_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetItemBarcode">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="barcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecs" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="barUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="baseUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bar2BaseConversion" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetItemBarcode_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecs" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="barUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="baseUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bar2BaseConversion" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetItemBatchByBarcode">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchBarcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchShipmentCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchSupplierCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchProductionDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="batchExpiryDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetItemBatchByBarcode_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchShipmentCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchSupplierCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchProductionDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="batchExpiryDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="INVCheckOut">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="invoiceNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="driverCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="customerName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="invoiceCount" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="INVCheckOut_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="customerName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="invoiceCount" type="int" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="INVCheckIn">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="invoiceNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="customerName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="dRIVERNAME" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="INVCheckIn_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="customerName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="dRIVERNAME" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ChangeBatchSpecsStart">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeBatchSpecsStart_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="ChangeBatchSpecs">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="newProductionDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="newExpiryDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeBatchSpecs_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="PostPDTWHTransfer">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PostPDTWHTransfer_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetBatchCodeDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchCodeP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchItemName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchItemSpecification" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchVendorName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchExpiryDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="batchProductionDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBatchCodeDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchItemName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchItemSpecification" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchVendorName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchExpiryDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="batchProductionDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetItemBarcodeWeb">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="barcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecs" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="barUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="baseUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bar2BaseConversion" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="itemRoundingPrecision" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="noLotNumberAssigned" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetItemBarcodeWeb_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecs" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="barUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="baseUOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="bar2BaseConversion" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="itemRoundingPrecision" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="noLotNumberAssigned" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PrintPurchReceipt">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="orderNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="PrintPurchReceipt_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="GetItemInformation">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemBarCodeP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCodeP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNameP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecificationP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="reportAsOnDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="outInventory" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="outRserved" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="outExpired" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetItemInformation_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemCodeP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNameP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecificationP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="outInventory" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="outRserved" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="outExpired" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBatchInformation">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchBarCodeP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCodeP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="supplierNameP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="expiryDateP" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="batchInventoryP" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="batchReservedP" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="batchFreeP" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="batchCodeP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCodeChangedP" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="itemBarcodeP" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBatchInformation_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="supplierNameP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="expiryDateP" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="batchInventoryP" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="batchReservedP" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="batchFreeP" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="batchCodeP" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCodeChangedP" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="itemBarcodeP" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CalcStockParameters">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="reportAsOnDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="outInventory" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="outRserved" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="outExpired" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CalcStockParameters_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="outInventory" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="outRserved" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="outExpired" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPDTFunctionalPermission">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="functionalCode1P" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="functionalCode2P" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetPDTFunctionalPermission_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckLines">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="systemBatchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="dMAN" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qtyScanned" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyVerify" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyOrdered" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDispatched" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDue" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckLines_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="dMAN" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qtyScanned" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyVerify" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyOrdered" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDispatched" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="qtyDue" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OnSaving">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="systemBatchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qtytoupdate" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="reservedQtyP" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="scannedQtyP" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="extraQtyP" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OnSaving_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="reservedQtyP" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="scannedQtyP" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="extraQtyP" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OnPost">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="isNotShortcutDimension1Empty" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="OnPost_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="Conversionqty">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="uOM1" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOM2" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qtytoChange" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="Conversionqty_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateSalesDOCNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="validateAll" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="barcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="customerName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="outletName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pONo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateSalesDOCNo_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="validateAll" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="barcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="customerName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="outletName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="pONo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateItemBarcode">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="barcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecs2" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecs" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateItemBarcode_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemName" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecs2" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemSpecs" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateItemBatchcode">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="systemBatchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchBarcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tmpItemIsBOM" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="barcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="useBatchBarcode" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ValidateItemBatchcode_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="systemBatchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="batchBarcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="tmpItemIsBOM" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="barcode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="useBatchBarcode" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="IsShortcutDimension1InSalesHeader">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="IsShortcutDimension1InSalesHeader_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdatePDTBufferExtraQtyOption">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="documentNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="isExtraQty" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="UpdatePDTBufferExtraQtyOption_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="SavePORecLineVISUALSTUDIO">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SavePORecLineVISUALSTUDIO_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+      <element name="CheckForExtraQuantity">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="docNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="uOM" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="extraQty" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CheckForExtraQuantity_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+            <element minOccurs="1" maxOccurs="1" name="extraQty" type="decimal" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeBatchSpecsVISUALSTUDIO">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="newProductionDate" type="date" />
+            <element minOccurs="1" maxOccurs="1" name="newExpiryDate" type="date" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="ChangeBatchSpecsVISUALSTUDIO_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="boolean" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetDriverInformation">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="driverCode" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetDriverInformation_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="return_value" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBatchDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description2" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetBatchDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description2" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SaveGTINNo">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="batchCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="gTINNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="SaveGTINNo_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetItemDetails">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemCode" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description2" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="GetItemDetails_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="description" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="description2" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateProductionOrderFromPDT">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="itemNo" type="string" />
+            <element minOccurs="1" maxOccurs="1" name="qty" type="decimal" />
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="CreateProductionOrderFromPDT_Result">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="errorMsg" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertTimeLog">
+        <complexType>
+          <sequence>
+            <element minOccurs="1" maxOccurs="1" name="source" type="string" />
+          </sequence>
+        </complexType>
+      </element>
+      <element name="InsertTimeLog_Result">
+        <complexType>
+          <sequence />
+        </complexType>
+      </element>
+    </schema>
+  </types>
+  <message name="ProductionPrePostValidations">
+    <part name="parameters" element="tns:ProductionPrePostValidations" />
+  </message>
+  <message name="ProductionPrePostValidations_Result">
+    <part name="parameters" element="tns:ProductionPrePostValidations_Result" />
+  </message>
+  <message name="GetProductionBarcode">
+    <part name="parameters" element="tns:GetProductionBarcode" />
+  </message>
+  <message name="GetProductionBarcode_Result">
+    <part name="parameters" element="tns:GetProductionBarcode_Result" />
+  </message>
+  <message name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+    <part name="parameters" element="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" />
+  </message>
+  <message name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+    <part name="parameters" element="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" />
+  </message>
+  <message name="GetPODoc">
+    <part name="parameters" element="tns:GetPODoc" />
+  </message>
+  <message name="GetPODoc_Result">
+    <part name="parameters" element="tns:GetPODoc_Result" />
+  </message>
+  <message name="GetPOItemDetails">
+    <part name="parameters" element="tns:GetPOItemDetails" />
+  </message>
+  <message name="GetPOItemDetails_Result">
+    <part name="parameters" element="tns:GetPOItemDetails_Result" />
+  </message>
+  <message name="SavePORecLine">
+    <part name="parameters" element="tns:SavePORecLine" />
+  </message>
+  <message name="SavePORecLine_Result">
+    <part name="parameters" element="tns:SavePORecLine_Result" />
+  </message>
+  <message name="PostPOReciept">
+    <part name="parameters" element="tns:PostPOReciept" />
+  </message>
+  <message name="PostPOReciept_Result">
+    <part name="parameters" element="tns:PostPOReciept_Result" />
+  </message>
+  <message name="GetReceiveDetails">
+    <part name="parameters" element="tns:GetReceiveDetails" />
+  </message>
+  <message name="GetReceiveDetails_Result">
+    <part name="parameters" element="tns:GetReceiveDetails_Result" />
+  </message>
+  <message name="ReadSupplierBarcode">
+    <part name="parameters" element="tns:ReadSupplierBarcode" />
+  </message>
+  <message name="ReadSupplierBarcode_Result">
+    <part name="parameters" element="tns:ReadSupplierBarcode_Result" />
+  </message>
+  <message name="InsertReceiveDetails">
+    <part name="parameters" element="tns:InsertReceiveDetails" />
+  </message>
+  <message name="InsertReceiveDetails_Result">
+    <part name="parameters" element="tns:InsertReceiveDetails_Result" />
+  </message>
+  <message name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+    <part name="parameters" element="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" />
+  </message>
+  <message name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+    <part name="parameters" element="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" />
+  </message>
+  <message name="GetSoStartDispatch">
+    <part name="parameters" element="tns:GetSoStartDispatch" />
+  </message>
+  <message name="GetSoStartDispatch_Result">
+    <part name="parameters" element="tns:GetSoStartDispatch_Result" />
+  </message>
+  <message name="GetSalesOrderData">
+    <part name="parameters" element="tns:GetSalesOrderData" />
+  </message>
+  <message name="GetSalesOrderData_Result">
+    <part name="parameters" element="tns:GetSalesOrderData_Result" />
+  </message>
+  <message name="GetSoBatchCode">
+    <part name="parameters" element="tns:GetSoBatchCode" />
+  </message>
+  <message name="GetSoBatchCode_Result">
+    <part name="parameters" element="tns:GetSoBatchCode_Result" />
+  </message>
+  <message name="SOCheckLines">
+    <part name="parameters" element="tns:SOCheckLines" />
+  </message>
+  <message name="SOCheckLines_Result">
+    <part name="parameters" element="tns:SOCheckLines_Result" />
+  </message>
+  <message name="SOSaveScannedQuantity">
+    <part name="parameters" element="tns:SOSaveScannedQuantity" />
+  </message>
+  <message name="SOSaveScannedQuantity_Result">
+    <part name="parameters" element="tns:SOSaveScannedQuantity_Result" />
+  </message>
+  <message name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+    <part name="parameters" element="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" />
+  </message>
+  <message name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+    <part name="parameters" element="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" />
+  </message>
+  <message name="GetItemBarcode">
+    <part name="parameters" element="tns:GetItemBarcode" />
+  </message>
+  <message name="GetItemBarcode_Result">
+    <part name="parameters" element="tns:GetItemBarcode_Result" />
+  </message>
+  <message name="GetItemBatchByBarcode">
+    <part name="parameters" element="tns:GetItemBatchByBarcode" />
+  </message>
+  <message name="GetItemBatchByBarcode_Result">
+    <part name="parameters" element="tns:GetItemBatchByBarcode_Result" />
+  </message>
+  <message name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+    <part name="parameters" element="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" />
+  </message>
+  <message name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+    <part name="parameters" element="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" />
+  </message>
+  <message name="INVCheckOut">
+    <part name="parameters" element="tns:INVCheckOut" />
+  </message>
+  <message name="INVCheckOut_Result">
+    <part name="parameters" element="tns:INVCheckOut_Result" />
+  </message>
+  <message name="INVCheckIn">
+    <part name="parameters" element="tns:INVCheckIn" />
+  </message>
+  <message name="INVCheckIn_Result">
+    <part name="parameters" element="tns:INVCheckIn_Result" />
+  </message>
+  <message name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+    <part name="parameters" element="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" />
+  </message>
+  <message name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+    <part name="parameters" element="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" />
+  </message>
+  <message name="ChangeBatchSpecsStart">
+    <part name="parameters" element="tns:ChangeBatchSpecsStart" />
+  </message>
+  <message name="ChangeBatchSpecsStart_Result">
+    <part name="parameters" element="tns:ChangeBatchSpecsStart_Result" />
+  </message>
+  <message name="ChangeBatchSpecs">
+    <part name="parameters" element="tns:ChangeBatchSpecs" />
+  </message>
+  <message name="ChangeBatchSpecs_Result">
+    <part name="parameters" element="tns:ChangeBatchSpecs_Result" />
+  </message>
+  <message name="a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42">
+    <part name="parameters" element="tns:a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42" />
+  </message>
+  <message name="a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42_Result">
+    <part name="parameters" element="tns:a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42_Result" />
+  </message>
+  <message name="PostPDTWHTransfer">
+    <part name="parameters" element="tns:PostPDTWHTransfer" />
+  </message>
+  <message name="PostPDTWHTransfer_Result">
+    <part name="parameters" element="tns:PostPDTWHTransfer_Result" />
+  </message>
+  <message name="GetBatchCodeDetails">
+    <part name="parameters" element="tns:GetBatchCodeDetails" />
+  </message>
+  <message name="GetBatchCodeDetails_Result">
+    <part name="parameters" element="tns:GetBatchCodeDetails_Result" />
+  </message>
+  <message name="GetItemBarcodeWeb">
+    <part name="parameters" element="tns:GetItemBarcodeWeb" />
+  </message>
+  <message name="GetItemBarcodeWeb_Result">
+    <part name="parameters" element="tns:GetItemBarcodeWeb_Result" />
+  </message>
+  <message name="PrintPurchReceipt">
+    <part name="parameters" element="tns:PrintPurchReceipt" />
+  </message>
+  <message name="PrintPurchReceipt_Result">
+    <part name="parameters" element="tns:PrintPurchReceipt_Result" />
+  </message>
+  <message name="GetItemInformation">
+    <part name="parameters" element="tns:GetItemInformation" />
+  </message>
+  <message name="GetItemInformation_Result">
+    <part name="parameters" element="tns:GetItemInformation_Result" />
+  </message>
+  <message name="GetBatchInformation">
+    <part name="parameters" element="tns:GetBatchInformation" />
+  </message>
+  <message name="GetBatchInformation_Result">
+    <part name="parameters" element="tns:GetBatchInformation_Result" />
+  </message>
+  <message name="CalcStockParameters">
+    <part name="parameters" element="tns:CalcStockParameters" />
+  </message>
+  <message name="CalcStockParameters_Result">
+    <part name="parameters" element="tns:CalcStockParameters_Result" />
+  </message>
+  <message name="GetPDTFunctionalPermission">
+    <part name="parameters" element="tns:GetPDTFunctionalPermission" />
+  </message>
+  <message name="GetPDTFunctionalPermission_Result">
+    <part name="parameters" element="tns:GetPDTFunctionalPermission_Result" />
+  </message>
+  <message name="CheckLines">
+    <part name="parameters" element="tns:CheckLines" />
+  </message>
+  <message name="CheckLines_Result">
+    <part name="parameters" element="tns:CheckLines_Result" />
+  </message>
+  <message name="OnSaving">
+    <part name="parameters" element="tns:OnSaving" />
+  </message>
+  <message name="OnSaving_Result">
+    <part name="parameters" element="tns:OnSaving_Result" />
+  </message>
+  <message name="OnPost">
+    <part name="parameters" element="tns:OnPost" />
+  </message>
+  <message name="OnPost_Result">
+    <part name="parameters" element="tns:OnPost_Result" />
+  </message>
+  <message name="Conversionqty">
+    <part name="parameters" element="tns:Conversionqty" />
+  </message>
+  <message name="Conversionqty_Result">
+    <part name="parameters" element="tns:Conversionqty_Result" />
+  </message>
+  <message name="ValidateSalesDOCNo">
+    <part name="parameters" element="tns:ValidateSalesDOCNo" />
+  </message>
+  <message name="ValidateSalesDOCNo_Result">
+    <part name="parameters" element="tns:ValidateSalesDOCNo_Result" />
+  </message>
+  <message name="ValidateItemBarcode">
+    <part name="parameters" element="tns:ValidateItemBarcode" />
+  </message>
+  <message name="ValidateItemBarcode_Result">
+    <part name="parameters" element="tns:ValidateItemBarcode_Result" />
+  </message>
+  <message name="ValidateItemBatchcode">
+    <part name="parameters" element="tns:ValidateItemBatchcode" />
+  </message>
+  <message name="ValidateItemBatchcode_Result">
+    <part name="parameters" element="tns:ValidateItemBatchcode_Result" />
+  </message>
+  <message name="IsShortcutDimension1InSalesHeader">
+    <part name="parameters" element="tns:IsShortcutDimension1InSalesHeader" />
+  </message>
+  <message name="IsShortcutDimension1InSalesHeader_Result">
+    <part name="parameters" element="tns:IsShortcutDimension1InSalesHeader_Result" />
+  </message>
+  <message name="UpdatePDTBufferExtraQtyOption">
+    <part name="parameters" element="tns:UpdatePDTBufferExtraQtyOption" />
+  </message>
+  <message name="UpdatePDTBufferExtraQtyOption_Result">
+    <part name="parameters" element="tns:UpdatePDTBufferExtraQtyOption_Result" />
+  </message>
+  <message name="SavePORecLineVISUALSTUDIO">
+    <part name="parameters" element="tns:SavePORecLineVISUALSTUDIO" />
+  </message>
+  <message name="SavePORecLineVISUALSTUDIO_Result">
+    <part name="parameters" element="tns:SavePORecLineVISUALSTUDIO_Result" />
+  </message>
+  <message name="CheckForExtraQuantity">
+    <part name="parameters" element="tns:CheckForExtraQuantity" />
+  </message>
+  <message name="CheckForExtraQuantity_Result">
+    <part name="parameters" element="tns:CheckForExtraQuantity_Result" />
+  </message>
+  <message name="ChangeBatchSpecsVISUALSTUDIO">
+    <part name="parameters" element="tns:ChangeBatchSpecsVISUALSTUDIO" />
+  </message>
+  <message name="ChangeBatchSpecsVISUALSTUDIO_Result">
+    <part name="parameters" element="tns:ChangeBatchSpecsVISUALSTUDIO_Result" />
+  </message>
+  <message name="GetDriverInformation">
+    <part name="parameters" element="tns:GetDriverInformation" />
+  </message>
+  <message name="GetDriverInformation_Result">
+    <part name="parameters" element="tns:GetDriverInformation_Result" />
+  </message>
+  <message name="GetBatchDetails">
+    <part name="parameters" element="tns:GetBatchDetails" />
+  </message>
+  <message name="GetBatchDetails_Result">
+    <part name="parameters" element="tns:GetBatchDetails_Result" />
+  </message>
+  <message name="SaveGTINNo">
+    <part name="parameters" element="tns:SaveGTINNo" />
+  </message>
+  <message name="SaveGTINNo_Result">
+    <part name="parameters" element="tns:SaveGTINNo_Result" />
+  </message>
+  <message name="GetItemDetails">
+    <part name="parameters" element="tns:GetItemDetails" />
+  </message>
+  <message name="GetItemDetails_Result">
+    <part name="parameters" element="tns:GetItemDetails_Result" />
+  </message>
+  <message name="CreateProductionOrderFromPDT">
+    <part name="parameters" element="tns:CreateProductionOrderFromPDT" />
+  </message>
+  <message name="CreateProductionOrderFromPDT_Result">
+    <part name="parameters" element="tns:CreateProductionOrderFromPDT_Result" />
+  </message>
+  <message name="InsertTimeLog">
+    <part name="parameters" element="tns:InsertTimeLog" />
+  </message>
+  <message name="InsertTimeLog_Result">
+    <part name="parameters" element="tns:InsertTimeLog_Result" />
+  </message>
+  <portType name="PDTAddOn_Port">
+    <operation name="ProductionPrePostValidations">
+      <input name="ProductionPrePostValidations" message="tns:ProductionPrePostValidations" />
+      <output name="ProductionPrePostValidations_Result" message="tns:ProductionPrePostValidations_Result" />
+    </operation>
+    <operation name="GetProductionBarcode">
+      <input name="GetProductionBarcode" message="tns:GetProductionBarcode" />
+      <output name="GetProductionBarcode_Result" message="tns:GetProductionBarcode_Result" />
+    </operation>
+    <operation name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+      <input name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" message="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" />
+      <output name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" message="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" />
+    </operation>
+    <operation name="GetPODoc">
+      <input name="GetPODoc" message="tns:GetPODoc" />
+      <output name="GetPODoc_Result" message="tns:GetPODoc_Result" />
+    </operation>
+    <operation name="GetPOItemDetails">
+      <input name="GetPOItemDetails" message="tns:GetPOItemDetails" />
+      <output name="GetPOItemDetails_Result" message="tns:GetPOItemDetails_Result" />
+    </operation>
+    <operation name="SavePORecLine">
+      <input name="SavePORecLine" message="tns:SavePORecLine" />
+      <output name="SavePORecLine_Result" message="tns:SavePORecLine_Result" />
+    </operation>
+    <operation name="PostPOReciept">
+      <input name="PostPOReciept" message="tns:PostPOReciept" />
+      <output name="PostPOReciept_Result" message="tns:PostPOReciept_Result" />
+    </operation>
+    <operation name="GetReceiveDetails">
+      <input name="GetReceiveDetails" message="tns:GetReceiveDetails" />
+      <output name="GetReceiveDetails_Result" message="tns:GetReceiveDetails_Result" />
+    </operation>
+    <operation name="ReadSupplierBarcode">
+      <input name="ReadSupplierBarcode" message="tns:ReadSupplierBarcode" />
+      <output name="ReadSupplierBarcode_Result" message="tns:ReadSupplierBarcode_Result" />
+    </operation>
+    <operation name="InsertReceiveDetails">
+      <input name="InsertReceiveDetails" message="tns:InsertReceiveDetails" />
+      <output name="InsertReceiveDetails_Result" message="tns:InsertReceiveDetails_Result" />
+    </operation>
+    <operation name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+      <input name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" message="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" />
+      <output name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" message="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" />
+    </operation>
+    <operation name="GetSoStartDispatch">
+      <input name="GetSoStartDispatch" message="tns:GetSoStartDispatch" />
+      <output name="GetSoStartDispatch_Result" message="tns:GetSoStartDispatch_Result" />
+    </operation>
+    <operation name="GetSalesOrderData">
+      <input name="GetSalesOrderData" message="tns:GetSalesOrderData" />
+      <output name="GetSalesOrderData_Result" message="tns:GetSalesOrderData_Result" />
+    </operation>
+    <operation name="GetSoBatchCode">
+      <input name="GetSoBatchCode" message="tns:GetSoBatchCode" />
+      <output name="GetSoBatchCode_Result" message="tns:GetSoBatchCode_Result" />
+    </operation>
+    <operation name="SOCheckLines">
+      <input name="SOCheckLines" message="tns:SOCheckLines" />
+      <output name="SOCheckLines_Result" message="tns:SOCheckLines_Result" />
+    </operation>
+    <operation name="SOSaveScannedQuantity">
+      <input name="SOSaveScannedQuantity" message="tns:SOSaveScannedQuantity" />
+      <output name="SOSaveScannedQuantity_Result" message="tns:SOSaveScannedQuantity_Result" />
+    </operation>
+    <operation name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+      <input name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" message="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" />
+      <output name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" message="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" />
+    </operation>
+    <operation name="GetItemBarcode">
+      <input name="GetItemBarcode" message="tns:GetItemBarcode" />
+      <output name="GetItemBarcode_Result" message="tns:GetItemBarcode_Result" />
+    </operation>
+    <operation name="GetItemBatchByBarcode">
+      <input name="GetItemBatchByBarcode" message="tns:GetItemBatchByBarcode" />
+      <output name="GetItemBatchByBarcode_Result" message="tns:GetItemBatchByBarcode_Result" />
+    </operation>
+    <operation name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+      <input name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" message="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" />
+      <output name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" message="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" />
+    </operation>
+    <operation name="INVCheckOut">
+      <input name="INVCheckOut" message="tns:INVCheckOut" />
+      <output name="INVCheckOut_Result" message="tns:INVCheckOut_Result" />
+    </operation>
+    <operation name="INVCheckIn">
+      <input name="INVCheckIn" message="tns:INVCheckIn" />
+      <output name="INVCheckIn_Result" message="tns:INVCheckIn_Result" />
+    </operation>
+    <operation name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+      <input name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" message="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" />
+      <output name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" message="tns:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result" />
+    </operation>
+    <operation name="ChangeBatchSpecsStart">
+      <input name="ChangeBatchSpecsStart" message="tns:ChangeBatchSpecsStart" />
+      <output name="ChangeBatchSpecsStart_Result" message="tns:ChangeBatchSpecsStart_Result" />
+    </operation>
+    <operation name="ChangeBatchSpecs">
+      <input name="ChangeBatchSpecs" message="tns:ChangeBatchSpecs" />
+      <output name="ChangeBatchSpecs_Result" message="tns:ChangeBatchSpecs_Result" />
+    </operation>
+    <operation name="a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42">
+      <input name="a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42" message="tns:a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42" />
+      <output name="a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42_Result" message="tns:a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42_Result" />
+    </operation>
+    <operation name="PostPDTWHTransfer">
+      <input name="PostPDTWHTransfer" message="tns:PostPDTWHTransfer" />
+      <output name="PostPDTWHTransfer_Result" message="tns:PostPDTWHTransfer_Result" />
+    </operation>
+    <operation name="GetBatchCodeDetails">
+      <input name="GetBatchCodeDetails" message="tns:GetBatchCodeDetails" />
+      <output name="GetBatchCodeDetails_Result" message="tns:GetBatchCodeDetails_Result" />
+    </operation>
+    <operation name="GetItemBarcodeWeb">
+      <input name="GetItemBarcodeWeb" message="tns:GetItemBarcodeWeb" />
+      <output name="GetItemBarcodeWeb_Result" message="tns:GetItemBarcodeWeb_Result" />
+    </operation>
+    <operation name="PrintPurchReceipt">
+      <input name="PrintPurchReceipt" message="tns:PrintPurchReceipt" />
+      <output name="PrintPurchReceipt_Result" message="tns:PrintPurchReceipt_Result" />
+    </operation>
+    <operation name="GetItemInformation">
+      <input name="GetItemInformation" message="tns:GetItemInformation" />
+      <output name="GetItemInformation_Result" message="tns:GetItemInformation_Result" />
+    </operation>
+    <operation name="GetBatchInformation">
+      <input name="GetBatchInformation" message="tns:GetBatchInformation" />
+      <output name="GetBatchInformation_Result" message="tns:GetBatchInformation_Result" />
+    </operation>
+    <operation name="CalcStockParameters">
+      <input name="CalcStockParameters" message="tns:CalcStockParameters" />
+      <output name="CalcStockParameters_Result" message="tns:CalcStockParameters_Result" />
+    </operation>
+    <operation name="GetPDTFunctionalPermission">
+      <input name="GetPDTFunctionalPermission" message="tns:GetPDTFunctionalPermission" />
+      <output name="GetPDTFunctionalPermission_Result" message="tns:GetPDTFunctionalPermission_Result" />
+    </operation>
+    <operation name="CheckLines">
+      <input name="CheckLines" message="tns:CheckLines" />
+      <output name="CheckLines_Result" message="tns:CheckLines_Result" />
+    </operation>
+    <operation name="OnSaving">
+      <input name="OnSaving" message="tns:OnSaving" />
+      <output name="OnSaving_Result" message="tns:OnSaving_Result" />
+    </operation>
+    <operation name="OnPost">
+      <input name="OnPost" message="tns:OnPost" />
+      <output name="OnPost_Result" message="tns:OnPost_Result" />
+    </operation>
+    <operation name="Conversionqty">
+      <input name="Conversionqty" message="tns:Conversionqty" />
+      <output name="Conversionqty_Result" message="tns:Conversionqty_Result" />
+    </operation>
+    <operation name="ValidateSalesDOCNo">
+      <input name="ValidateSalesDOCNo" message="tns:ValidateSalesDOCNo" />
+      <output name="ValidateSalesDOCNo_Result" message="tns:ValidateSalesDOCNo_Result" />
+    </operation>
+    <operation name="ValidateItemBarcode">
+      <input name="ValidateItemBarcode" message="tns:ValidateItemBarcode" />
+      <output name="ValidateItemBarcode_Result" message="tns:ValidateItemBarcode_Result" />
+    </operation>
+    <operation name="ValidateItemBatchcode">
+      <input name="ValidateItemBatchcode" message="tns:ValidateItemBatchcode" />
+      <output name="ValidateItemBatchcode_Result" message="tns:ValidateItemBatchcode_Result" />
+    </operation>
+    <operation name="IsShortcutDimension1InSalesHeader">
+      <input name="IsShortcutDimension1InSalesHeader" message="tns:IsShortcutDimension1InSalesHeader" />
+      <output name="IsShortcutDimension1InSalesHeader_Result" message="tns:IsShortcutDimension1InSalesHeader_Result" />
+    </operation>
+    <operation name="UpdatePDTBufferExtraQtyOption">
+      <input name="UpdatePDTBufferExtraQtyOption" message="tns:UpdatePDTBufferExtraQtyOption" />
+      <output name="UpdatePDTBufferExtraQtyOption_Result" message="tns:UpdatePDTBufferExtraQtyOption_Result" />
+    </operation>
+    <operation name="SavePORecLineVISUALSTUDIO">
+      <input name="SavePORecLineVISUALSTUDIO" message="tns:SavePORecLineVISUALSTUDIO" />
+      <output name="SavePORecLineVISUALSTUDIO_Result" message="tns:SavePORecLineVISUALSTUDIO_Result" />
+    </operation>
+    <operation name="CheckForExtraQuantity">
+      <input name="CheckForExtraQuantity" message="tns:CheckForExtraQuantity" />
+      <output name="CheckForExtraQuantity_Result" message="tns:CheckForExtraQuantity_Result" />
+    </operation>
+    <operation name="ChangeBatchSpecsVISUALSTUDIO">
+      <input name="ChangeBatchSpecsVISUALSTUDIO" message="tns:ChangeBatchSpecsVISUALSTUDIO" />
+      <output name="ChangeBatchSpecsVISUALSTUDIO_Result" message="tns:ChangeBatchSpecsVISUALSTUDIO_Result" />
+    </operation>
+    <operation name="GetDriverInformation">
+      <input name="GetDriverInformation" message="tns:GetDriverInformation" />
+      <output name="GetDriverInformation_Result" message="tns:GetDriverInformation_Result" />
+    </operation>
+    <operation name="GetBatchDetails">
+      <input name="GetBatchDetails" message="tns:GetBatchDetails" />
+      <output name="GetBatchDetails_Result" message="tns:GetBatchDetails_Result" />
+    </operation>
+    <operation name="SaveGTINNo">
+      <input name="SaveGTINNo" message="tns:SaveGTINNo" />
+      <output name="SaveGTINNo_Result" message="tns:SaveGTINNo_Result" />
+    </operation>
+    <operation name="GetItemDetails">
+      <input name="GetItemDetails" message="tns:GetItemDetails" />
+      <output name="GetItemDetails_Result" message="tns:GetItemDetails_Result" />
+    </operation>
+    <operation name="CreateProductionOrderFromPDT">
+      <input name="CreateProductionOrderFromPDT" message="tns:CreateProductionOrderFromPDT" />
+      <output name="CreateProductionOrderFromPDT_Result" message="tns:CreateProductionOrderFromPDT_Result" />
+    </operation>
+    <operation name="InsertTimeLog">
+      <input name="InsertTimeLog" message="tns:InsertTimeLog" />
+      <output name="InsertTimeLog_Result" message="tns:InsertTimeLog_Result" />
+    </operation>
+  </portType>
+  <binding name="PDTAddOn_Binding" type="tns:PDTAddOn_Port">
+    <binding transport="http://schemas.xmlsoap.org/soap/http" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    <operation name="ProductionPrePostValidations">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:ProductionPrePostValidations" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ProductionPrePostValidations">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ProductionPrePostValidations_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetProductionBarcode">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetProductionBarcode" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetProductionBarcode">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetProductionBarcode_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPODoc">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetPODoc" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPODoc">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPODoc_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPOItemDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetPOItemDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPOItemDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPOItemDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="SavePORecLine">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:SavePORecLine" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="SavePORecLine">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="SavePORecLine_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostPOReciept">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:PostPOReciept" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PostPOReciept">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PostPOReciept_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetReceiveDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetReceiveDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetReceiveDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetReceiveDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ReadSupplierBarcode">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:ReadSupplierBarcode" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ReadSupplierBarcode">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ReadSupplierBarcode_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="InsertReceiveDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:InsertReceiveDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="InsertReceiveDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="InsertReceiveDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetSoStartDispatch">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetSoStartDispatch" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetSoStartDispatch">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetSoStartDispatch_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetSalesOrderData">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetSalesOrderData" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetSalesOrderData">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetSalesOrderData_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetSoBatchCode">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetSoBatchCode" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetSoBatchCode">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetSoBatchCode_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="SOCheckLines">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:SOCheckLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="SOCheckLines">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="SOCheckLines_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="SOSaveScannedQuantity">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:SOSaveScannedQuantity" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="SOSaveScannedQuantity">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="SOSaveScannedQuantity_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetItemBarcode">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetItemBarcode" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetItemBarcode">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetItemBarcode_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetItemBatchByBarcode">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetItemBatchByBarcode" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetItemBatchByBarcode">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetItemBatchByBarcode_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="INVCheckOut">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:INVCheckOut" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="INVCheckOut">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="INVCheckOut_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="INVCheckIn">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:INVCheckIn" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="INVCheckIn">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="INVCheckIn_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ChangeBatchSpecsStart">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:ChangeBatchSpecsStart" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ChangeBatchSpecsStart">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ChangeBatchSpecsStart_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ChangeBatchSpecs">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:ChangeBatchSpecs" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ChangeBatchSpecs">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ChangeBatchSpecs_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="a42a42a42a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a45a42a42a42a42_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PostPDTWHTransfer">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:PostPDTWHTransfer" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PostPDTWHTransfer">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PostPDTWHTransfer_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetBatchCodeDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetBatchCodeDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetBatchCodeDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetBatchCodeDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetItemBarcodeWeb">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetItemBarcodeWeb" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetItemBarcodeWeb">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetItemBarcodeWeb_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="PrintPurchReceipt">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:PrintPurchReceipt" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="PrintPurchReceipt">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="PrintPurchReceipt_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetItemInformation">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetItemInformation" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetItemInformation">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetItemInformation_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetBatchInformation">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetBatchInformation" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetBatchInformation">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetBatchInformation_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CalcStockParameters">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:CalcStockParameters" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CalcStockParameters">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CalcStockParameters_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetPDTFunctionalPermission">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetPDTFunctionalPermission" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetPDTFunctionalPermission">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetPDTFunctionalPermission_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckLines">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:CheckLines" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckLines">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckLines_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="OnSaving">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:OnSaving" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="OnSaving">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="OnSaving_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="OnPost">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:OnPost" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="OnPost">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="OnPost_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="Conversionqty">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:Conversionqty" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="Conversionqty">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="Conversionqty_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ValidateSalesDOCNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:ValidateSalesDOCNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ValidateSalesDOCNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ValidateSalesDOCNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ValidateItemBarcode">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:ValidateItemBarcode" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ValidateItemBarcode">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ValidateItemBarcode_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ValidateItemBatchcode">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:ValidateItemBatchcode" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ValidateItemBatchcode">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ValidateItemBatchcode_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="IsShortcutDimension1InSalesHeader">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:IsShortcutDimension1InSalesHeader" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="IsShortcutDimension1InSalesHeader">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="IsShortcutDimension1InSalesHeader_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="UpdatePDTBufferExtraQtyOption">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:UpdatePDTBufferExtraQtyOption" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="UpdatePDTBufferExtraQtyOption">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="UpdatePDTBufferExtraQtyOption_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="SavePORecLineVISUALSTUDIO">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:SavePORecLineVISUALSTUDIO" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="SavePORecLineVISUALSTUDIO">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="SavePORecLineVISUALSTUDIO_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CheckForExtraQuantity">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:CheckForExtraQuantity" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CheckForExtraQuantity">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CheckForExtraQuantity_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="ChangeBatchSpecsVISUALSTUDIO">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:ChangeBatchSpecsVISUALSTUDIO" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="ChangeBatchSpecsVISUALSTUDIO">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="ChangeBatchSpecsVISUALSTUDIO_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetDriverInformation">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetDriverInformation" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetDriverInformation">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetDriverInformation_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetBatchDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetBatchDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetBatchDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetBatchDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="SaveGTINNo">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:SaveGTINNo" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="SaveGTINNo">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="SaveGTINNo_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="GetItemDetails">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:GetItemDetails" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="GetItemDetails">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="GetItemDetails_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="CreateProductionOrderFromPDT">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:CreateProductionOrderFromPDT" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="CreateProductionOrderFromPDT">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="CreateProductionOrderFromPDT_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+    <operation name="InsertTimeLog">
+      <operation soapAction="urn:microsoft-dynamics-schemas/codeunit/PDTAddOn:InsertTimeLog" style="document" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      <input name="InsertTimeLog">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </input>
+      <output name="InsertTimeLog_Result">
+        <body use="literal" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="PDTAddOn">
+    <port name="PDTAddOn_Port" binding="tns:PDTAddOn_Binding">
+      <address location="http://192.168.150.32:3047/FXUAT/WS/FRESH%20EXPRESS/Codeunit/PDTAddOn" xmlns="http://schemas.xmlsoap.org/wsdl/soap/" />
+    </port>
+  </service>
+</definitions>

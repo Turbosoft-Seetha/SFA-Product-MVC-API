@@ -1,0 +1,14 @@
+26-07-2023 02:24:11 PM +05:30-GetTransferInItemBatch STARTED 26-07-2023 02:24:11 PM
+26-07-2023 02:24:11 PM +05:30-============================
+26-07-2023 02:24:21 PM +05:30-NoDataSQL - Column 'dsd_ID' does not belong to table Table1.
+26-07-2023 02:24:21 PM +05:30-GetTransferInItemBatch ENDED 26-07-2023 02:24:21 PM
+26-07-2023 02:24:21 PM +05:30-==========================
+26-07-2023 02:24:36 PM +05:30-GetTransferInItemBatch STARTED 26-07-2023 02:24:36 PM
+26-07-2023 02:24:36 PM +05:30-============================
+26-07-2023 02:25:55 PM +05:30-NoDataSQL - Column 'dsd_ID' does not belong to table Table1.
+26-07-2023 02:25:55 PM +05:30-GetTransferInItemBatch ENDED 26-07-2023 02:25:55 PM
+26-07-2023 02:25:55 PM +05:30-==========================
+26-07-2023 02:26:05 PM +05:30-GetTransferInItemBatch STARTED 26-07-2023 02:26:05 PM
+26-07-2023 02:26:05 PM +05:30-============================
+26-07-2023 07:17:31 PM +05:30-GetLoadInData STARTED 26-07-2023 07:17:31 PM
+26-07-2023 07:17:32 PM +05:30-======================================
