@@ -13,8 +13,7 @@ using System.Web;
 namespace MVC_API.Controllers
 {
     public class VideoUploadController : Controller
-    {
-      
+    {      
 
         DataModel dm = new DataModel();
         string JSONString = string.Empty;
