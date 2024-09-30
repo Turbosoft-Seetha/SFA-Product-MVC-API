@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Web;
 using MVC_API.Controllers.CustomerConnect;
+using static Stimulsoft.Base.Drawing.Win32;
 
 namespace MVC_API.Controllers
 {
@@ -19,20 +20,21 @@ namespace MVC_API.Controllers
 
         DataModel dm = new DataModel();
         string JSONString = string.Empty;
+        private static readonly object lockObject = new object();
 
         public async Task<string> UploadLargeFileChunk([FromForm] LargeFileUploadInputModel inputParams)
         {
             try
-            {
-                dm.TraceService("UploadLargeFileChunk STARTED ");
-                dm.TraceService("==============================");
-
-                string fileID = inputParams.FileID ?? "0";
-                string chunkOrder = inputParams.ChunkOrder ?? "0";
-                string fileName = inputParams.FileName ?? "NoName";
-                string userId = inputParams.UserId ?? "0";
-                string totalChunks = inputParams.TotalChunks ?? "0";
-                dm.TraceService($"FileID: {fileID}, ChunkOrder: {chunkOrder}, FileName: {fileName}");
+            {   
+                string methodName = nameof(UploadLargeFileChunk);
+                LogTrace($"{methodName} STARTED");
+                LogTrace("==============================");
+                string fileID = inputParams.FileID == null ? "0":inputParams.FileID;
+                string chunkOrder = inputParams.ChunkOrder == null ? "0":inputParams.ChunkOrder;
+                string fileName = inputParams.FileName == null ? "NoName": inputParams.FileName;
+                string userId = inputParams.UserId == null ? "0":inputParams.UserId;
+                string totalChunks = inputParams.TotalChunks == null ? "0":inputParams.TotalChunks;
+                LogTrace($"FileID: {fileID}, ChunkOrder: {chunkOrder}, FileName: {fileName}, TotalChunks:{totalChunks}");
 
                 var fileChunk = inputParams.FileChunk;
                 if (fileChunk != null && fileChunk.ContentLength > 0)
@@ -53,12 +55,12 @@ namespace MVC_API.Controllers
                     {
                         await fileChunk.InputStream.CopyToAsync(stream);
                     }
-                    dm.TraceService($"Chunk {chunkOrder} saved successfully.");
+                    LogTrace($"Chunk {chunkOrder} saved successfully.");
 
                     // Merge all chunks if this is the last one
                     if (chunkOrder == totalChunks)
                     {
-                        dm.TraceService($"All {totalChunks} chunks uploaded. Starting merge process.");
+                        LogTrace($"All {totalChunks} chunks uploaded. Starting merge process.");
 
                         // Final output file path with the correct extension
                         string outputFilePath = Path.Combine(uploadDir, $"{baseFileName}{fileExtension}");
@@ -72,7 +74,7 @@ namespace MVC_API.Controllers
 
                         if (dt != null && dt.Rows.Count > 0)
                         {
-                            dm.TraceService("Final file saved in the database successfully.");
+                            LogTrace("Final file saved in the database successfully.");
 
                             List<VideoUploadStatus> listHeader = new List<VideoUploadStatus>();
                             foreach (DataRow dr in dt.Rows)
@@ -90,7 +92,7 @@ namespace MVC_API.Controllers
                         }
                         else
                         {
-                            dm.TraceService("No data response from the database.");
+                            LogTrace("No data response from the database.");
                             JSONString = "NoDataRes";
                         }
                     }
@@ -120,12 +122,12 @@ namespace MVC_API.Controllers
             }
             catch (Exception ex)
             {
-                dm.TraceService(ex.Message);
+                LogTrace(ex.Message);
                 JSONString = "NoDataSQL - " + ex.Message;
             }
 
-            dm.TraceService("UploadLargeFileChunk ENDED ");
-            dm.TraceService("==========================");
+            LogTrace("UploadLargeFileChunk ENDED ");
+            LogTrace("==========================");
             return JSONString;
         }
 
@@ -153,6 +155,30 @@ namespace MVC_API.Controllers
                 }
             }
         }
+        public void LogTrace(string content)
+        {
+            try
+            {
+                string logPath = Path.Combine(HttpRuntime.AppDomainAppPath, "LogFile", "VideoUploadController");
+                if (!Directory.Exists(logPath))
+                {
+                    Directory.CreateDirectory(logPath);
+                }
 
+                string logFileName = Path.Combine(logPath, $"log_{DateTime.Now:dd-MMM-yyyy}.txt");
+
+                lock (lockObject)
+                {
+                    using (StreamWriter sw = new StreamWriter(logFileName, true))
+                    {
+                        sw.WriteLine($"{DateTime.Now:dd-MMM-yyyy HH:mm:ss} - {content}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }
