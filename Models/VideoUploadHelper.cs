@@ -14,9 +14,10 @@ namespace MVC_API.Models
         public string FileID { get; set; }   
         public string ChunkOrder { get; set; }  
         public string FileName { get; set; }
-        public HttpPostedFileBase FileChunk { get; set; }  // The actual chunk of the file
+        public HttpPostedFileBase FileChunk { get; set; } 
        // public IFormFile FileChunk { get; set; }
         public string UserId { get; set; }
+        public string TotalChunks { get; set; }
     }
     public class VideoUploadStatus
     {
