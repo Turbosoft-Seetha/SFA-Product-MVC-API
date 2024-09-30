@@ -836,7 +836,6 @@ namespace MVC_API.Controllers
             dm.TraceService("GetSettings STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
             DataTable dt = dm.loadList("AppSettings", "sp_InventoryAppLogin", inputParams.userid);
-
             try
             {
                 if (dt.Rows.Count > 0)
