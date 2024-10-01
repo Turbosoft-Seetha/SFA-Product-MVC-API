@@ -91,6 +91,7 @@ namespace MVC_API.Controllers.Customer_Connect
             string SubArea= inputParams.SubArea == null ? "0" : inputParams.SubArea;
             string Route= inputParams.Route == null ? "0" : inputParams.Route;
             string SearchString = inputParams.SearchString == null ? "0" : inputParams.SearchString;
+            string Pagenum = inputParams.Pagenum == null ? "1" : inputParams.Pagenum;
 
             string MainCondition = "";
             string AreaCondition = "";
@@ -126,7 +127,7 @@ namespace MVC_API.Controllers.Customer_Connect
             MainCondition += SubAreaCondition;
             MainCondition += RouteCondition;
 
-            string[] arry = { MainCondition.ToString(), SearchString.ToString() };
+            string[] arry = { MainCondition.ToString(), SearchString.ToString(), Pagenum.ToString()};
             DataTable dtDN = dm.loadList("SelectAllCusInsight", "sp_CustomerConnect",USRID,arry);
             if (dtDN.Rows.Count > 0)
             {

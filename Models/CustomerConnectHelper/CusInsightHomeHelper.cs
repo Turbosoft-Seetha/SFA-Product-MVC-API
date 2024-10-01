@@ -37,6 +37,7 @@ namespace MVC_API.Models
         public string SubArea { get; set; }
         public string Route { get; set; }
         public string SearchString { get; set; }
+        public string Pagenum { get; set; }
 
 
     }
