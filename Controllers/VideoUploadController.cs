@@ -6,10 +6,8 @@ using System.Web.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using MVC_API.Models;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Web;
-using MVC_API.Controllers.CustomerConnect;
 using static Stimulsoft.Base.Drawing.Win32;
 
 namespace MVC_API.Controllers
@@ -173,6 +171,7 @@ namespace MVC_API.Controllers
                     {
                         sw.WriteLine($"{DateTime.Now:dd-MMM-yyyy HH:mm:ss} - {content}");
                     }
+
                 }
             }
             catch (Exception ex)
@@ -180,5 +179,35 @@ namespace MVC_API.Controllers
 
             }
         }
+        //public void LogTrace(string content)
+        //{
+        //    try
+        //    {
+        //        string LogPath = HttpRuntime.AppDomainAppPath;
+        //        if (!Directory.Exists(LogPath + "/LogFile/" + "/VideoUploadController/"))
+        //        {
+        //            Directory.CreateDirectory(LogPath + "/LogFile/" + "/VideoUploadController/");
+        //        }
+
+        //        //FileStream fs = new FileStream(LogPath + "/LogFile/log_" + DateTime.Now.ToString("dd-MMM-yyyy") + ".txt", FileMode.OpenOrCreate, FileAccess.Write);
+
+        //        string logFileName = Path.Combine(LogPath + "/LogFile/" + "/VideoUploadController/" + "/log_" + DateTime.Now.ToString("dd-MMM-yyyy") + ".txt");
+
+        //        // Use a lock to handle concurrent access
+        //        lock (lockObject)
+        //        {
+        //            using (StreamWriter sw = new StreamWriter(logFileName, true))
+        //            {
+        //                sw.WriteLine(DateTimeOffset.Now.ToString("dd-MMM-yyyy HH:mm:ss") + "-" + content);
+        //            }
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+        //}
+
     }
 }
