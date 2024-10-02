@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MVC_API.Models;
+using MVC_API.Models.CustomerConnectHelper;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -1974,6 +1975,249 @@ namespace MVC_API.Controllers
 
             return JSONString;
         }
+        public string GetSalesOrders([FromForm] SalesOrderInKPI inputParams)
+        {
+            dm.TraceService("GetSalesOrders STARTED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+            string[] ar = { inputParams.type };
+            string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+
+            DataTable dt = dm.loadList("SelSalesorders", "sp_KPIServices", rotID,ar);
+
+            try
+            {
+                if (dt.Rows.Count > 0)
+                {
+
+                    List<SalesOrderOut> listHeader = new List<SalesOrderOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        listHeader.Add(new SalesOrderOut
+                        {
+                            ord_id = dr["ord_id"].ToString(),
+                            OrdNO = dr["OrderID"].ToString(),
+                            cus_ID = dr["ord_cus_ID"].ToString(),
+                            cus_code = dr["cus_Code"].ToString(),
+                            cus_name = dr["cus_Name"].ToString(),
+                            Date = dr["CDate"].ToString(),
+                            Time = dr["CTime"].ToString(),
+                            Status = dr["Status"].ToString(),
+                        });
+                    }
+
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listHeader
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    dm.TraceService("NoDataRes");
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                dm.TraceService("GetSalesOrders  " + ex.Message.ToString());
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+            }
+
+            dm.TraceService("GetSalesOrders ENDED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+
+            return JSONString;
+        }
+
+        public string GetSalesOrderDetail([FromForm] OrderDetailIn inputParams)
+        {
+            dm.TraceService("GetSalesOrderDetail STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+
+                string ord_ID = inputParams.ord_ID == null ? "0" : inputParams.ord_ID;
+
+                DataTable dtorders = dm.loadList("SelTotalOrderDetail", "sp_KPIServices", ord_ID.ToString());
+
+                if (dtorders.Rows.Count > 0)
+                {
+                    List<SalesOrderDetailOut> listItems = new List<SalesOrderDetailOut>();
+                    foreach (DataRow dr in dtorders.Rows)
+                    {
+
+                        listItems.Add(new SalesOrderDetailOut
+                        {
+                            odd_ID = dr["odd_ID"].ToString(),
+                            odd_ord_ID = dr["odd_ord_ID"].ToString(),
+                            prd_ID = dr["odd_itm_ID"].ToString(),
+                            prd_Code = dr["prd_Code"].ToString(),
+                            prd_Name = dr["prd_Name"].ToString(),
+                            odd_HigherUOM = dr["odd_HigherUOM"].ToString(),
+                            odd_LowerUOM = dr["odd_LowerUOM"].ToString(),
+                            odd_HigherQty = dr["odd_HigherQty"].ToString(),
+                            odd_LowerQty = dr["odd_LowerQty"].ToString(),
+                            odd_HigherPrice = dr["odd_HigherPrice"].ToString(),
+                            odd_LowerPrice = dr["odd_LowerPrice"].ToString(),
+                            odd_Price = dr["odd_Price"].ToString(),
+                            odd_TotalQty = dr["odd_TotalQty"].ToString(),
+                            odd_VATPercent = dr["odd_VATPercent"].ToString(),
+                            odd_Discount = dr["odd_Discount"].ToString(),
+                            odd_SubTotal = dr["odd_SubTotal"].ToString(),
+                            odd_VATAmount = dr["odd_VATAmount"].ToString(),
+                            odd_GrandTotal = dr["odd_GrandTotal"].ToString(),
+                            odd_TransType = dr["odd_TransType"].ToString(),
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("GetSalesOrderDetail Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("GetSalesOrderDetail ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+
+
+        // InvRec
+
+        public string GetInvRecHeader([FromForm] InvRecheaderIn inputParams)
+        {
+            dm.TraceService("GetInvRecHeader STARTED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+            
+            string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+
+            DataTable dt = dm.loadList("SelInvRecHeader", "sp_KPIServices", rotID);
+
+            try
+            {
+                if (dt.Rows.Count > 0)
+                {
+
+                    List<InvRecheaderOut> listHeader = new List<InvRecheaderOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        listHeader.Add(new InvRecheaderOut
+                        {
+                            ID = dr["irh_id"].ToString(),
+                            TransID = dr["irh_TransID"].ToString(),
+                            Date = dr["Date"].ToString(),
+                            Time = dr["Time"].ToString(),
+                        });
+                    }
+
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listHeader
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    dm.TraceService("NoDataRes");
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                dm.TraceService("GetInvRecHeader  " + ex.Message.ToString());
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+            }
+
+            dm.TraceService("GetInvRecHeader ENDED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+
+            return JSONString;
+        }
+
+        public string GetInvReconfirmDetail([FromForm] InvRecDetIn inputParams)
+        {
+            dm.TraceService("GetInvReconfirmDetail STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+
+                string ord_ID = inputParams.ID == null ? "0" : inputParams.ID;
+
+                DataTable dtorders = dm.loadList("SelInvRecDetail", "sp_KPIServices", ord_ID.ToString());
+
+                if (dtorders.Rows.Count > 0)
+                {
+                   
+                    List<InvRecDetOutKPI> listItems = new List<InvRecDetOutKPI>();
+                    foreach (DataRow dr in dtorders.Rows)
+                    {
+
+                        listItems.Add(new InvRecDetOutKPI
+                        {
+                            prd_ID = dr["prd_id"].ToString(),
+                            prd_Code = dr["prd_Code"].ToString(),
+                            prd_Name = dr["prd_Name"].ToString(),
+                            SysHigherQty = dr["ird_HigherQty"].ToString(),
+                            SysLowerQty = dr["ird_LowerQty"].ToString(),
+                            SysLowerUOM = dr["ird_LowerUOM"].ToString(),
+                            SysHigherUOM = dr["ird_HigherUOM"].ToString(),
+                            PhyHigherQty = dr["ird_PhysicalHQty"].ToString(),
+                            PhyHigherUOM = dr["ird_PhysicalHUOM"].ToString(),
+                            PhyLowerQty = dr["ird_PhysicalLQty"].ToString(),
+                            PhyLowerUOM = dr["ird_PhysicalLUOM"].ToString(),
+                            ExHigherQty = dr["ird_DescHQty"].ToString(),
+                            ExHigherUOM = dr["ird_DescHUOM"].ToString(),
+                            ExLowerQty = dr["ird_DescLQty"].ToString(),
+                            ExLowerUOM = dr["ird_DescLUOM"].ToString(),
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("GetInvReconfirmDetail Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("GetInvReconfirmDetail ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+
+
 
     }
 }

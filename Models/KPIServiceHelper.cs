@@ -583,5 +583,172 @@ namespace MVC_API.Models
         public string Options { get; set; }
 
     }
+    public class SalesOrderInKPI
+    {
+        public string rotID { get; set; }
+        public string type { get; set; }
+        public string UserID { get; set; }
+
+    }
+    public class SalesOrderOut
+    {
+        public string ord_id { get; set; }
+        public string cus_ID { get; set; }
+        public string cus_code { get; set; }
+        public string cus_name { get; set; }
+        public string OrdNO { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+        public string Status { get; set; }
+        public string LPO { get; set; }
+
+    }
+    public class SalesDetIn
+    {
+        public string rotID { get; set; }
+       
+    }
+    public class SalesDetOut
+    {
+        public string prd_id { get; set; }
+        public string prd_code { get; set; }
+        public string Type { get; set; }
+        public string UPC { get; set; }
+        public string Hprice { get; set; }
+        public string LPrice { get; set; }
+        public string Hqty { get; set; }
+        public string Lqty { get; set; }
+        public string huomid { get; set; }
+        public string luomid { get; set; }
+        public string HUOM { get; set; }
+        public string Luom { get; set; }
+        public string Linetot { get; set; }
+        public string Disc { get; set; }
+        public string Vat { get; set; }
+        public string totalQty { get; set; }
+        public string DateTime { get; set; }
+
+    }
+    public class SalesOrderDetailIn
+    {
+        public string ord_ID { get; set; }
+
+    }
+    public class SalesOrderDetailOut
+    {
+        public string odd_ID { get; set; }
+        public string odd_ord_ID { get; set; }
+        public string prd_ID { get; set; }
+        public string prd_Code { get; set; }
+        public string prd_Name { get; set; }
+        public string odd_HigherUOM { get; set; }
+        public string odd_LowerUOM { get; set; }
+        public string odd_HigherQty { get; set; }
+        public string odd_LowerQty { get; set; }
+        public string odd_HigherPrice { get; set; }
+        public string odd_LowerPrice { get; set; }
+        public string odd_Price { get; set; }
+        public string odd_TotalQty { get; set; }
+        public string odd_VATPercent { get; set; }
+        public string odd_Discount { get; set; }
+        public string odd_SubTotal { get; set; }
+        public string odd_VATAmount { get; set; }
+        public string odd_GrandTotal { get; set; }
+        public string odd_TransType { get; set; }
+
+    }
+
+    public class SelInvoiceIn
+    {
+        public string UserID { get; set; }
+        public string rotID { get; set; }
+
+    }
+    public class SelInvoiceOut
+    {
+
+        public string ID { get; set; }
+        public string InvoiceNo { get; set; }
+        public string cusName { get; set; }
+        public string cusCode { get; set; }
+        public string PayType { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+        public string PayMode { get; set; }
+        public string Status { get; set; }
+        public string GrandTotal { get; set; }
+        public string InvoiceType { get; set; }
+        public string ArcusName { get; set; }
+        public string ArStatus { get; set; }
+        public string ArcusOutName { get; set; }
+
+
+
+    }
+    public class InvoiceDetailInKPI
+    {
+        public string UserID { get; set; }
+        public string ID { get; set; }
+
+    }
+    public class InvoiceDetailOutKPI
+    {
+        public string prd_ID { get; set; }
+        public string prd_Code { get; set; }
+        public string prd_Name { get; set; }
+        public string prd_Type { get; set; }
+        public string LowerUOM { get; set; }
+        public string HigherUOM { get; set; }
+        public string LowerQty { get; set; }
+        public string HigherQty { get; set; }
+        public string Amount { get; set; }
+        public string prd_ArName { get; set; }
+
+
+
+    }
+
+    public class InvRecheaderIn
+    {
+        public string UserID { get; set; }
+        public string rotID { get; set; }
+
+    }
+    public class InvRecheaderOut
+    {
+
+        public string ID { get; set; }
+        public string TransID { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+
+    }
+
+    public class InvRecDetIn
+    {
+        public string ID { get; set; }
+
+    }
+    public class InvRecDetOutKPI
+    {
+
+        public string prd_ID { get; set; }
+        public string prd_Code { get; set; }
+        public string prd_Name { get; set; }
+        public string SysLowerUOM { get; set; }
+        public string SysHigherUOM { get; set; }
+        public string SysLowerQty { get; set; }
+        public string SysHigherQty { get; set; }
+        public string PhyLowerUOM { get; set; }
+        public string PhyHigherUOM { get; set; }
+        public string PhyLowerQty { get; set; }
+        public string PhyHigherQty { get; set; }
+        public string ExLowerUOM { get; set; }
+        public string ExHigherUOM { get; set; }
+        public string ExLowerQty { get; set; }
+        public string ExHigherQty { get; set; }
+
+
+    }
 
 }
