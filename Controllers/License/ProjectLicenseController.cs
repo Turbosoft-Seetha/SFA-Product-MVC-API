@@ -44,7 +44,7 @@ namespace MVC_API.Controllers.License
                 {
                     dm.TraceService("inside if , Licensekey Matches");
 
-                    DataTable dt = dm.loadList("LicenseMasterCounts", "sp_Masters");
+                    DataTable dt = dm.loadList("LicenseMasterCounts", "sp_LicenseManagement");
 
                     dm.TraceService("dt- " + dt);
 
