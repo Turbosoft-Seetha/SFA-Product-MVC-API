@@ -32,13 +32,13 @@ namespace MVC_API.Models
 
     public class InsSelectAllCustomerInsight
     {
+       
         public string UserID { get; set; }
         public string Area { get; set; }
         public string SubArea { get; set; }
         public string Route { get; set; }
         public string SearchString { get; set; }
         public string Pagenum { get; set; }
-
 
     }
 

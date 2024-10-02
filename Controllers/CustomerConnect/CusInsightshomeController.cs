@@ -34,7 +34,6 @@ namespace MVC_API.Controllers.Customer_Connect
 
         public string CusTransactioCount([FromForm] InsCusInsightHome inputParams)
         {
-
             dm.TraceService("CusTransactioCount STARTED ");
             dm.TraceService("==============================");
             string USRID = inputParams.UserID == null ? "0" : inputParams.UserID;
