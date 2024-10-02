@@ -213,7 +213,6 @@ namespace MVC_API.Controllers.Customer_Connect
                             SubAreaID = dr["SubAreaID"].ToString(),
                             SubArea = dr["SubArea"].ToString(),
                             Subareacode = dr["dsa_Code"].ToString()
-
                         });
                     }
 
