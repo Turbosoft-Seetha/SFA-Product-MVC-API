@@ -684,10 +684,6 @@ namespace MVC_API.Controllers.Approvals
 
             return JSONString;
         }
-
-
-
-
         public string LoadRequestApprovalDetails([FromForm] LoadRequestApprovalDetailsIN inputParams)
         {
             dm.TraceService("LoadRequestApprovalHeader STARTED " + DateTime.Now.ToString());
