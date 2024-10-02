@@ -18,7 +18,6 @@ namespace MVC_API.Controllers
         DataModel dm = new DataModel();
         string JSONString = string.Empty;
         private static readonly object lockObject = new object();
-
         public async Task<string> UploadLargeFileChunk([FromForm] LargeFileUploadInputModel inputParams)
         {
             try

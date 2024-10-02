@@ -90,4 +90,34 @@ namespace MVC_API.Models
         public string RouteCode { get; set; }
 
     }
+    public class SalesOrderIn
+    {
+        public string RouteID { get; set; }
+        public string UserID { get; set; }
+        public string CusID { get; set; }
+        public string OrderID { get; set; }
+    }
+    public class OrderDetailsOut
+    {
+        public string Prd_Code { get; set; }
+        public string Prd_Name { get; set; }
+        public string Prd_NameArabic { get; set; }
+        public string Odd_HigherUOM { get; set; }
+        public string Odd_LowerUOM { get; set; }
+        public string Odd_HigherQty { get; set; }
+        public string Odd_LowerQty { get; set; }
+        public string Odd_HigherPrice { get; set; }
+        public string Odd_LowerPrice { get; set; }
+        public string Odd_VATAmount { get; set; }
+        public string Odd_VATPercent { get; set; }
+        public string Odd_Discount { get; set; }
+        public string Odd_SubTotal { get; set; }
+        public string Odd_GrandTotal { get; set; }
+        public string Odd_TotalQty { get; set; }
+        public string Odd_Price { get; set; }
+        public string Odd_TransType { get; set; }
+        public string Status { get; set; }
+        public string CreatedDate { get; set; }
+
+    }
 }

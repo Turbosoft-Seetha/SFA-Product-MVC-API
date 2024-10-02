@@ -294,6 +294,74 @@ namespace MVC_API.Controllers.Customer_Connect
 
             return JSONString;
         }
+        public string OrderDetails([FromForm] SalesOrderIn inputParams)
+        {
+            dm.TraceService("OrderDetails STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+            try
+            {
+                string UserID = inputParams.UserID == null ? "0" : inputParams.UserID;
+                string Route_ID = inputParams.RouteID == null ? "0" : inputParams.RouteID;
+                string Cus_ID = inputParams.CusID == null ? "0" : inputParams.CusID;
+                string Order_ID = inputParams.OrderID == null ? "0" : inputParams.OrderID;
+
+                string[] arr = { UserID, Route_ID, Cus_ID, Order_ID };
+                DataTable dt = dm.loadList("OrderDetails", "sp_CustomerConnect", Order_ID, arr);
+                if (dt.Rows.Count > 0)
+                {
+                    List<OrderDetailsOut> listItems = new List<OrderDetailsOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new OrderDetailsOut
+                        {
+
+                            Prd_Code = dr["prd_Code"].ToString(),
+                            Prd_Name = dr["prd_Name"].ToString(),
+                            Prd_NameArabic = dr["prd_NameArabic"].ToString(),
+                            Odd_HigherUOM = dr["odd_HigherUOM"].ToString(),
+                            Odd_LowerUOM = dr["odd_LowerUOM"].ToString(),
+                            Odd_HigherQty = dr["odd_HigherQty"].ToString(),
+                            Odd_LowerQty = dr["odd_LowerQty"].ToString(),
+                            Odd_HigherPrice = dr["odd_HigherPrice"].ToString(),
+                            Odd_LowerPrice = dr["odd_LowerPrice"].ToString(),
+                            Odd_VATAmount = dr["odd_VATAmount"].ToString(),
+                            Odd_VATPercent = dr["odd_VATPercent"].ToString(),
+                            Odd_Discount = dr["odd_Discount"].ToString(),
+                            Odd_SubTotal = dr["odd_SubTotal"].ToString(),
+                            Odd_GrandTotal = dr["odd_GrandTotal"].ToString(),
+                            Odd_TotalQty = dr["odd_TotalQty"].ToString(),
+                            Odd_Price = dr["odd_Price"].ToString(),
+                            Odd_TransType = dr["odd_TransType"].ToString(),
+                            Status = dr["Status"].ToString(),
+                            CreatedDate = dr["CreatedDate"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("OrderDetails Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("OrderDetails ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
 
     }
 }
