@@ -81,7 +81,7 @@ namespace MVC_API.Controllers.License
                             };
 
                             string JSONStr = JsonConvert.SerializeObject(LicenseIn);
-                            string url = ConfigurationManager.AppSettings.Get("LicenseURL");
+                            string url = ConfigurationManager.AppSettings.Get("LicenseUpdateURL");
                             string Json = WebServiceCall(url, JSONStr);
 
                             dm.TraceService("GetProjectConsumedLicense() , " + "JSONStr : " + JSONStr);
