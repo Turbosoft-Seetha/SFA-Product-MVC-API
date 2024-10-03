@@ -149,7 +149,8 @@ namespace MVC_API.Controllers.Customer_Connect
                         Arcus_Name = dr["cus_NameArabic"].ToString(),
                         ArHeader_Name = dr["csh_NameArabic"].ToString(),
                         Arrot_Name = dr["rot_ArabicName"].ToString(),
-                        ArArea_Name = dr["are_NameArabic"].ToString()
+                        ArArea_Name = dr["are_NameArabic"].ToString(),
+                        Total_Count = dr["TotalCount"].ToString()
                     });
                 }
                 JSONString = JsonConvert.SerializeObject(new
