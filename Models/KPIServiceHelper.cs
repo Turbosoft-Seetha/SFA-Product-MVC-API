@@ -583,6 +583,8 @@ namespace MVC_API.Models
         public string Options { get; set; }
 
     }
+
+    //---------------Sales Order------------------------
     public class SalesOrderInKPI
     {
         public string rotID { get; set; }
@@ -604,32 +606,7 @@ namespace MVC_API.Models
         public string LPO { get; set; }
 
     }
-    public class SalesDetIn
-    {
-        public string rotID { get; set; }
-       
-    }
-    public class SalesDetOut
-    {
-        public string prd_id { get; set; }
-        public string prd_code { get; set; }
-        public string Type { get; set; }
-        public string UPC { get; set; }
-        public string Hprice { get; set; }
-        public string LPrice { get; set; }
-        public string Hqty { get; set; }
-        public string Lqty { get; set; }
-        public string huomid { get; set; }
-        public string luomid { get; set; }
-        public string HUOM { get; set; }
-        public string Luom { get; set; }
-        public string Linetot { get; set; }
-        public string Disc { get; set; }
-        public string Vat { get; set; }
-        public string totalQty { get; set; }
-        public string DateTime { get; set; }
-
-    }
+    
     public class SalesOrderDetailIn
     {
         public string ord_ID { get; set; }
@@ -659,6 +636,8 @@ namespace MVC_API.Models
 
     }
 
+    //-------------------Invoice
+
     public class SelInvoiceIn
     {
         public string UserID { get; set; }
@@ -673,18 +652,15 @@ namespace MVC_API.Models
         public string InvoiceNo { get; set; }
         public string cusName { get; set; }
         public string cusCode { get; set; }
-        public string PayType { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
-        public string PayMode { get; set; }
         public string Status { get; set; }
-        public string GrandTotal { get; set; }
-        public string InvoiceType { get; set; }
-        public string ArcusName { get; set; }
-        public string ArStatus { get; set; }
-        public string ArcusOutName { get; set; }
-
-
+        public string PaymentType { get; set; }
+        public string Attachment { get; set; }
+        public string PaidAmount { get; set; }
+        public string InvAmount { get; set; }
+        public string Balance { get; set; }
+        public string Signature { get; set; }
 
     }
     public class InvoiceDetailInKPI
@@ -698,17 +674,33 @@ namespace MVC_API.Models
         public string prd_ID { get; set; }
         public string prd_Code { get; set; }
         public string prd_Name { get; set; }
-        public string prd_Type { get; set; }
         public string LowerUOM { get; set; }
         public string HigherUOM { get; set; }
         public string LowerQty { get; set; }
         public string HigherQty { get; set; }
         public string Amount { get; set; }
-        public string prd_ArName { get; set; }
-
-
+        public string transcationtype { get; set; }
+        public string returnType { get; set; }
 
     }
+
+    public class InvoiceFooterInKPI
+    {
+        public string UserID { get; set; }
+        public string ID { get; set; }
+
+    }
+    public class invoiceTypeFooter
+    {
+
+        public string Type { get; set; }
+        public string Value { get; set; }
+        public string Discount { get; set; }
+        public string VAT { get; set; }
+        public string SubTotal { get; set; }
+    }
+
+    //----------inv Reconfirm
 
     public class InvRecheaderIn
     {
@@ -753,18 +745,55 @@ namespace MVC_API.Models
 
 
     }
-    public class CusVisitIn
+    //-----AR---------------------------------
+    public class ARHeaderInKPI
     {
-        public string rotID { get; set; }
         public string UserID { get; set; }
+        public string rotID { get; set; }
+        public string udpId { get; set; }
+    }
+    public class ARHeaderOutKPI
+    {
+        public string arh_ID { get; set; }
+        public string arh_ARNumber { get; set; }
+        public string cus_ID { get; set; }
+        public string cus_Code { get; set; }
+        public string cus_Name { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+        public string arh_PayMode { get; set; }
+        public string arh_PayType { get; set; }
+        public string arh_CollectedAmount { get; set; }
+        public string arh_BalanceAmount { get; set; }
+        public string arp_ChequeNo { get; set; }
+        public string arp_ChequeDate { get; set; }
+        public string RecImage { get; set; }
+        public string Attachment { get; set; }
+        public string Sign { get; set; }
+        public string bankName { get; set; }
+        public string Remark { get; set; }
+        public string Status { get; set; }
 
     }
-    public class CusVisitOut
+    public class ARDetailInKPI
     {
-        public string rotID { get; set; }
-        public string UserID { get; set; }
-        
+        public string arh_ID { get; set; }
+    }
+    public class ARDetailOutKPI
+    {
+        public string ard_ID { get; set; }
+        public string ard_arh_ID { get; set; }
+        public string ard_Amount { get; set; }
+        public string ard_PDC_Amount { get; set; }
+        public string InvoiceID { get; set; }
+        public string InvoicedOn { get; set; }
+        public string InvoiceAmount { get; set; }
+        public string AmountPaid { get; set; }
 
     }
+
+
+
+
 
 }
