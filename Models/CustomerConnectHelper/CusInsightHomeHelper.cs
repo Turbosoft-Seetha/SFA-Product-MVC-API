@@ -60,7 +60,7 @@ namespace MVC_API.Models
         public string ArHeader_Name { get; set; }
         public string Arrot_Name { get; set; }
         public string ArArea_Name { get; set; }
-        public string Total_Count { get; set; }
+        
     }
 
     public class OutCusInsightProfile
@@ -91,4 +91,9 @@ namespace MVC_API.Models
         public string cus_ID { get; set; }
     }
 
+    public class OutSelectCustomerInsightCount
+    {
+        public string Total_Count { get; set; }
     }
+
+}
