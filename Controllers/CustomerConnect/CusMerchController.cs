@@ -596,7 +596,7 @@ namespace MVC_API.Controllers.CustomerConnect
             string[] arr = { ToDate.ToString(), Status };
 
 
-            DataTable dt = dm.loadList("", "sp_CC_Merchandising_WS", FromDate, arr);
+            DataTable dt = dm.loadList("GetCCDisplayagreement", "sp_CC_Merchandising_WS", FromDate, arr);
 
             try
             {
