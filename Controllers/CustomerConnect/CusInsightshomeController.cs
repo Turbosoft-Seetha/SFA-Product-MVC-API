@@ -150,7 +150,7 @@ namespace MVC_API.Controllers.Customer_Connect
                         ArHeader_Name = dr["csh_NameArabic"].ToString(),
                         Arrot_Name = dr["rot_ArabicName"].ToString(),
                         ArArea_Name = dr["are_NameArabic"].ToString(),
-                        Total_Count = dr["TotalCount"].ToString()
+                        
                     });
                 }
                 JSONString = JsonConvert.SerializeObject(new
@@ -379,6 +379,85 @@ namespace MVC_API.Controllers.Customer_Connect
             dm.TraceService("==================");
 
 
+            return JSONString;
+        }
+
+
+        public string SelectCustomerInsightCount([FromForm] InsSelectAllCustomerInsight inputParams)
+        {
+
+            dm.TraceService("SelectCustomerInsightCount STARTED ");
+            dm.TraceService("==============================");
+            string USRID = inputParams.UserID == null ? "0" : inputParams.UserID;
+            string Area = inputParams.Area == null ? "0" : inputParams.Area;
+            string SubArea = inputParams.SubArea == null ? "0" : inputParams.SubArea;
+            string Route = inputParams.Route == null ? "0" : inputParams.Route;
+            string SearchString = inputParams.SearchString == null ? "0" : inputParams.SearchString;
+            string Pagenum = inputParams.Pagenum == null ? "1" : inputParams.Pagenum;
+
+            string MainCondition = "";
+            string AreaCondition = "";
+            string SubAreaCondition = "";
+            string RouteCondition = "";
+
+            if (Area == "0")
+            {
+                AreaCondition = "";
+            }
+            else
+            {
+                AreaCondition = " and dpa_ID in ( " + Area + " )";
+            }
+            if (SubArea == "0")
+            {
+                SubAreaCondition = "";
+            }
+            else
+            {
+                SubAreaCondition = " and dsa_ID in ( " + SubArea + " )";
+            }
+            if (Route == "0")
+            {
+                RouteCondition = "";
+            }
+            else
+            {
+                RouteCondition = " and rot_ID in ( " + Route + " )";
+            }
+
+            MainCondition += AreaCondition;
+            MainCondition += SubAreaCondition;
+            MainCondition += RouteCondition;
+
+            string[] arry = { MainCondition.ToString(), SearchString.ToString(), Pagenum.ToString() };
+            DataTable dtDN = dm.loadList("SelectCusInsightCount", "sp_CustomerConnect", USRID, arry);
+            if (dtDN.Rows.Count > 0)
+            {
+                List<OutSelectCustomerInsightCount> listDn = new List<OutSelectCustomerInsightCount>();
+                foreach (DataRow dr in dtDN.Rows)
+                {
+                    listDn.Add(new OutSelectCustomerInsightCount
+                    {
+                        
+                        Total_Count = dr["TotalCount"].ToString()
+                    });
+                }
+                JSONString = JsonConvert.SerializeObject(new
+                {
+                    result = listDn
+                });
+
+                return JSONString;
+            }
+            else
+            {
+                JSONString = "NoDataRes";
+                dm.TraceService("NoDataRes");
+            }
+
+
+            dm.TraceService("SelectCustomerInsightCount ENDED ");
+            dm.TraceService("==========================");
             return JSONString;
         }
 
