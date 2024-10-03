@@ -588,6 +588,7 @@ namespace MVC_API.Models
         public string rotID { get; set; }
         public string type { get; set; }
         public string UserID { get; set; }
+        public string udpId { get; set; }
 
     }
     public class SalesOrderOut
@@ -662,6 +663,7 @@ namespace MVC_API.Models
     {
         public string UserID { get; set; }
         public string rotID { get; set; }
+        public string udpId { get; set; }
 
     }
     public class SelInvoiceOut
@@ -712,6 +714,7 @@ namespace MVC_API.Models
     {
         public string UserID { get; set; }
         public string rotID { get; set; }
+        public string udpId { get; set; }
 
     }
     public class InvRecheaderOut
@@ -748,6 +751,19 @@ namespace MVC_API.Models
         public string ExLowerQty { get; set; }
         public string ExHigherQty { get; set; }
 
+
+    }
+    public class CusVisitIn
+    {
+        public string rotID { get; set; }
+        public string UserID { get; set; }
+
+    }
+    public class CusVisitOut
+    {
+        public string rotID { get; set; }
+        public string UserID { get; set; }
+        
 
     }
 

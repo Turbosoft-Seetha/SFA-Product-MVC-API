@@ -1979,10 +1979,10 @@ namespace MVC_API.Controllers
         {
             dm.TraceService("GetSalesOrders STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
-            string[] ar = { inputParams.type };
-            string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+            string[] ar = { inputParams.type, inputParams.rotID == null ? "0" : inputParams.rotID };
+            string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
 
-            DataTable dt = dm.loadList("SelSalesorders", "sp_KPIServices", rotID,ar);
+            DataTable dt = dm.loadList("SelSalesorders", "sp_KPIServices", udpID,ar);
 
             try
             {
@@ -2105,10 +2105,10 @@ namespace MVC_API.Controllers
         {
             dm.TraceService("GetInvRecHeader STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
-            
-            string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
+            string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
 
-            DataTable dt = dm.loadList("SelInvRecHeader", "sp_KPIServices", rotID);
+            DataTable dt = dm.loadList("SelInvRecHeader", "sp_KPIServices", udpID,ar);
 
             try
             {
