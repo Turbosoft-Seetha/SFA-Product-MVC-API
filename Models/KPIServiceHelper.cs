@@ -632,12 +632,6 @@ namespace MVC_API.Models
         public string odd_LowerPrice { get; set; }
         public string odd_Price { get; set; }
         public string odd_TotalQty { get; set; }
-        public string odd_VATPercent { get; set; }
-        public string odd_Discount { get; set; }
-        public string odd_SubTotal { get; set; }
-        public string odd_VATAmount { get; set; }
-        public string odd_GrandTotal { get; set; }
-        public string odd_TransType { get; set; }
 
     }
 

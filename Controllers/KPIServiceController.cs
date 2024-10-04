@@ -2069,12 +2069,6 @@ namespace MVC_API.Controllers
                             odd_LowerPrice = dr["odd_LowerPrice"].ToString(),
                             odd_Price = dr["odd_Price"].ToString(),
                             odd_TotalQty = dr["odd_TotalQty"].ToString(),
-                            odd_VATPercent = dr["odd_VATPercent"].ToString(),
-                            odd_Discount = dr["odd_Discount"].ToString(),
-                            odd_SubTotal = dr["odd_SubTotal"].ToString(),
-                            odd_VATAmount = dr["odd_VATAmount"].ToString(),
-                            odd_GrandTotal = dr["odd_GrandTotal"].ToString(),
-                            odd_TransType = dr["odd_TransType"].ToString(),
                         });
                     }
 
