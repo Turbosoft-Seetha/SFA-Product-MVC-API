@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
 
@@ -1979,10 +1980,10 @@ namespace MVC_API.Controllers
         {
             dm.TraceService("GetSalesOrders STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
-            string[] ar = { inputParams.type };
-            string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+            string[] ar = { inputParams.type, inputParams.rotID == null ? "0" : inputParams.rotID };
+            string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
 
-            DataTable dt = dm.loadList("SelSalesorders", "sp_KPIServices", rotID,ar);
+            DataTable dt = dm.loadList("SelSalesorders", "sp_KPIServices", udpID,ar);
 
             try
             {
@@ -2105,10 +2106,10 @@ namespace MVC_API.Controllers
         {
             dm.TraceService("GetInvRecHeader STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
-            
-            string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
+            string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
 
-            DataTable dt = dm.loadList("SelInvRecHeader", "sp_KPIServices", rotID);
+            DataTable dt = dm.loadList("SelInvRecHeader", "sp_KPIServices", udpID,ar);
 
             try
             {
@@ -2216,8 +2217,417 @@ namespace MVC_API.Controllers
         }
 
 
+        public string SelectInvoiceDetailTypeWise([FromForm] InvoiceFooterInKPI inputParams)
+        {
+            dm.TraceService("SelectInvoiceDetailTypeWise STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
 
+            try
+            {
+                string lih_ID = inputParams.ID == null ? "0" : inputParams.ID;
+                string UserID = inputParams.UserID == null ? "0" : inputParams.UserID;
+
+                DataTable dtLoadIn = dm.loadList("InvoiceDetailFooter", "sp_KPIServices", lih_ID.ToString());
+
+                if (dtLoadIn.Rows.Count > 0)
+                {
+                    List<invoiceTypeFooter> listItems = new List<invoiceTypeFooter>();
+                    foreach (DataRow dr in dtLoadIn.Rows)
+                    {
+
+                        listItems.Add(new invoiceTypeFooter
+                        {
+                            Type = dr["ind_TransType"].ToString(),
+                            Discount = dr["Discount"].ToString(),
+                            VAT = dr["VAT"].ToString(),
+                            Value = dr["Value"].ToString(),
+                            SubTotal = dr["SubTotal"].ToString(),
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService(" SelectInvoiceDetailTypeWise Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelectInvoiceDetailTypeWise ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+        public string SelectInvoiceDetail([FromForm] InvoiceDetailInKPI inputParams)
+        {
+            dm.TraceService("SelectInvoiceDetail STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string lih_ID = inputParams.ID == null ? "0" : inputParams.ID;
+                string UserID = inputParams.UserID == null ? "0" : inputParams.UserID;
+
+                DataTable dtLoadIn = dm.loadList("InvoiceDetail", "sp_KPIServices", lih_ID.ToString());
+
+                if (dtLoadIn.Rows.Count > 0)
+                {
+                    List<InvoiceDetailOutKPI> listItems = new List<InvoiceDetailOutKPI>();
+                    foreach (DataRow dr in dtLoadIn.Rows)
+                    {
+
+                        listItems.Add(new InvoiceDetailOutKPI
+                        {
+                            prd_ID = dr["ind_itm_ID"].ToString(),
+                            prd_Code = dr["prd_Code"].ToString(),
+                            prd_Name = dr["prd_Name"].ToString(),
+                            transcationtype = dr["sld_TransType"].ToString(),
+                            LowerUOM = dr["LowerUOM"].ToString(),
+                            HigherUOM = dr["HigherUOM"].ToString(),
+                            LowerQty = dr["sld_LowerQty"].ToString(),
+                            HigherQty = dr["sld_HigherQty"].ToString(),
+                            Amount = dr["sld_GrandTotal"].ToString(),
+                            returnType = dr["sld_ReturnType"].ToString()
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService(" SelectInvoiceDetail Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelectInvoiceDetail ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+        public string GetInvoiceHeaderKPI([FromForm] SelInvoiceIn inputParams)
+        {
+            dm.TraceService("GetInvoiceHeaderKPI STARTED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+
+            
+            string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
+            string[] arr = { inputParams.rotID == null ? "0" : inputParams.rotID };
+            DataTable dtreturn = dm.loadList("SelInvoiceHeader", "sp_KPIServices", udpID.ToString(), arr);
+            string url = ConfigurationManager.AppSettings.Get("BackendUrl");
+
+
+            try
+            {
+                if (dtreturn.Rows.Count > 0)
+                {
+                    List<SelInvoiceOut> listHeader = new List<SelInvoiceOut>();
+                    foreach (DataRow dr in dtreturn.Rows)
+                    {
+                        string imag = "";
+                        string img = dr["sal_Attachment"].ToString();
+                        if (img != "")
+                        {
+                            string[] ar = (dr["sal_Attachment"].ToString().Replace("../", "")).Split(',');
+
+                            for (int i = 0; i < ar.Length; i++)
+                            {
+                                if (i > 0)
+                                {
+                                    imag = imag + "," + url + ar[i];
+                                }
+                                else
+                                {
+                                    imag = url + ar[i];
+                                }
+                            }
+
+                        }
+
+                        // sign
+
+                        string Sign = "";
+                        string img1 = dr["sal_Signature"].ToString();
+                        if (img1 != "")
+                        {
+                            string[] ar = (dr["sal_Signature"].ToString().Replace("../", "")).Split(',');
+
+                            for (int i = 0; i < ar.Length; i++)
+                            {
+                                if (i > 0)
+                                {
+                                    Sign = Sign + "," + url + ar[i];
+                                }
+                                else
+                                {
+                                    Sign = url + ar[i];
+                                }
+                            }
+
+                        }
+                        listHeader.Add(new SelInvoiceOut
+                        {
+
+                            ID = dr["sal_ID"].ToString(),
+                            InvoiceNo = dr["sal_txn_ID"].ToString(),
+                            cusCode = dr["cus_Code"].ToString(),
+                            cusName = dr["cus_Name"].ToString(),
+                            Attachment = imag,
+                            Signature =Sign,
+                            InvAmount = dr["inv_GrandTotal"].ToString(),
+                            PaymentType = dr["inv_PayMode"].ToString(),
+                            Balance = dr["Balance"].ToString(),
+                            PaidAmount = dr["inv_TotalPaidAmount"].ToString(),
+                            Status = dr["Status"].ToString(),
+                            Date= dr["CDate"].ToString(),
+                            Time = dr["CTime"].ToString(),
+
+                        });
+                    }
+
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listHeader
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    dm.TraceService("NoDataRes");
+                    JSONString = "NoDataRes";
+                }
+            }
+
+
+
+            catch (Exception ex)
+            {
+                dm.TraceService(ex.Message.ToString());
+                JSONString = "GetInvoiceHeaderKPI - " + ex.Message.ToString();
+            }
+            dm.TraceService("GetInvoiceHeaderKPI ENDED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+            return JSONString;
+        }
+
+
+        ///-----AR------------------------------------------
+        ///
+
+
+
+        public string SelectARHeader([FromForm] ARHeaderInKPI inputParams)
+        {
+            dm.TraceService("SelectARHeader STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string UserID = inputParams.UserID == null ? "0" : inputParams.UserID;
+                string udpid = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string rotid = inputParams.rotID == null ? "0" : inputParams.rotID;
+
+                string url = ConfigurationManager.AppSettings.Get("BackendUrl");
+
+                string[] arr = { UserID,rotid };
+                DataTable dtAR = dm.loadList("SelARHeader", "sp_KPIServices", udpid.ToString(), arr);
+
+                if (dtAR.Rows.Count > 0)
+                {
+                    List<ARHeaderOutKPI> listItems = new List<ARHeaderOutKPI>();
+                    foreach (DataRow dr in dtAR.Rows)
+                    {
+                        string imag = "";
+                        string img = dr["arh_Attachment"].ToString();
+                        if (img != "")
+                        {
+                            string[] ar = (dr["arh_Attachment"].ToString().Replace("../", "")).Split(',');
+
+                            for (int i = 0; i < ar.Length; i++)
+                            {
+                                if (i > 0)
+                                {
+                                    imag = imag + "," + url + ar[i];
+                                }
+                                else
+                                {
+                                    imag = url + ar[i];
+                                }
+                            }
+
+                        }
+
+                        // sign
+
+                        string Sign = "";
+                        string img1 = dr["arh_Signature"].ToString();
+                        if (img1 != "")
+                        {
+                            string[] ar = (dr["arh_Signature"].ToString().Replace("../", "")).Split(',');
+
+                            for (int i = 0; i < ar.Length; i++)
+                            {
+                                if (i > 0)
+                                {
+                                    Sign = Sign + "," + url + ar[i];
+                                }
+                                else
+                                {
+                                    Sign = url + ar[i];
+                                }
+                            }
+
+                        }
+
+                        string Rec = "";
+                        string img2 = dr["arh_RecieptImg"].ToString();
+                        if (img2 != "")
+                        {
+                            string[] ar = (dr["arh_RecieptImg"].ToString().Replace("../", "")).Split(',');
+
+                            for (int i = 0; i < ar.Length; i++)
+                            {
+                                if (i > 0)
+                                {
+                                    Rec = Rec + "," + url + ar[i];
+                                }
+                                else
+                                {
+                                    Rec = url + ar[i];
+                                }
+                            }
+
+                        }
+                        listItems.Add(new ARHeaderOutKPI
+                        {
+
+                            arh_ID = dr["arh_ID"].ToString(),
+                            arh_ARNumber = dr["arh_ARNumber"].ToString(),
+                            cus_ID = dr["cus_ID"].ToString(),
+                            cus_Code = dr["cus_Code"].ToString(),
+                            cus_Name = dr["cus_Name"].ToString(),
+                            Date = dr["Date"].ToString(),
+                            Time = dr["Time"].ToString(),
+                            arh_PayMode = dr["arh_PayMode"].ToString(),
+                            arh_PayType = dr["arh_PayType"].ToString(),
+                            arh_CollectedAmount = dr["arh_CollectedAmount"].ToString(),
+                            arh_BalanceAmount = dr["arh_BalanceAmount"].ToString(),
+                            arp_ChequeNo = dr["arp_ChequeNo"].ToString(),
+                            arp_ChequeDate = dr["arp_ChequeDate"].ToString(),
+                            RecImage = Rec,
+                            Sign = Sign,
+                            Attachment=imag,
+                            bankName = dr["bnk_Name"].ToString(),
+                            Remark = dr["arh_Remarks"].ToString(),
+                            Status = dr["Status"].ToString(),
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelectARHeader Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelectARHeader ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+        public string SelectARDetail([FromForm] ARDetailInKPI inputParams)
+        {
+            dm.TraceService("SelectARDetail STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+
+                string arh_ID = inputParams.arh_ID == null ? "0" : inputParams.arh_ID;
+
+                DataTable dt = dm.loadList("SelARDetail", "sp_CustomerConnect", arh_ID.ToString());
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<ARDetailOutKPI> listItems = new List<ARDetailOutKPI>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new ARDetailOutKPI
+                        {
+                            ard_ID = dr["ard_ID"].ToString(),
+                            ard_arh_ID = dr["ard_arh_ID"].ToString(),
+                            ard_Amount = dr["ard_Amount"].ToString(),
+                            ard_PDC_Amount = dr["ard_PDC_Amount"].ToString(),
+                            InvoiceID = dr["InvoiceID"].ToString(),
+                            InvoicedOn = dr["InvoicedOn"].ToString(),
+                            InvoiceAmount = dr["InvoiceAmount"].ToString(),
+                            AmountPaid = dr["AmountPaid"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelectARDetail Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelectARDetail ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
 
 
     }
+
+
 }
