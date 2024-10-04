@@ -34,10 +34,11 @@ namespace MVC_API.Controllers.CustomerConnect
             {
                 string Username = inputParams.Username == null ? "0" : inputParams.Username;
                 string Password = inputParams.Password == null ? "0" : inputParams.Password;
+                string Token = inputParams.Token == null ? "0" : inputParams.Token;
 
                 if (Membership.ValidateUser(inputParams.Username, inputParams.Password))
                 {
-                    string[] arr = { Password.ToString() };
+                    string[] arr = { Password.ToString(), Token.ToString() };
 
                     DataTable dtLogin = dm.loadList("AppLogin", "sp_CustomerConnect", Username.ToString(), arr);
 
@@ -82,27 +83,27 @@ namespace MVC_API.Controllers.CustomerConnect
 
                     List<LoginOut> listItems = new List<LoginOut>();
                     listItems.Add(new LoginOut
-                            {
-                                FirstName = "",
-                                LastName = "",
-                                Email = "",
-                                ContacInfo = "",
-                                usrID = "",
-                                UserName = "",
-                                NewUser = "",
-                                Title = "Failure",
-                                Descr = "Invalid User Credentials",
-                                VersionDate = "",
-                            });
-                        
+                    {
+                        FirstName = "",
+                        LastName = "",
+                        Email = "",
+                        ContacInfo = "",
+                        usrID = "",
+                        UserName = "",
+                        NewUser = "",
+                        Title = "Failure",
+                        Descr = "Invalid User Credentials",
+                        VersionDate = "",
+                    });
 
-                        string JSONString = JsonConvert.SerializeObject(new
-                        {
-                            result = listItems
-                        });
 
-                        return JSONString;
-                    
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+
                 }
             }
             catch (Exception ex)
