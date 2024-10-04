@@ -2003,6 +2003,11 @@ namespace MVC_API.Controllers
                             Date = dr["CDate"].ToString(),
                             Time = dr["CTime"].ToString(),
                             Status = dr["Status"].ToString(),
+                            Total = dr["ord_SubTotal_WODiscount"].ToString(),
+                            ord_Discount = dr["ord_Discount"].ToString(),
+                            ord_SubTotal = dr["ord_SubTotal"].ToString(),
+                            ord_VATAmount = dr["ord_VAT"].ToString(),
+                            ord_GrandTotal = dr["ord_GrandTotal"].ToString(),
                         });
                     }
 
@@ -2189,6 +2194,9 @@ namespace MVC_API.Controllers
                             ExHigherUOM = dr["ird_DescHUOM"].ToString(),
                             ExLowerQty = dr["ird_DescLQty"].ToString(),
                             ExLowerUOM = dr["ird_DescLUOM"].ToString(),
+                            CatID = dr["prd_cat_ID"].ToString(),
+                            SubCatID = dr["prd_sct_ID"].ToString(),
+                            IsNEwlyAdded = dr["ird_Isvanstockitms"].ToString(),
                         });
                     }
 

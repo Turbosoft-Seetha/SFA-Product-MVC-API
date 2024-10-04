@@ -604,6 +604,11 @@ namespace MVC_API.Models
         public string Time { get; set; }
         public string Status { get; set; }
         public string LPO { get; set; }
+        public string Total { get; set; }
+        public string ord_Discount { get; set; }
+        public string ord_SubTotal { get; set; }
+        public string ord_VATAmount { get; set; }
+        public string ord_GrandTotal { get; set; }
 
     }
     
@@ -743,6 +748,9 @@ namespace MVC_API.Models
         public string ExLowerQty { get; set; }
         public string ExHigherQty { get; set; }
 
+        public string CatID { get; set; }
+        public string SubCatID { get; set; }
+        public string IsNEwlyAdded { get; set; }
 
     }
     //-----AR---------------------------------
