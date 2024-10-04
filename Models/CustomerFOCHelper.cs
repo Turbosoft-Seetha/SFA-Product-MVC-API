@@ -33,7 +33,7 @@ namespace MVC_API.Models
         public string Res { get; set; }
         public string Title { get; set; }
         public string Descr { get; set; }
-        public string ReturnId { get; set; }
+       // public string ReturnId { get; set; }
     }
     public class FOCDetailIn
     {

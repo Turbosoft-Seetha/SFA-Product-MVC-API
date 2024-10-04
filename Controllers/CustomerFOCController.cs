@@ -69,7 +69,7 @@ namespace MVC_API.Controllers
                                     Res = dr["Res"].ToString(),
                                     Title = dr["Title"].ToString(),
                                     Descr = dr["Descr"].ToString(),
-                                    ReturnId = dr["ReturnId"].ToString(),
+                                    //ReturnId = dr["ReturnId"].ToString(),
                                 });
                             }
                             JSONString = JsonConvert.SerializeObject(new
