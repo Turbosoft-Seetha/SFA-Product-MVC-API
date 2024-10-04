@@ -128,27 +128,27 @@ namespace MVC_API.Controllers
                         List<FOCApproveDetail> FOCDetail = new List<FOCApproveDetail>();
                         foreach (DataRow dts in DetailData.Rows)
                         {
-                            if (dr["cfh_ID"].ToString() == dts["cfa-cfh_ID"].ToString())
-                            {
+                            //if (dr["cfh_ID"].ToString() == dts["cfa-cfh_ID"].ToString())
+                            //{
                                 FOCDetail.Add(new FOCApproveDetail
                                 {
                                     prdID = dts["prdID"].ToString(),
-                                    HUOM = dr["HUOM"].ToString(),
+                                    HUOM = dts["HUOM"].ToString(),
                                     HQty = dts["HQty"].ToString(),
                                     LUOM = dts["LUOM"].ToString(),
                                     LQty = dts["LQty"].ToString(),
                                     totalqty = dts["totalqty"].ToString()
                                 });
-                            }
+                            //}
                         }
                         listDetail.Add(new FOCList
                         {
 
-                            HeaderId = dr["cac_ID"].ToString(),
-                            FromDate = dr["cac_cus_ID"].ToString(),
-                            ToDate = dr["cac_cpm_ID"].ToString(),
-                            Commend = dr["cac_cpb_ID"].ToString(),
-                            CreatedDate = dr["cpm_Code"].ToString(),
+                            HeaderId = dr["HeaderId"].ToString(),
+                            FromDate = dr["FromDate"].ToString(),
+                            ToDate = dr["ToDate"].ToString(),
+                            Commend = dr["Commend"].ToString(),
+                            CreatedDate = dr["CreatedDate"].ToString(),
                             FOCListDetail = FOCDetail,
                         });
 
