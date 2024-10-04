@@ -35,4 +35,29 @@ namespace MVC_API.Models
         public string Descr { get; set; }
         public string ReturnId { get; set; }
     }
+    public class FOCDetailIn
+    {
+        public string RotId { get; set; }
+        public string CusId { get; set; }
+        public string UserId { get; set; }
+
+    }
+    public class FOCList
+    {
+        public string HeaderId { get; set; }
+        public string FromDate { get; set; }
+        public string ToDate { get; set; }
+        public string Commend { get; set; }
+        public string CreatedDate { get; set; }
+        public List<FOCApproveDetail> FOCListDetail { get; set; }
+    }
+    public class FOCApproveDetail
+    {
+        public string prdID { get; set; }
+        public string HUOM { get; set; }
+        public string HQty { get; set; }
+        public string LUOM { get; set; }
+        public string LQty { get; set; }
+        public string totalqty { get; set; }
+    }
 }

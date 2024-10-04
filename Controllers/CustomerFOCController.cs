@@ -33,7 +33,7 @@ namespace MVC_API.Controllers
                     string RotId = inputParams.RotId == null ? "0" : inputParams.RotId;
                     string FromDate = inputParams.FromDate == null ? "0" : inputParams.FromDate;
                     string ToDate = inputParams.ToDate == null ? "0" : inputParams.ToDate;
-                    string Commend= inputParams.Commend == null ? "" : inputParams.Commend;
+                    string Commend = inputParams.Commend == null ? "" : inputParams.Commend;
                     string InputXml = "";
                     using (var sw = new StringWriter())
                     {
@@ -43,7 +43,7 @@ namespace MVC_API.Controllers
                             writer.WriteStartElement("r");
                             foreach (PostCustomerFOCApprovalDetData id in itemData)
                             {
-                                string[] arr = { id.prdID.ToString(),id.HUOM.ToString(),id.HQty.ToString(),id.LUOM.ToString(),id.LQty.ToString(), id.totalqty.ToString() };
+                                string[] arr = { id.prdID.ToString(), id.HUOM.ToString(), id.HQty.ToString(), id.LUOM.ToString(), id.LQty.ToString(), id.totalqty.ToString() };
                                 string[] arrName = { "prdID", "HUOM", "HQty", "LUOM", "LQty", "totalqty" };
                                 dm.createNode(arr, arrName, writer);
                             }
@@ -55,7 +55,7 @@ namespace MVC_API.Controllers
                     }
                     try
                     {
-                        string[] arr = {CusId.ToString(),FromDate.ToString(), ToDate.ToString(), userID.ToString(),Commend, InputXml.ToString() };
+                        string[] arr = { CusId.ToString(), FromDate.ToString(), ToDate.ToString(), userID.ToString(), Commend, InputXml.ToString() };
                         DataTable dt = dm.loadList("InsertFOCApp", "sp_Masters_UOM", RotId.ToString(), arr);
 
                         List<GetFOCApprovalStatus> listStatus = new List<GetFOCApprovalStatus>();
@@ -106,8 +106,77 @@ namespace MVC_API.Controllers
             dm.TraceService("========================================");
             return JSONString;
         }
+        public string GetFOCList([FromForm] FOCDetailIn inputParams)
+        {
+            dm.TraceService("SelectCFOCList STARTED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+            string CusId = inputParams.CusId == null ? "0" : inputParams.CusId;
+            string userID = inputParams.UserId == null ? "0" : inputParams.UserId;
+            string RotId = inputParams.RotId == null ? "0" : inputParams.RotId;
+            string[] arr = { RotId, CusId };
+            DataSet dt = dm.loadListDS("SelFOCList", "sp_Masters_UOM", userID, arr);
+            DataTable headerData = dt.Tables[0];
 
+            DataTable DetailData = dt.Tables[1];
+            try
+            {
+                if (headerData.Rows.Count > 0)
+                {
+                    List<FOCList> listDetail = new List<FOCList>();
+                    foreach (DataRow dr in headerData.Rows)
+                    {
+                        List<FOCApproveDetail> FOCDetail = new List<FOCApproveDetail>();
+                        foreach (DataRow dts in DetailData.Rows)
+                        {
+                            if (dr["cfh_ID"].ToString() == dts["cfa-cfh_ID"].ToString())
+                            {
+                                FOCDetail.Add(new FOCApproveDetail
+                                {
+                                    prdID = dts["prdID"].ToString(),
+                                    HUOM = dr["HUOM"].ToString(),
+                                    HQty = dts["HQty"].ToString(),
+                                    LUOM = dts["LUOM"].ToString(),
+                                    LQty = dts["LQty"].ToString(),
+                                    totalqty = dts["totalqty"].ToString()
+                                });
+                            }
+                        }
+                        listDetail.Add(new FOCList
+                        {
 
+                            HeaderId = dr["cac_ID"].ToString(),
+                            FromDate = dr["cac_cus_ID"].ToString(),
+                            ToDate = dr["cac_cpm_ID"].ToString(),
+                            Commend = dr["cac_cpb_ID"].ToString(),
+                            CreatedDate = dr["cpm_Code"].ToString(),
+                            FOCListDetail = FOCDetail,
+                        });
 
+                    }
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listDetail
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    dm.TraceService("NoDataRes");
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                dm.TraceService("SelectCFOCList - Error :   " + ex.Message.ToString());
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+            }
+
+            dm.TraceService("SelectCFOCList ENDED ");
+            dm.TraceService("======================================");
+
+            return JSONString;
+
+        }
     }
 }
