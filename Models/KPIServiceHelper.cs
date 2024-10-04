@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Web;
 
 namespace MVC_API.Models
@@ -599,6 +600,7 @@ namespace MVC_API.Models
         public string cus_ID { get; set; }
         public string cus_code { get; set; }
         public string cus_name { get; set; }
+        public string cusArName { get; set; }
         public string OrdNO { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
@@ -650,6 +652,7 @@ namespace MVC_API.Models
         public string ID { get; set; }
         public string InvoiceNo { get; set; }
         public string cusName { get; set; }
+        public string cusArName { get; set; }
         public string cusCode { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
@@ -761,6 +764,7 @@ namespace MVC_API.Models
         public string cus_ID { get; set; }
         public string cus_Code { get; set; }
         public string cus_Name { get; set; }
+        public string cusArName { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
         public string arh_PayMode { get; set; }
@@ -794,8 +798,179 @@ namespace MVC_API.Models
 
     }
 
+    public class SelAdvInKPI
+    {
+        public string UserID { get; set; }
+        public string rotID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class SelAdvOutKPI
+    {
+
+        public string ID { get; set; }
+        public string TransID { get; set; }
+        public string cusName { get; set; }
+        public string cusArName { get; set; }
+        public string cusCode { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+        public string PaymentType { get; set; }
+        public string PaymentMode { get; set; }
+        public string adp_ChequeNo { get; set; }
+        public string adp_ChequeDate { get; set; }
+        public string RecImage { get; set; }
+        public string Attachment { get; set; }
+        public string Sign { get; set; }
+        public string Remark { get; set; }
+        public string Status { get; set; }
 
 
+    }
+    public class SelInvoiceCountIN
+    {
+        public string UserID { get; set; }
+        public string rotID { get; set; }
+        public string udpId { get; set; }
 
+    }
+    public class SelINvCountOut
+    {
+
+        public string TotInvoice { get; set; }
+        public string TotInvAmt {  get; set; }
+        public string SalesInvoice { get; set; }
+        public string GD { get; set; }
+        public string BD { get; set; }
+        public string FOC { get; set; }
+        public string NoOfInvHC { get; set; }
+        public string NoOfInvPOS { get; set; }
+        public string NoOfInvOP { get; set; }
+        public string NoOfInvCR { get; set; }
+        public string HCAmt { get; set; }
+        public string POSAmount { get; set; }
+        public string OPAmt { get; set; }
+        public string CRAmt { get; set; }
+
+
+    }
+
+    public class SelOutstandingeCountIN
+    {
+        public string UserID { get; set; }
+        public string rotID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class SelOutstandingOut
+    {
+
+        public string Due { get; set; }
+        public string TotalDue { get; set; }
+        public string OverDue { get; set; }
+        public string TotalOverDue { get; set; }
+        public string OutStandingAmt { get; set; }
+        public string TotalOutstanding { get; set; }
+
+
+    }
+    public class SelVisitIN
+    {
+        public string UserID { get; set; }
+        public string rotID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class SelVisitOut
+    {
+
+        public string totplannedvisit { get; set; }
+        public string visited { get; set; }
+        public string pending { get; set; }
+        public string Totalactualvisits { get; set; }
+        public string planned { get; set; }
+        public string unplanned { get; set; }
+        public string TotProductive { get; set; }
+        public string ProductivePlanned { get; set; }
+        public string ProductiveUnplanned { get; set; }
+        public string totNonProductive { get; set; }
+        public string NonProdPlanned { get; set; }
+        public string NonProdUnplanned { get; set; }
+
+
+    }
+    public class ARCOuntIn
+    {
+        public string UserID { get; set; }
+        public string rotID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class ARCOuntOut
+    {
+
+        public string HCAmt { get; set; }
+        public string POSAmount { get; set; }
+        public string OPAmt { get; set; }
+        public string CHAmt { get; set; }
+        public string TotCollection { get; set; }
+
+
+    }
+    public class AdvCountIn
+    {
+        public string UserID { get; set; }
+        public string rotID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class AdvCountOut
+    {
+        public string TotalAdvPayCount { get; set; }
+        public string TotAmt { get; set; }
+        public string NoOfHC { get; set; }
+        public string NoOfPOS { get; set; }
+        public string NoOfOP { get; set; }
+        public string NoOfCH { get; set; }
+        public string HCAmt { get; set; }
+        public string POSAmount { get; set; }
+        public string OPAmt { get; set; }
+        public string CHAmt { get; set; }
+
+
+    }
+    public class InvRecandV2VIN
+    {
+        public string UserID { get; set; }
+        public string rotID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class InvRecandV2VOut
+    {
+
+        public string IvnRecCount { get; set; }
+        public string LodTransferIn { get; set; }
+        public string LoadTransferOut { get; set; }
+
+
+    }
+    public class DelCountIn
+    {
+        public string UserID { get; set; }
+        public string rotID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class DelCountOut
+    {
+
+        public string plannedDel { get; set; }
+        public string TotalDel { get; set; }
+        public string TotalPD { get; set; }
+        public string NotDel { get; set; }
+
+
+    }
 
 }
