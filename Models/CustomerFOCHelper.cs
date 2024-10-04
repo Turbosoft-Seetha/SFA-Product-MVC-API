@@ -15,11 +15,16 @@ namespace MVC_API.Models
         public string FromDate { get; set; }
         public string ToDate { get; set; }
         public string UserId { get; set; }
+        public string Commend { get; set; }
         public string JSONString { get; set; }
     }
     public class PostCustomerFOCApprovalDetData
     {
         public string prdID { get; set; }
+        public string HUOM { get; set; }
+        public string HQty { get; set; }
+        public string LUOM { get; set; }
+        public string LQty { get; set; }
         public string totalqty { get; set; }
     }
     public class GetFOCApprovalStatus

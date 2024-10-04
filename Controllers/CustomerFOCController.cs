@@ -33,6 +33,7 @@ namespace MVC_API.Controllers
                     string RotId = inputParams.RotId == null ? "0" : inputParams.RotId;
                     string FromDate = inputParams.FromDate == null ? "0" : inputParams.FromDate;
                     string ToDate = inputParams.ToDate == null ? "0" : inputParams.ToDate;
+                    string Commend= inputParams.Commend == null ? "" : inputParams.Commend;
                     string InputXml = "";
                     using (var sw = new StringWriter())
                     {
@@ -42,8 +43,8 @@ namespace MVC_API.Controllers
                             writer.WriteStartElement("r");
                             foreach (PostCustomerFOCApprovalDetData id in itemData)
                             {
-                                string[] arr = { id.prdID.ToString(), id.totalqty.ToString() };
-                                string[] arrName = { "prdID", "totalqty" };
+                                string[] arr = { id.prdID.ToString(),id.HUOM.ToString(),id.HQty.ToString(),id.LUOM.ToString(),id.LQty.ToString(), id.totalqty.ToString() };
+                                string[] arrName = { "prdID", "HUOM", "HQty", "LUOM", "LQty", "totalqty" };
                                 dm.createNode(arr, arrName, writer);
                             }
                             writer.WriteEndElement();
@@ -54,7 +55,7 @@ namespace MVC_API.Controllers
                     }
                     try
                     {
-                        string[] arr = {CusId.ToString(),FromDate.ToString(), ToDate.ToString(), userID.ToString(), InputXml.ToString() };
+                        string[] arr = {CusId.ToString(),FromDate.ToString(), ToDate.ToString(), userID.ToString(),Commend, InputXml.ToString() };
                         DataTable dt = dm.loadList("InsertFOCApp", "sp_Masters_UOM", RotId.ToString(), arr);
 
                         List<GetFOCApprovalStatus> listStatus = new List<GetFOCApprovalStatus>();
@@ -105,5 +106,8 @@ namespace MVC_API.Controllers
             dm.TraceService("========================================");
             return JSONString;
         }
+
+
+
     }
 }
