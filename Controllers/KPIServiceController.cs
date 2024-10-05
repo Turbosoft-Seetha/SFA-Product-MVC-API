@@ -2455,10 +2455,11 @@ namespace MVC_API.Controllers
                 string UserID = inputParams.UserID == null ? "0" : inputParams.UserID;
                 string udpid = inputParams.udpId == null ? "0" : inputParams.udpId;
                 string rotid = inputParams.rotID == null ? "0" : inputParams.rotID;
+                string paytype = inputParams.PayType == null ? "0" : inputParams.PayType; 
 
                 string url = ConfigurationManager.AppSettings.Get("BackendUrl");
 
-                string[] arr = { UserID, rotid };
+                string[] arr = { UserID, rotid ,paytype};
                 DataTable dtAR = dm.loadList("SelARHeader", "sp_KPIServices", udpid.ToString(), arr);
 
                 if (dtAR.Rows.Count > 0)
@@ -2604,6 +2605,7 @@ namespace MVC_API.Controllers
                             InvoicedOn = dr["InvoicedOn"].ToString(),
                             InvoiceAmount = dr["InvoiceAmount"].ToString(),
                             AmountPaid = dr["AmountPaid"].ToString(),
+                            Balance= dr["Balance"].ToString(),
 
                         });
                     }
@@ -2824,7 +2826,7 @@ namespace MVC_API.Controllers
 
             try
             {
-                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
                 string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
                 string[] ar = { arh_ID };
 
@@ -3044,6 +3046,113 @@ namespace MVC_API.Controllers
                 dm.TraceService("SelVisitCount Exception - " + ex.Message.ToString());
             }
             dm.TraceService("SelVisitCount ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+        public string SelInvandVAntoVanCount([FromForm] SelVisitIN inputParams)
+        {
+            dm.TraceService("SelInvandVAntoVanCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("SelInventoryandVantoVan", "sp_KPIServices", rotID.ToString(), ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<InvRecandV2VOut> listItems = new List<InvRecandV2VOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new InvRecandV2VOut
+                        {
+                            IvnRecCount = dr["InvRecCount"].ToString(),
+                            LoadTransferOut = dr["TransIn"].ToString(),
+                            LodTransferIn = dr["TransOut"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelInvandVAntoVanCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelInvandVAntoVanCount ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+        public string SelDeliveryCount([FromForm] SelVisitIN inputParams)
+        {
+            dm.TraceService("SelDeliveryCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("SelDeliveryCount", "sp_KPIServices", rotID.ToString(), ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<DelCountOut> listItems = new List<DelCountOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new DelCountOut
+                        {
+                            plannedDel = dr["planned"].ToString(),
+                            NotDel = dr["TransIn"].ToString(),
+                            TotalDel = dr["ND"].ToString(),
+                            TotalPD = dr["PD"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelDeliveryCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelDeliveryCount ENDED - " + DateTime.Now);
             dm.TraceService("==================");
 
 
