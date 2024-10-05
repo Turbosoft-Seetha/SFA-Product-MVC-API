@@ -2730,6 +2730,7 @@ namespace MVC_API.Controllers
                             Sign = Sign,
                             Remark = dr["adp_Remarks"].ToString(),
                             Status = dr["Status"].ToString(),
+                            BankName = dr["Bank"].ToString(),
 
                         });
                     }
@@ -3169,6 +3170,169 @@ namespace MVC_API.Controllers
 
             return JSONString;
         }
+
+        public string GetTransferIn([FromForm] InvRecheaderIn inputParams)
+        {
+            dm.TraceService("GetTransferIn STARTED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
+            string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
+
+            DataTable dt = dm.loadList("SelTransferIn", "sp_KPIServices", udpID, ar);
+
+            try
+            {
+                if (dt.Rows.Count > 0)
+                {
+
+                    List<SelTransferOut> listHeader = new List<SelTransferOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        listHeader.Add(new SelTransferOut
+                        {
+                            ID = dr["vvh_ID"].ToString(),
+                            TransID = dr["vvh_TransID"].ToString(),
+                            RouteCode = dr["rot_code"].ToString(),
+                            RouteName = dr["rot_Name"].ToString(),
+                            Status = dr["status"].ToString(),
+                        });
+                    }
+
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listHeader
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    dm.TraceService("NoDataRes");
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                dm.TraceService("GetTransferIn  " + ex.Message.ToString());
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+            }
+
+            dm.TraceService("GetTransferIn ENDED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+
+            return JSONString;
+        }
+
+        public string GetTransferOut([FromForm] InvRecheaderIn inputParams)
+        {
+            dm.TraceService("GetTransferOut STARTED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
+            string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
+
+            DataTable dt = dm.loadList("SelTransferOut", "sp_KPIServices", udpID, ar);
+
+            try
+            {
+                if (dt.Rows.Count > 0)
+                {
+
+                    List<SelTransferOut> listHeader = new List<SelTransferOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        listHeader.Add(new SelTransferOut
+                        {
+                            ID = dr["vvh_ID"].ToString(),
+                            TransID = dr["vvh_TransID"].ToString(),
+                            RouteCode = dr["rot_code"].ToString(),
+                            RouteName = dr["rot_Name"].ToString(),
+                            Status = dr["status"].ToString(),
+                        });
+                    }
+
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listHeader
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    dm.TraceService("NoDataRes");
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                dm.TraceService("GetTransferOut  " + ex.Message.ToString());
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+            }
+
+            dm.TraceService("GetTransferOut ENDED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+
+            return JSONString;
+        }
+
+        public string GetTransferDetail([FromForm] SelTransDetailIn inputParams)
+        {
+            dm.TraceService("GetTransferDetail STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+
+                string ord_ID = inputParams.ID == null ? "0" : inputParams.ID;
+
+                DataTable dtorders = dm.loadList("SelTransferDet", "sp_KPIServices", ord_ID.ToString());
+
+                if (dtorders.Rows.Count > 0)
+                {
+
+                    List<SelTransferDetailOut> listItems = new List<SelTransferDetailOut>();
+                    foreach (DataRow dr in dtorders.Rows)
+                    {
+
+                        listItems.Add(new SelTransferDetailOut
+                        {
+                            Prd_Name = dr["prd_id"].ToString(),
+                            prd_Code = dr["prd_Code"].ToString(),
+                            turnouthqty = dr["vvd_HQty"].ToString(),
+                            turnouthuom = dr["vvd_HUOM"].ToString(),
+                            turnoutlqty = dr["vvd_LQty"].ToString(),
+                            turnoutluom = dr["vvd_LUOM"].ToString(),
+                            Confhqty = dr["vvd_ConfirmHQty"].ToString(),
+                            conflqty = dr["vvd_ConfirmLQty"].ToString(),
+                            udjhqty = dr["AdjHQty"].ToString(),
+                            udjlqty = dr["AdjLQty"].ToString(),
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("GetTransferDetail Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("GetTransferDetail ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
 
     }
 

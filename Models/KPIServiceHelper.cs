@@ -839,6 +839,7 @@ namespace MVC_API.Models
         public string Remark { get; set; }
         public string Status { get; set; }
 
+        public string BankName { get; set; }
 
     }
     public class SelInvoiceCountIN
@@ -987,4 +988,36 @@ namespace MVC_API.Models
 
     }
 
+
+    public class SelTransferOut
+    {
+
+        public string ID { get; set; }
+        public string TransID { get; set; }
+        public string RouteCode { get; set; }
+        public string RouteName { get; set; }
+        public string Status { get; set; }
+
+    }
+    public class SelTransDetailIn
+    {
+
+        public string ID { get; set; }
+
+    }
+    public class SelTransferDetailOut
+    {
+        
+        public string Prd_Name { get; set; }
+        public string prd_Code { get; set; }
+        public string turnouthuom { get; set; }
+        public string turnoutluom { get; set; }
+        public string turnouthqty { get; set; }
+        public string turnoutlqty { get; set; }
+        public string Confhqty { get; set; }
+        public string conflqty { get; set; }
+        public string udjhqty { get; set; }
+        public string udjlqty { get; set; }
+
+    }
 }
