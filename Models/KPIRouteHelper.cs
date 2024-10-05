@@ -60,7 +60,7 @@ namespace MVC_API.Models
     }
     public class PlannedVisitHeaderOut
     {
-        public string cse_ID { get; set; }
+        
         public string cus_ID { get; set; }
         public string cus_code { get; set; }
         public string cus_name { get; set; }
@@ -72,7 +72,7 @@ namespace MVC_API.Models
     }
     public class SelCusVisitDetailInKPI
     {
-        public string cse_ID { get; set; }
+        public string udp_ID { get; set; }
 
     }
     public class CusVisitDetailOut
@@ -96,7 +96,7 @@ namespace MVC_API.Models
     }
     public class ActualVisitHeaderOut
     {
-        public string cse_ID { get; set; }
+       
         public string cus_ID { get; set; }
         public string cus_code { get; set; }
         public string cus_name { get; set; }
@@ -116,7 +116,7 @@ namespace MVC_API.Models
     }
     public class ProductiveVisitHeaderOut
     {
-        public string cse_ID { get; set; }
+       
         public string cus_ID { get; set; }
         public string cus_code { get; set; }
         public string cus_name { get; set; }
@@ -136,7 +136,7 @@ namespace MVC_API.Models
     }
     public class NonProductiveVisitHeaderOut
     {
-        public string cse_ID { get; set; }
+        
         public string cus_ID { get; set; }
         public string cus_code { get; set; }
         public string cus_name { get; set; }

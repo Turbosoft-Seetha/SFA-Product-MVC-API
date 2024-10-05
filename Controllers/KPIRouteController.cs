@@ -155,14 +155,14 @@ namespace MVC_API.Controllers
                         listHeader.Add(new PlannedVisitHeaderOut
                         {
                             //ord_id = dr["ord_id"].ToString(),
-                            cse_ID = dr["cse_ID"].ToString(),
+                            
 
-                            cus_ID = dr["ord_cus_ID"].ToString(),
+                            cus_ID = dr["cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
                             Arcus_name = dr["cus_NameArabic"].ToString(),
-                            SeqNo = dr["CDate"].ToString(),
-                            CusVisitCount = dr["CTime"].ToString(),
+                            SeqNo = dr["PlanSeq"].ToString(),
+                            CusVisitCount = dr["visits"].ToString(),
                             Status=dr["Status"].ToString(),
                         });
                     }
@@ -202,9 +202,9 @@ namespace MVC_API.Controllers
             try
             {
 
-                string cse_ID = inputParams.cse_ID == null ? "0" : inputParams.cse_ID;
+                string udp_ID = inputParams.udp_ID == null ? "0" : inputParams.udp_ID;
 
-                DataTable dtorders = dm.loadList("SelCusVisitDetail", "sp_KPIServices", cse_ID.ToString());
+                DataTable dtorders = dm.loadList("SelCusVisitDetail", "sp_KPIServices", udp_ID.ToString());
 
                 if (dtorders.Rows.Count > 0)
                 {
@@ -214,16 +214,16 @@ namespace MVC_API.Controllers
 
                         listItems.Add(new CusVisitDetailOut
                         {
-                            //ord_id = dr["ord_id"].ToString(),
+                           
                             
-                            cus_ID = dr["ord_cus_ID"].ToString(),
+                            cus_ID = dr["cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
                             Arcus_name = dr["cus_NameArabic"].ToString(),
                            
-                            cusStartdatetime = dr["CTime"].ToString(),
-                            cusExitdatetime = dr["CTime"].ToString(),
-                            visitSeqNo= dr["CTime"].ToString(),
+                            cusStartdatetime = dr["cusstartdatetime"].ToString(),
+                            cusExitdatetime = dr["cusexitdatetime"].ToString(),
+                            visitSeqNo= dr["PlanSeq"].ToString(),
                         });
                     }
 
@@ -270,14 +270,13 @@ namespace MVC_API.Controllers
                     {
                         listHeader.Add(new ActualVisitHeaderOut
                         {
-                            //ord_id = dr["ord_id"].ToString(),
-                            cse_ID = dr["cse_ID"].ToString(),
-                            cus_ID = dr["ord_cus_ID"].ToString(),
+                           
+                            cus_ID = dr["cse_cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
                             Arcus_name = dr["cus_NameArabic"].ToString(),
-                            SeqNo = dr["CDate"].ToString(),
-                            CusVisitCount = dr["CTime"].ToString(),
+                            SeqNo = dr["PlanSeq"].ToString(),
+                            CusVisitCount = dr["Visits"].ToString(),
                             Status = dr["Status"].ToString(),
                         });
                     }
@@ -328,14 +327,14 @@ namespace MVC_API.Controllers
                     {
                         listHeader.Add(new ProductiveVisitHeaderOut
                         {
-                            //ord_id = dr["ord_id"].ToString(),
-                            cse_ID = dr["cse_ID"].ToString(),
-                            cus_ID = dr["ord_cus_ID"].ToString(),
+                          
+                           
+                            cus_ID = dr["cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
                             Arcus_name = dr["cus_NameArabic"].ToString(),
-                            SeqNo = dr["CDate"].ToString(),
-                            CusVisitCount = dr["CTime"].ToString(),
+                            SeqNo = dr["PlanSeq"].ToString(),
+                            CusVisitCount = dr["Visits"].ToString(),
                             Status = dr["Status"].ToString(),
                         });
                     }
@@ -386,14 +385,13 @@ namespace MVC_API.Controllers
                     {
                         listHeader.Add(new NonProductiveVisitHeaderOut
                         {
-                            //ord_id = dr["ord_id"].ToString(),
-                            cse_ID = dr["cse_ID"].ToString(),
-                            cus_ID = dr["ord_cus_ID"].ToString(),
+                            
+                            cus_ID = dr["cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
                             Arcus_name = dr["cus_NameArabic"].ToString(),
-                            SeqNo = dr["CDate"].ToString(),
-                            CusVisitCount = dr["CTime"].ToString(),
+                            SeqNo = dr["PlanSeq"].ToString(),
+                            CusVisitCount = dr["Visits"].ToString(),
                             Status = dr["Status"].ToString(),
                         });
                     }
