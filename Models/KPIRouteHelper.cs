@@ -9,5 +9,142 @@ namespace MVC_API.Models
     {
     }
 
+    public class DeliveryHeaderInKPI
+    {
+        public string rotID { get; set; }
+        public string UserID { get; set; }
+        public string udpId { get; set; }
 
+    }
+    public class DeliveryHeaderOut
+    {
+        public string ord_id { get; set; }
+        public string OrdNO { get; set; }
+        public string cus_ID { get; set; }
+        public string cus_code { get; set; }
+        public string cus_name { get; set; }
+        public string Arcus_name { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
+        public string DelStatus { get; set; }
+        public string paymentmode { get; set; }
+        
+
+    }
+    public class DeliveryDetailIn
+    {
+        public string ord_ID { get; set; }
+
+    }
+    public class DeliveryDetailOut
+    {
+        public string odd_ID { get; set; }
+        public string odd_ord_ID { get; set; }
+        public string prd_ID { get; set; }
+        public string prd_Code { get; set; }
+        public string prd_Name { get; set; }
+        public string odd_HigherUOM { get; set; }
+        public string odd_LowerUOM { get; set; }
+        public string odd_HigherQty { get; set; }
+        public string odd_LowerQty { get; set; }
+        public string sold_HigherQty { get; set; }
+        public string sold_LowerQty { get; set; }
+
+    }
+    public class CusPlannedVisitHeaderInKPI
+    {
+        public string rotID { get; set; }
+        public string UserID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class PlannedVisitHeaderOut
+    {
+        public string cse_ID { get; set; }
+        public string cus_ID { get; set; }
+        public string cus_code { get; set; }
+        public string cus_name { get; set; }
+        public string Arcus_name { get; set; }
+        public string SeqNo { get; set; }
+        public string CusVisitCount { get; set; }
+        public string Status { get; set; }
+
+    }
+    public class SelCusVisitDetailInKPI
+    {
+        public string cse_ID { get; set; }
+
+    }
+    public class CusVisitDetailOut
+    {
+        public string cus_ID { get; set; }
+        public string cus_code { get; set; }
+        public string cus_name { get; set; }
+        public string Arcus_name { get; set; }
+        
+        public string cusStartdatetime { get; set; }
+        public string cusExitdatetime { get; set; }
+        public string visitSeqNo { get; set; }
+        
+    }
+    public class ActualVisitHeaderInKPI
+    {
+        public string rotID { get; set; }
+        public string UserID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class ActualVisitHeaderOut
+    {
+        public string cse_ID { get; set; }
+        public string cus_ID { get; set; }
+        public string cus_code { get; set; }
+        public string cus_name { get; set; }
+        public string Arcus_name { get; set; }
+        public string SeqNo { get; set; }
+        public string CusVisitCount { get; set; }
+        public string Status { get; set; }
+
+    }
+   
+    public class ProductiveVisitHeaderInKPI
+    {
+        public string rotID { get; set; }
+        public string UserID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class ProductiveVisitHeaderOut
+    {
+        public string cse_ID { get; set; }
+        public string cus_ID { get; set; }
+        public string cus_code { get; set; }
+        public string cus_name { get; set; }
+        public string Arcus_name { get; set; }
+        public string SeqNo { get; set; }
+        public string CusVisitCount { get; set; }
+        public string Status { get; set; }
+
+    }
+   
+    public class NonProductiveVisitHeaderInKPI
+    {
+        public string rotID { get; set; }
+        public string UserID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class NonProductiveVisitHeaderOut
+    {
+        public string cse_ID { get; set; }
+        public string cus_ID { get; set; }
+        public string cus_code { get; set; }
+        public string cus_name { get; set; }
+        public string Arcus_name { get; set; }
+        public string SeqNo { get; set; }
+        public string CusVisitCount { get; set; }
+        public string Status { get; set; }
+
+    }
+    
 }
