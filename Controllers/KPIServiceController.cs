@@ -2731,6 +2731,7 @@ namespace MVC_API.Controllers
                             Remark = dr["adp_Remarks"].ToString(),
                             Status = dr["Status"].ToString(),
                             BankName = dr["Bank"].ToString(),
+                            CollectedAmount = dr["Collected"].ToString(),
 
                         });
                     }

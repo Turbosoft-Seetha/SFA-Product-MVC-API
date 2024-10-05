@@ -840,6 +840,7 @@ namespace MVC_API.Models
         public string Status { get; set; }
 
         public string BankName { get; set; }
+        public string CollectedAmount { get; set; }
 
     }
     public class SelInvoiceCountIN
