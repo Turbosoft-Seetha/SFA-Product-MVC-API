@@ -846,9 +846,9 @@ namespace MVC_API.Controllers
                             cusname = dr["cus_Name"].ToString(),
                             JobStatus = dr["ScheduledDate_Status"].ToString(),
                             Duration = dr["sjh_Duration"].ToString(),
-                            ActualDuration= dr["sjh_ActualDuration"].ToString() ,
-                            ExpectedStartTime= dr["sjh_ScheduledStartTime"].ToString(),
-                            ActualStartTime= dr["sjh_ActualStartTime"].ToString()
+                            ActualDuration = dr["sjh_ActualDuration"].ToString(),
+                            ExpectedStartTime = dr["sjh_ScheduledStartTime"].ToString(),
+                            ActualStartTime = dr["sjh_ActualStartTime"].ToString()
 
 
 
@@ -1838,7 +1838,7 @@ namespace MVC_API.Controllers
                             aah_rsn_ID = dr["aah_rsn_ID"].ToString(),
                             aah_Remarks = dr["aah_Remarks"].ToString(),
                             aah_img = imgs,
-                            Planogram=url+ dr["ast_Planogram"].ToString()
+                            Planogram = url + dr["ast_Planogram"].ToString()
 
 
                         });
@@ -1983,7 +1983,7 @@ namespace MVC_API.Controllers
             string[] ar = { inputParams.type, inputParams.rotID == null ? "0" : inputParams.rotID };
             string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
 
-            DataTable dt = dm.loadList("SelSalesorders", "sp_KPIServices", udpID,ar);
+            DataTable dt = dm.loadList("SelSalesorders", "sp_KPIServices", udpID, ar);
 
             try
             {
@@ -2000,6 +2000,7 @@ namespace MVC_API.Controllers
                             cus_ID = dr["ord_cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
+                            cusArName = dr["cus_NameArabic"].ToString(),
                             Date = dr["CDate"].ToString(),
                             Time = dr["CTime"].ToString(),
                             Status = dr["Status"].ToString(),
@@ -2008,6 +2009,7 @@ namespace MVC_API.Controllers
                             ord_SubTotal = dr["ord_SubTotal"].ToString(),
                             ord_VATAmount = dr["ord_VAT"].ToString(),
                             ord_GrandTotal = dr["ord_GrandTotal"].ToString(),
+                            Void = dr["Void"].ToString(),
                         });
                     }
 
@@ -2108,7 +2110,7 @@ namespace MVC_API.Controllers
             string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
             string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
 
-            DataTable dt = dm.loadList("SelInvRecHeader", "sp_KPIServices", udpID,ar);
+            DataTable dt = dm.loadList("SelInvRecHeader", "sp_KPIServices", udpID, ar);
 
             try
             {
@@ -2166,7 +2168,7 @@ namespace MVC_API.Controllers
 
                 if (dtorders.Rows.Count > 0)
                 {
-                   
+
                     List<InvRecDetOutKPI> listItems = new List<InvRecDetOutKPI>();
                     foreach (DataRow dr in dtorders.Rows)
                     {
@@ -2239,11 +2241,22 @@ namespace MVC_API.Controllers
 
                         listItems.Add(new invoiceTypeFooter
                         {
-                            Type = dr["ind_TransType"].ToString(),
-                            Discount = dr["Discount"].ToString(),
-                            VAT = dr["VAT"].ToString(),
-                            Value = dr["Value"].ToString(),
-                            SubTotal = dr["SubTotal"].ToString(),
+                            SalesDiscount = dr["SalesDiscount"].ToString(),
+                            SalesTotal = dr["SalesTotal"].ToString(),
+                            SalesValue = dr["SalesValue"].ToString(),
+                            SalesVAT = dr["SalesVAT"].ToString(),
+                            GRDiscount = dr["GRDiscount"].ToString(),
+                            GRTotal = dr["GRTotal"].ToString(),
+                            GRValue = dr["GRValue"].ToString(),
+                            GRVAT = dr["GRVAT"].ToString(),
+                            BRDiscount = dr["BRDiscount"].ToString(),
+                            BRTotal = dr["BRTotal"].ToString(),
+                            BRValue = dr["BRValue"].ToString(),
+                            BRVAT = dr["BRVAT"].ToString(),
+                            FCDiscount = dr["FCDiscount"].ToString(),
+                            FCTotal = dr["FCTotal"].ToString(),
+                            FCValue = dr["FCValue"].ToString(),
+                            FCVAT = dr["FCVAT"].ToString(),
                         });
                     }
 
@@ -2335,7 +2348,7 @@ namespace MVC_API.Controllers
             dm.TraceService("GetInvoiceHeaderKPI STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
 
-            
+
             string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
             string[] arr = { inputParams.rotID == null ? "0" : inputParams.rotID };
             DataTable dtreturn = dm.loadList("SelInvoiceHeader", "sp_KPIServices", udpID.ToString(), arr);
@@ -2397,14 +2410,15 @@ namespace MVC_API.Controllers
                             InvoiceNo = dr["sal_txn_ID"].ToString(),
                             cusCode = dr["cus_Code"].ToString(),
                             cusName = dr["cus_Name"].ToString(),
+                            cusArName = dr["cus_NameArabic"].ToString(),
                             Attachment = imag,
-                            Signature =Sign,
+                            Signature = Sign,
                             InvAmount = dr["inv_GrandTotal"].ToString(),
                             PaymentType = dr["inv_PayMode"].ToString(),
                             Balance = dr["Balance"].ToString(),
                             PaidAmount = dr["inv_TotalPaidAmount"].ToString(),
                             Status = dr["Status"].ToString(),
-                            Date= dr["CDate"].ToString(),
+                            Date = dr["CDate"].ToString(),
                             Time = dr["CTime"].ToString(),
 
                         });
@@ -2452,10 +2466,11 @@ namespace MVC_API.Controllers
                 string UserID = inputParams.UserID == null ? "0" : inputParams.UserID;
                 string udpid = inputParams.udpId == null ? "0" : inputParams.udpId;
                 string rotid = inputParams.rotID == null ? "0" : inputParams.rotID;
+                string paytype = inputParams.PayType == null ? "0" : inputParams.PayType; 
 
                 string url = ConfigurationManager.AppSettings.Get("BackendUrl");
 
-                string[] arr = { UserID,rotid };
+                string[] arr = { UserID, rotid ,paytype};
                 DataTable dtAR = dm.loadList("SelARHeader", "sp_KPIServices", udpid.ToString(), arr);
 
                 if (dtAR.Rows.Count > 0)
@@ -2532,6 +2547,7 @@ namespace MVC_API.Controllers
                             cus_ID = dr["cus_ID"].ToString(),
                             cus_Code = dr["cus_Code"].ToString(),
                             cus_Name = dr["cus_Name"].ToString(),
+                            cusArName = dr["cus_NameArabic"].ToString(),
                             Date = dr["Date"].ToString(),
                             Time = dr["Time"].ToString(),
                             arh_PayMode = dr["arh_PayMode"].ToString(),
@@ -2542,7 +2558,7 @@ namespace MVC_API.Controllers
                             arp_ChequeDate = dr["arp_ChequeDate"].ToString(),
                             RecImage = Rec,
                             Sign = Sign,
-                            Attachment=imag,
+                            Attachment = imag,
                             bankName = dr["bnk_Name"].ToString(),
                             Remark = dr["arh_Remarks"].ToString(),
                             Status = dr["Status"].ToString(),
@@ -2582,7 +2598,7 @@ namespace MVC_API.Controllers
 
                 string arh_ID = inputParams.arh_ID == null ? "0" : inputParams.arh_ID;
 
-                DataTable dt = dm.loadList("SelARDetail", "sp_CustomerConnect", arh_ID.ToString());
+                DataTable dt = dm.loadList("SelARDetail", "sp_KPIServices", arh_ID.ToString());
 
                 if (dt.Rows.Count > 0)
                 {
@@ -2600,6 +2616,7 @@ namespace MVC_API.Controllers
                             InvoicedOn = dr["InvoicedOn"].ToString(),
                             InvoiceAmount = dr["InvoiceAmount"].ToString(),
                             AmountPaid = dr["AmountPaid"].ToString(),
+                            Balance= dr["Balance"].ToString(),
 
                         });
                     }
@@ -2628,6 +2645,530 @@ namespace MVC_API.Controllers
             return JSONString;
         }
 
+
+        //----Adv Payment
+
+
+        public string GetAdvPaymentKPI([FromForm] SelAdvInKPI inputParams)
+        {
+            dm.TraceService("GetAdvPaymentKPI STARTED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+
+
+            string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
+            string[] arr = { inputParams.rotID == null ? "0" : inputParams.rotID };
+            DataTable dtreturn = dm.loadList("SelAdvPayment", "sp_KPIServices", udpID.ToString(), arr);
+            string url = ConfigurationManager.AppSettings.Get("BackendUrl");
+
+
+            try
+            {
+                if (dtreturn.Rows.Count > 0)
+                {
+                    List<SelAdvOutKPI> listHeader = new List<SelAdvOutKPI>();
+                    foreach (DataRow dr in dtreturn.Rows)
+                    {
+
+
+                        // sign
+
+                        string Sign = "";
+                        string img1 = dr["adp_Signature"].ToString();
+                        if (img1 != "")
+                        {
+                            string[] ar = (dr["adp_Signature"].ToString().Replace("../", "")).Split(',');
+
+                            for (int i = 0; i < ar.Length; i++)
+                            {
+                                if (i > 0)
+                                {
+                                    Sign = Sign + "," + url + ar[i];
+                                }
+                                else
+                                {
+                                    Sign = url + ar[i];
+                                }
+                            }
+
+                        }
+
+                        string Rec = "";
+                        string img2 = dr["adp_RecieptImg"].ToString();
+                        if (img2 != "")
+                        {
+                            string[] ar = (dr["adp_RecieptImg"].ToString().Replace("../", "")).Split(',');
+
+                            for (int i = 0; i < ar.Length; i++)
+                            {
+                                if (i > 0)
+                                {
+                                    Rec = Rec + "," + url + ar[i];
+                                }
+                                else
+                                {
+                                    Rec = url + ar[i];
+                                }
+                            }
+
+                        }
+                        listHeader.Add(new SelAdvOutKPI
+                        {
+
+
+                            ID = dr["adp_ID"].ToString(),
+                            TransID = dr["adp_Number"].ToString(),
+                            cusCode = dr["cus_Code"].ToString(),
+                            cusName = dr["cus_Name"].ToString(),
+                            cusArName = dr["cus_NameArabic"].ToString(),
+                            Date = dr["Date"].ToString(),
+                            Time = dr["Time"].ToString(),
+                            PaymentMode = dr["adp_PaymentMode"].ToString(),
+                            PaymentType = dr["adp_PayMode"].ToString(),
+                            adp_ChequeNo = dr["adp_ChequeNo"].ToString(),
+                            adp_ChequeDate = dr["adp_ChequeDate"].ToString(),
+                            RecImage = Rec,
+                            Sign = Sign,
+                            Remark = dr["adp_Remarks"].ToString(),
+                            Status = dr["Status"].ToString(),
+
+                        });
+                    }
+
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listHeader
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    dm.TraceService("NoDataRes");
+                    JSONString = "NoDataRes";
+                }
+            }
+
+
+
+            catch (Exception ex)
+            {
+                dm.TraceService(ex.Message.ToString());
+                JSONString = "GetAdvPaymentKPI - " + ex.Message.ToString();
+            }
+            dm.TraceService("GetAdvPaymentKPI ENDED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+            return JSONString;
+        }
+
+
+        //----------------------Counts
+
+
+
+        public string SelSalesSummeryCount([FromForm] SelInvoiceCountIN inputParams)
+        {
+            dm.TraceService("SelSalesSummeryCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("DashboardSalesCounts", "sp_KPIServices", rotID.ToString(),ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<SelINvCountOut> listItems = new List<SelINvCountOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new SelINvCountOut
+                        {
+                            TotInvoice = dr["TotalInvoiceCount"].ToString(),
+                            TotInvAmt = dr["TotalInvAmount"].ToString(),
+                            SalesInvoice = dr["SalesCount"].ToString(),
+                            GD = dr["GoodReturn"].ToString(),
+                            BD = dr["BadReturn"].ToString(),
+                            FOC = dr["FCCount"].ToString(),
+                            NoOfInvHC = dr["HC_Count"].ToString(),
+                            NoOfInvCR = dr["CR_Count"].ToString(),
+                            NoOfInvPOS = dr["POS_Count"].ToString(),
+                            NoOfInvOP = dr["OP_Count"].ToString(),
+                            HCAmt = dr["HC_Amount"].ToString(),
+                            POSAmount = dr["POS_Amount"].ToString(),
+                            OPAmt = dr["OP_Count"].ToString(),
+                            CRAmt = dr["CR_Amount"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelSalesSummeryCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelSalesSummeryCount ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+
+        public string SelARCount([FromForm] ARCOuntIn inputParams)
+        {
+            dm.TraceService("SelARCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("DashboardARCount", "sp_KPIServices", rotID.ToString(), ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<ARCOuntOut> listItems = new List<ARCOuntOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new ARCOuntOut
+                        {
+                           
+                            HCAmt = dr["AR_HC_Amount"].ToString(),
+                            POSAmount = dr["AR_POS_Amount"].ToString(),
+                            OPAmt = dr["AR_OP_Amount"].ToString(),
+                            CHAmt = dr["AR_Chq_Amount"].ToString(),
+                            TotCollection = dr["TotalARAmount"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelARCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelARCount ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+
+        public string SelOutstandingCount([FromForm] ARCOuntIn inputParams)
+        {
+            dm.TraceService("SelOutstandingCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("SelOutstandingCountSplits", "sp_KPIServices", rotID.ToString(), ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<SelOutstandingOut> listItems = new List<SelOutstandingOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new SelOutstandingOut
+                        {
+
+                            Due = dr["Due"].ToString(),
+                            TotalDue = dr["DueAmt"].ToString(),
+                            OverDue = dr["OverDue"].ToString(),
+                            TotalOverDue = dr["OverDueAmt"].ToString(),
+                            OutStandingAmt = dr["OutstandingAmt"].ToString(),
+                            TotalOutstanding = dr["TotOutstanding"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelOutstandingCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelOutstandingCount ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+        public string SelAdvPayCount([FromForm] AdvCountIn inputParams)
+        {
+            dm.TraceService("SelAdvPayCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("DashboardAdvanceCount", "sp_KPIServices", rotID.ToString(), ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<AdvCountOut> listItems = new List<AdvCountOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new AdvCountOut
+                        {
+                            TotalAdvPayCount = dr["TotalApCount"].ToString(),
+                            TotAmt = dr["TotalAPAmount"].ToString(),
+                            NoOfHC = dr["AP_HC_Count"].ToString(),
+                            NoOfCH = dr["AP_Chq_Count"].ToString(),
+                            NoOfPOS = dr["AP_POS_Count"].ToString(),
+                            NoOfOP = dr["AP_OP_Count"].ToString(),
+                            HCAmt = dr["AP_HC_Amount"].ToString(),
+                            POSAmount = dr["AP_POS_Amount"].ToString(),
+                            OPAmt = dr["AP_OP_Amount"].ToString(),
+                            CHAmt = dr["AP_Chq_Amount"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelAdvPayCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelAdvPayCount ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+        public string SelVisitCount([FromForm] SelVisitIN inputParams)
+        {
+            dm.TraceService("SelVisitCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("VisitCounts", "sp_KPIServices", rotID.ToString(), ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<SelVisitOut> listItems = new List<SelVisitOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new SelVisitOut
+                        {
+                            totplannedvisit = dr["PlannedVisits"].ToString(),
+                            Totalactualvisits = dr["ActualViist"].ToString(),
+                            TotProductive = dr["totalProductive"].ToString(),
+                            totNonProductive = dr["totalNonProductive"].ToString(),
+                            planned = dr["Planned"].ToString(),
+                            pending = dr["Pending"].ToString(),
+                            ProductivePlanned = dr["ScheduledProdVisits"].ToString(),
+                            ProductiveUnplanned = dr["UnscheduledProdVisits"].ToString(),
+                            NonProdPlanned = dr["ScheduledNonProdVisits"].ToString(),
+                            NonProdUnplanned = dr["UnscheduledNonProdVisits"].ToString(),
+                            unplanned = dr["Unplanned"].ToString(),
+                            visited = dr["Visited"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelVisitCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelVisitCount ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+        public string SelInvandVAntoVanCount([FromForm] SelVisitIN inputParams)
+        {
+            dm.TraceService("SelInvandVAntoVanCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("SelInventoryandVantoVan", "sp_KPIServices", rotID.ToString(), ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<InvRecandV2VOut> listItems = new List<InvRecandV2VOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new InvRecandV2VOut
+                        {
+                            IvnRecCount = dr["InvRecCount"].ToString(),
+                            LoadTransferOut = dr["TransIn"].ToString(),
+                            LodTransferIn = dr["TransOut"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelInvandVAntoVanCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelInvandVAntoVanCount ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+        public string SelDeliveryCount([FromForm] SelVisitIN inputParams)
+        {
+            dm.TraceService("SelDeliveryCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("SelDeliveryCount", "sp_KPIServices", rotID.ToString(), ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<DelCountOut> listItems = new List<DelCountOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new DelCountOut
+                        {
+                            plannedDel = dr["planned"].ToString(),
+                            NotDel = dr["TransIn"].ToString(),
+                            TotalDel = dr["ND"].ToString(),
+                            TotalPD = dr["PD"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelDeliveryCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelDeliveryCount ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
 
     }
 
