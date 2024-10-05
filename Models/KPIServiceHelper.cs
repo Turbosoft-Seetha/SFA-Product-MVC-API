@@ -757,6 +757,7 @@ namespace MVC_API.Models
         public string UserID { get; set; }
         public string rotID { get; set; }
         public string udpId { get; set; }
+        public string PayType {  get; set; }
     }
     public class ARHeaderOutKPI
     {
@@ -796,6 +797,7 @@ namespace MVC_API.Models
         public string InvoicedOn { get; set; }
         public string InvoiceAmount { get; set; }
         public string AmountPaid { get; set; }
+        public String Balance {  get; set; }
 
     }
 
