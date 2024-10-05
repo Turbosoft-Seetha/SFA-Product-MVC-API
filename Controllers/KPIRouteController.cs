@@ -38,7 +38,7 @@ namespace MVC_API.Controllers
                         listHeader.Add(new DeliveryHeaderOut
                         {
                             ord_id = dr["ord_id"].ToString(),
-                            ord_id = dr["OrderID"].ToString(),
+                            OrdNO = dr["OrderID"].ToString(),
                             cus_ID = dr["ord_cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
