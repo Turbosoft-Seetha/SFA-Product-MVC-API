@@ -2241,11 +2241,22 @@ namespace MVC_API.Controllers
 
                         listItems.Add(new invoiceTypeFooter
                         {
-                            Type = dr["ind_TransType"].ToString(),
-                            Discount = dr["Discount"].ToString(),
-                            VAT = dr["VAT"].ToString(),
-                            Value = dr["Value"].ToString(),
-                            SubTotal = dr["SubTotal"].ToString(),
+                            SalesDiscount = dr["SalesDiscount"].ToString(),
+                            SalesTotal = dr["SalesTotal"].ToString(),
+                            SalesValue = dr["SalesValue"].ToString(),
+                            SalesVAT = dr["SalesVAT"].ToString(),
+                            GRDiscount = dr["GRDiscount"].ToString(),
+                            GRTotal = dr["GRTotal"].ToString(),
+                            GRValue = dr["GRValue"].ToString(),
+                            GRVAT = dr["GRVAT"].ToString(),
+                            BRDiscount = dr["BRDiscount"].ToString(),
+                            BRTotal = dr["BRTotal"].ToString(),
+                            BRValue = dr["BRValue"].ToString(),
+                            BRVAT = dr["BRVAT"].ToString(),
+                            FCDiscount = dr["FCDiscount"].ToString(),
+                            FCTotal = dr["FCTotal"].ToString(),
+                            FCValue = dr["FCValue"].ToString(),
+                            FCVAT = dr["FCVAT"].ToString(),
                         });
                     }
 

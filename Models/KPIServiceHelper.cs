@@ -696,11 +696,22 @@ namespace MVC_API.Models
     public class invoiceTypeFooter
     {
 
-        public string Type { get; set; }
-        public string Value { get; set; }
-        public string Discount { get; set; }
-        public string VAT { get; set; }
-        public string SubTotal { get; set; }
+        public string SalesValue { get; set; }
+        public string SalesDiscount { get; set; }
+        public string SalesVAT { get; set; }
+        public string SalesTotal { get; set; }
+        public string BRValue { get; set; }
+        public string BRDiscount { get; set; }
+        public string BRVAT { get; set; }
+        public string BRTotal { get; set; }
+        public string GRValue { get; set; }
+        public string GRDiscount { get; set; }
+        public string GRVAT { get; set; }
+        public string GRTotal { get; set; }
+        public string FCValue { get; set; }
+        public string FCDiscount { get; set; }
+        public string FCVAT { get; set; }
+        public string FCTotal { get; set; }
     }
 
     //----------inv Reconfirm
