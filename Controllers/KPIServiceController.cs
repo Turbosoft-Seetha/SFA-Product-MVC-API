@@ -2009,6 +2009,7 @@ namespace MVC_API.Controllers
                             ord_SubTotal = dr["ord_SubTotal"].ToString(),
                             ord_VATAmount = dr["ord_VAT"].ToString(),
                             ord_GrandTotal = dr["ord_GrandTotal"].ToString(),
+                            Void = dr["Void"].ToString(),
                         });
                     }
 

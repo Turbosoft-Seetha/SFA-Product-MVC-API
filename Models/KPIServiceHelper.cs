@@ -611,6 +611,7 @@ namespace MVC_API.Models
         public string ord_SubTotal { get; set; }
         public string ord_VATAmount { get; set; }
         public string ord_GrandTotal { get; set; }
+        public string Void { get; set; }
 
     }
     
