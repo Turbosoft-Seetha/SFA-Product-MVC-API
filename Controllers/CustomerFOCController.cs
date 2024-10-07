@@ -128,8 +128,8 @@ namespace MVC_API.Controllers
                         List<FOCApproveDetail> FOCDetail = new List<FOCApproveDetail>();
                         foreach (DataRow dts in DetailData.Rows)
                         {
-                            //if (dr["cfh_ID"].ToString() == dts["cfa-cfh_ID"].ToString())
-                            //{
+                            if (dr["cfh_ID"].ToString() == dts["cfa_cfh_ID"].ToString())
+                            {
                                 FOCDetail.Add(new FOCApproveDetail
                                 {
                                     prdID = dts["prdID"].ToString(),
@@ -139,7 +139,7 @@ namespace MVC_API.Controllers
                                     LQty = dts["LQty"].ToString(),
                                     totalqty = dts["totalqty"].ToString()
                                 });
-                            //}
+                            }
                         }
                         listDetail.Add(new FOCList
                         {

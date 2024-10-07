@@ -11,6 +11,7 @@ namespace MVC_API.Models
 
     public class DeliveryHeaderInKPI
     {
+
         public string rotID { get; set; }
         public string UserID { get; set; }
         public string udpId { get; set; }
@@ -60,7 +61,7 @@ namespace MVC_API.Models
     }
     public class PlannedVisitHeaderOut
     {
-        public string cse_ID { get; set; }
+        
         public string cus_ID { get; set; }
         public string cus_code { get; set; }
         public string cus_name { get; set; }
@@ -72,7 +73,7 @@ namespace MVC_API.Models
     }
     public class SelCusVisitDetailInKPI
     {
-        public string cse_ID { get; set; }
+        public string udp_ID { get; set; }
 
     }
     public class CusVisitDetailOut
@@ -96,7 +97,7 @@ namespace MVC_API.Models
     }
     public class ActualVisitHeaderOut
     {
-        public string cse_ID { get; set; }
+       
         public string cus_ID { get; set; }
         public string cus_code { get; set; }
         public string cus_name { get; set; }
@@ -116,7 +117,7 @@ namespace MVC_API.Models
     }
     public class ProductiveVisitHeaderOut
     {
-        public string cse_ID { get; set; }
+       
         public string cus_ID { get; set; }
         public string cus_code { get; set; }
         public string cus_name { get; set; }
@@ -136,7 +137,7 @@ namespace MVC_API.Models
     }
     public class NonProductiveVisitHeaderOut
     {
-        public string cse_ID { get; set; }
+        
         public string cus_ID { get; set; }
         public string cus_code { get; set; }
         public string cus_name { get; set; }
@@ -146,5 +147,37 @@ namespace MVC_API.Models
         public string Status { get; set; }
 
     }
-    
+    public class TimeDurationInKPI
+    {
+        public string rotID { get; set; }
+        public string UserID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class TimeDurationOut
+    {
+        public string Duration { get; set; }
+        public string StartTime { get; set; }
+        public string CusTime { get; set; }
+
+    }
+    public class GetCusVisitDetailsIn
+    {
+        public string rotID { get; set; }
+        public string UserID { get; set; }
+        public string udpId { get; set; }
+
+    }
+    public class CustomerVisitDetailsOut
+    {
+        public string cus_ID { get; set; }
+        public string cus_code { get; set; }
+        public string cus_name { get; set; }
+        public string Arcus_name { get; set; }
+        public string Date { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public string Duration { get; set; }
+
+    }
 }

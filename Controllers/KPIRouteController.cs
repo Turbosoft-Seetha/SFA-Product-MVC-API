@@ -155,14 +155,14 @@ namespace MVC_API.Controllers
                         listHeader.Add(new PlannedVisitHeaderOut
                         {
                             //ord_id = dr["ord_id"].ToString(),
-                            cse_ID = dr["cse_ID"].ToString(),
+                            
 
-                            cus_ID = dr["ord_cus_ID"].ToString(),
+                            cus_ID = dr["cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
                             Arcus_name = dr["cus_NameArabic"].ToString(),
-                            SeqNo = dr["CDate"].ToString(),
-                            CusVisitCount = dr["CTime"].ToString(),
+                            SeqNo = dr["PlanSeq"].ToString(),
+                            CusVisitCount = dr["visits"].ToString(),
                             Status=dr["Status"].ToString(),
                         });
                     }
@@ -202,9 +202,9 @@ namespace MVC_API.Controllers
             try
             {
 
-                string cse_ID = inputParams.cse_ID == null ? "0" : inputParams.cse_ID;
+                string udp_ID = inputParams.udp_ID == null ? "0" : inputParams.udp_ID;
 
-                DataTable dtorders = dm.loadList("SelCusVisitDetail", "sp_KPIServices", cse_ID.ToString());
+                DataTable dtorders = dm.loadList("SelCusVisitDetail", "sp_KPIServices", udp_ID.ToString());
 
                 if (dtorders.Rows.Count > 0)
                 {
@@ -214,16 +214,16 @@ namespace MVC_API.Controllers
 
                         listItems.Add(new CusVisitDetailOut
                         {
-                            //ord_id = dr["ord_id"].ToString(),
+                           
                             
-                            cus_ID = dr["ord_cus_ID"].ToString(),
+                            cus_ID = dr["cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
                             Arcus_name = dr["cus_NameArabic"].ToString(),
                            
-                            cusStartdatetime = dr["CTime"].ToString(),
-                            cusExitdatetime = dr["CTime"].ToString(),
-                            visitSeqNo= dr["CTime"].ToString(),
+                            cusStartdatetime = dr["cusstartdatetime"].ToString(),
+                            cusExitdatetime = dr["cusexitdatetime"].ToString(),
+                            visitSeqNo= dr["PlanSeq"].ToString(),
                         });
                     }
 
@@ -270,14 +270,13 @@ namespace MVC_API.Controllers
                     {
                         listHeader.Add(new ActualVisitHeaderOut
                         {
-                            //ord_id = dr["ord_id"].ToString(),
-                            cse_ID = dr["cse_ID"].ToString(),
-                            cus_ID = dr["ord_cus_ID"].ToString(),
+                           
+                            cus_ID = dr["cse_cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
                             Arcus_name = dr["cus_NameArabic"].ToString(),
-                            SeqNo = dr["CDate"].ToString(),
-                            CusVisitCount = dr["CTime"].ToString(),
+                            SeqNo = dr["PlanSeq"].ToString(),
+                            CusVisitCount = dr["Visits"].ToString(),
                             Status = dr["Status"].ToString(),
                         });
                     }
@@ -328,14 +327,14 @@ namespace MVC_API.Controllers
                     {
                         listHeader.Add(new ProductiveVisitHeaderOut
                         {
-                            //ord_id = dr["ord_id"].ToString(),
-                            cse_ID = dr["cse_ID"].ToString(),
-                            cus_ID = dr["ord_cus_ID"].ToString(),
+                          
+                           
+                            cus_ID = dr["cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
                             Arcus_name = dr["cus_NameArabic"].ToString(),
-                            SeqNo = dr["CDate"].ToString(),
-                            CusVisitCount = dr["CTime"].ToString(),
+                            SeqNo = dr["PlanSeq"].ToString(),
+                            CusVisitCount = dr["Visits"].ToString(),
                             Status = dr["Status"].ToString(),
                         });
                     }
@@ -386,14 +385,13 @@ namespace MVC_API.Controllers
                     {
                         listHeader.Add(new NonProductiveVisitHeaderOut
                         {
-                            //ord_id = dr["ord_id"].ToString(),
-                            cse_ID = dr["cse_ID"].ToString(),
-                            cus_ID = dr["ord_cus_ID"].ToString(),
+                            
+                            cus_ID = dr["cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
                             Arcus_name = dr["cus_NameArabic"].ToString(),
-                            SeqNo = dr["CDate"].ToString(),
-                            CusVisitCount = dr["CTime"].ToString(),
+                            SeqNo = dr["PlanSeq"].ToString(),
+                            CusVisitCount = dr["Visits"].ToString(),
                             Status = dr["Status"].ToString(),
                         });
                     }
@@ -421,10 +419,122 @@ namespace MVC_API.Controllers
             dm.TraceService("======================================");
 
             return JSONString;
+
+        }
+
+        public string selTimeDuration([FromForm] TimeDurationInKPI inputParams)
+        {
+            dm.TraceService("selTimeDuration STARTED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
+            string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
+
+            DataTable dt = dm.loadList("selTimeDuration", "sp_KPIServices", udpID, ar);
+
+            try
+            {
+                if (dt.Rows.Count > 0)
+                {
+
+                    List<TimeDurationOut> listHeader = new List<TimeDurationOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        listHeader.Add(new TimeDurationOut
+                        {
+                            Duration = dr["Duration"].ToString(),
+                            StartTime = dr["StartTime"].ToString(),
+                            CusTime = dr["CusTime"].ToString(),
+                            
+                        });
+                    }
+
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listHeader
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    dm.TraceService("NoDataRes");
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                dm.TraceService("selTimeDuration  " + ex.Message.ToString());
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+            }
+
+            dm.TraceService("selTimeDuration ENDED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+
+            return JSONString;
         }
 
 
-       
+        public string GetCusVisitDetails([FromForm] GetCusVisitDetailsIn inputParams)
+        {
+            dm.TraceService("GetCusVisitDetails STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
+                string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
+
+               
+
+                DataTable dtorders = dm.loadList("GetCusVisitDetails", "sp_KPIServices", udpID, ar);
+
+                if (dtorders.Rows.Count > 0)
+                {
+                    List<CustomerVisitDetailsOut> listItems = new List<CustomerVisitDetailsOut>();
+                    foreach (DataRow dr in dtorders.Rows)
+                    {
+
+                        listItems.Add(new CustomerVisitDetailsOut
+                        {
+
+                            cus_ID = dr["cus_ID"].ToString(),
+                            cus_code = dr["cus_Code"].ToString(),
+                            cus_name = dr["cus_Name"].ToString(),
+                            Arcus_name = dr["cus_NameArabic"].ToString(),
+                            Date = dr["CreatedDate"].ToString(),
+                            StartTime = dr["StartTime"].ToString(),
+                            EndTime = dr["EndTime"].ToString(),
+                            Duration = dr["Duration"].ToString(),
+                            
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("GetCusVisitDetails Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("GetCusVisitDetails ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
     }
 }
 
