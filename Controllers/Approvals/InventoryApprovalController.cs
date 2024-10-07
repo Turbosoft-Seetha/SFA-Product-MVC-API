@@ -699,8 +699,6 @@ namespace MVC_API.Controllers.Approvals
                     List<LoadRequestApprovalDetailsOut> listHeader = new List<LoadRequestApprovalDetailsOut>();
                     foreach (DataRow dr in dt.Rows)
                     {
-
-
                         listHeader.Add(new LoadRequestApprovalDetailsOut
                         {
                             lrd_ID = dr["lrd_ID"].ToString(),
@@ -720,8 +718,6 @@ namespace MVC_API.Controllers.Approvals
                             lrd_apv_totalQty = dr["lrd_apv_totalQty"].ToString(),
                             CreatedDate = dr["CreatedDate"].ToString(),
                             Status = dr["Status"].ToString()
-
-
 
                         });
                     }
