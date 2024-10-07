@@ -424,6 +424,7 @@ namespace MVC_API.Controllers
 
         public string selTimeDuration([FromForm] TimeDurationInKPI inputParams)
         {
+
             dm.TraceService("selTimeDuration STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
             string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
