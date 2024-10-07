@@ -419,6 +419,7 @@ namespace MVC_API.Controllers
             dm.TraceService("======================================");
 
             return JSONString;
+
         }
 
         public string selTimeDuration([FromForm] TimeDurationInKPI inputParams)

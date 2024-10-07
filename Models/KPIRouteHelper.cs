@@ -11,6 +11,7 @@ namespace MVC_API.Models
 
     public class DeliveryHeaderInKPI
     {
+
         public string rotID { get; set; }
         public string UserID { get; set; }
         public string udpId { get; set; }
