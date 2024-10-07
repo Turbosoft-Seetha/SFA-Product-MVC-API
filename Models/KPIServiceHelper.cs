@@ -664,7 +664,7 @@ namespace MVC_API.Models
         public string InvAmount { get; set; }
         public string Balance { get; set; }
         public string Signature { get; set; }
-
+        public string transType { get; set; }
     }
     public class InvoiceDetailInKPI
     {
@@ -684,6 +684,9 @@ namespace MVC_API.Models
         public string Amount { get; set; }
         public string transcationtype { get; set; }
         public string returnType { get; set; }
+        public string huomPrice { get; set; }
+        public string luomPrice { get; set; }
+
 
     }
 
@@ -930,6 +933,13 @@ namespace MVC_API.Models
         public string OPAmt { get; set; }
         public string CHAmt { get; set; }
         public string TotCollection { get; set; }
+        public string HCCount { get; set; }
+        public string OPCount { get; set; }
+        public string POSCount { get; set; }
+        public string CHCount { get; set; }
+        public string totCount { get; set; }
+
+
 
 
     }
