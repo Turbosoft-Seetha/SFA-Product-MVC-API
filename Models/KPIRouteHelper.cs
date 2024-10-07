@@ -36,6 +36,7 @@ namespace MVC_API.Models
     {
         public string ord_ID { get; set; }
 
+
     }
     public class DeliveryDetailOut
     {
