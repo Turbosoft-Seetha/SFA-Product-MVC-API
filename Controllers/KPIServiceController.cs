@@ -3204,6 +3204,9 @@ namespace MVC_API.Controllers
                             RouteCode = dr["rot_code"].ToString(),
                             RouteName = dr["rot_Name"].ToString(),
                             Status = dr["status"].ToString(),
+                            Date = dr["Date"].ToString(),
+                            Time = dr["Time"].ToString(),
+
                         });
                     }
 
@@ -3256,6 +3259,8 @@ namespace MVC_API.Controllers
                             RouteCode = dr["rot_code"].ToString(),
                             RouteName = dr["rot_Name"].ToString(),
                             Status = dr["status"].ToString(),
+                            Date = dr["Date"].ToString(),
+                            Time = dr["Time"].ToString(),
                         });
                     }
 
@@ -3315,6 +3320,8 @@ namespace MVC_API.Controllers
                             conflqty = dr["vvd_ConfirmLQty"].ToString(),
                             udjhqty = dr["AdjHQty"].ToString(),
                             udjlqty = dr["AdjLQty"].ToString(),
+                            CatId = dr["prd_cat_ID"].ToString(),
+                            SubCatId = dr["prd_sct_ID"].ToString(),
                         });
                     }
 

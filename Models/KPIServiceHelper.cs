@@ -1008,6 +1008,8 @@ namespace MVC_API.Models
         public string RouteCode { get; set; }
         public string RouteName { get; set; }
         public string Status { get; set; }
+        public string Date { get; set; }
+        public string Time { get; set; }
 
     }
     public class SelTransDetailIn
@@ -1029,6 +1031,8 @@ namespace MVC_API.Models
         public string conflqty { get; set; }
         public string udjhqty { get; set; }
         public string udjlqty { get; set; }
+        public string CatId { get; set; }
+        public string SubCatId { get; set; }
 
     }
 }
