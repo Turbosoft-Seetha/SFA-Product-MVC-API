@@ -157,6 +157,7 @@ namespace MVC_API.Models
     }
     public class TimeDurationOut
     {
+
         public string Duration { get; set; }
         public string StartTime { get; set; }
         public string CusTime { get; set; }
