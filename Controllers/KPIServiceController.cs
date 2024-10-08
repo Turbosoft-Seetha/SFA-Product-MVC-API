@@ -3251,6 +3251,7 @@ namespace MVC_API.Controllers
 
                     List<SelTransferOut> listHeader = new List<SelTransferOut>();
                     foreach (DataRow dr in dt.Rows)
+
                     {
                         listHeader.Add(new SelTransferOut
                         {

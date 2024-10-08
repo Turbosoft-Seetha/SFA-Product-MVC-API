@@ -1002,7 +1002,6 @@ namespace MVC_API.Models
 
     public class SelTransferOut
     {
-
         public string ID { get; set; }
         public string TransID { get; set; }
         public string RouteCode { get; set; }
