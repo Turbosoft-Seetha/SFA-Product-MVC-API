@@ -31,6 +31,7 @@ namespace MVC_API.Controllers
             {
                 if (dt.Rows.Count > 0)
                 {
+
                     List<DeliveryHeaderOut> listHeader = new List<DeliveryHeaderOut>();
                     foreach (DataRow dr in dt.Rows)
                     {
@@ -46,7 +47,6 @@ namespace MVC_API.Controllers
                             Time = dr["CTime"].ToString(),
                             DelStatus = dr["ord_DeliveryStatus"].ToString(),
                             paymentmode= dr["ord_PayMode"].ToString(),
-
                         });
                     }
 
@@ -473,7 +473,6 @@ namespace MVC_API.Controllers
 
             return JSONString;
         }
-
 
         public string GetCusVisitDetails([FromForm] GetCusVisitDetailsIn inputParams)
         {
