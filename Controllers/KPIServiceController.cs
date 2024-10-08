@@ -2378,7 +2378,7 @@ namespace MVC_API.Controllers
                                 }
                                 else
                                 {
-                                    imag = url + ar[i];
+                                    imag = "";
                                 }
                             }
 
@@ -2400,7 +2400,7 @@ namespace MVC_API.Controllers
                                 }
                                 else
                                 {
-                                    Sign = url + ar[i];
+                                    Sign = "";
                                 }
                             }
 
