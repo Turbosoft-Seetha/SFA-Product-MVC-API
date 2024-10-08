@@ -27,10 +27,11 @@ namespace MVC_API.Controllers
             dm.TraceService("====================");
             try
             {
+                string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+                string cusID = inputParams.cusID == null ? "0" : inputParams.cusID;
 
-
-                string[] arr = { inputParams.cusID };
-                DataSet dtstkItemBatch = dm.loadListDS("SelReturnItems", "sp_SFA_App", inputParams.rotID, arr);
+                string[] arr = { cusID };
+                DataSet dtstkItemBatch = dm.loadListDS("SelReturnItems", "sp_SFA_App", rotID, arr);
                 DataTable itemData = dtstkItemBatch.Tables[0];
                 DataTable batchData = dtstkItemBatch.Tables[1];
                 if (itemData.Rows.Count > 0)

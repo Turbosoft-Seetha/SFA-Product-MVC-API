@@ -2314,7 +2314,9 @@ namespace MVC_API.Controllers
                             LowerQty = dr["sld_LowerQty"].ToString(),
                             HigherQty = dr["sld_HigherQty"].ToString(),
                             Amount = dr["sld_GrandTotal"].ToString(),
-                            returnType = dr["sld_ReturnType"].ToString()
+                            returnType = dr["sld_ReturnType"].ToString(),
+                            huomPrice = dr["sld_HigherPrice"].ToString(),
+                            luomPrice = dr["sld_LowerPrice"].ToString(),
                         });
                     }
 
@@ -2420,6 +2422,7 @@ namespace MVC_API.Controllers
                             Status = dr["Status"].ToString(),
                             Date = dr["CDate"].ToString(),
                             Time = dr["CTime"].ToString(),
+                            transType= dr["sld_TransType"].ToString(),
 
                         });
                     }
@@ -2859,6 +2862,11 @@ namespace MVC_API.Controllers
                             OPAmt = dr["AR_OP_Amount"].ToString(),
                             CHAmt = dr["AR_Chq_Amount"].ToString(),
                             TotCollection = dr["TotalARAmount"].ToString(),
+                            HCCount = dr["AR_HC_Count"].ToString(),
+                            OPCount = dr["AR_OP_Count"].ToString(),
+                            POSCount = dr["AR_POS_Count"].ToString(),
+                            CHCount = dr["AR_Chq_Count"].ToString(),
+                            totCount = dr["TotalArCount"].ToString(),
 
                         });
                     }
@@ -3196,6 +3204,9 @@ namespace MVC_API.Controllers
                             RouteCode = dr["rot_code"].ToString(),
                             RouteName = dr["rot_Name"].ToString(),
                             Status = dr["status"].ToString(),
+                            Date = dr["Date"].ToString(),
+                            Time = dr["Time"].ToString(),
+
                         });
                     }
 
@@ -3248,6 +3259,8 @@ namespace MVC_API.Controllers
                             RouteCode = dr["rot_code"].ToString(),
                             RouteName = dr["rot_Name"].ToString(),
                             Status = dr["status"].ToString(),
+                            Date = dr["Date"].ToString(),
+                            Time = dr["Time"].ToString(),
                         });
                     }
 
@@ -3307,6 +3320,8 @@ namespace MVC_API.Controllers
                             conflqty = dr["vvd_ConfirmLQty"].ToString(),
                             udjhqty = dr["AdjHQty"].ToString(),
                             udjlqty = dr["AdjLQty"].ToString(),
+                            CatId = dr["prd_cat_ID"].ToString(),
+                            SubCatId = dr["prd_sct_ID"].ToString(),
                         });
                     }
 
