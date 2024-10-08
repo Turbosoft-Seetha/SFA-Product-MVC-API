@@ -2372,38 +2372,40 @@ namespace MVC_API.Controllers
 
                             for (int i = 0; i < ar.Length; i++)
                             {
-                                if (i > 0)
-                                {
+                                //if (i > 0)
+                                //{
                                     imag = imag + "," + url + ar[i];
-                                }
-                                else
-                                {
-                                    imag = "";
-                                }
+                                //}
+                                
                             }
 
+                        }
+                        else
+                        {
+                            imag = "";
                         }
 
                         // sign
 
                         string Sign = "";
                         string img1 = dr["sal_Signature"].ToString();
-                        if (img1 != "")
+                        if (img1 != "" && img1 != "NULL")
                         {
-                            string[] ar = (dr["sal_Signature"].ToString().Replace("../", "")).Split(',');
+                            string[] ar2 = (dr["sal_Signature"].ToString().Replace("../", "")).Split(',');
 
-                            for (int i = 0; i < ar.Length; i++)
+                            for (int i = 0; i < ar2.Length; i++)
                             {
-                                if (i > 0)
-                                {
-                                    Sign = Sign + "," + url + ar[i];
-                                }
-                                else
-                                {
-                                    Sign = "";
-                                }
+                                //if (i > 0)
+                                //{
+                                    Sign = Sign + "," + url + ar2[i];
+                                //}
+                                
                             }
 
+                        }
+                        else
+                        {
+                            Sign = "";
                         }
                         listHeader.Add(new SelInvoiceOut
                         {
