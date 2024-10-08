@@ -22,8 +22,10 @@ namespace MVC_API.Controllers
         {
             dm.TraceService("SelDeliveryHeader STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
-            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
+            
             string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
+            string date = DateTime.Parse(inputParams.date.ToString()).ToString("yyyyMMdd");
+            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID , date };
 
             DataTable dt = dm.loadList("SelDeliveryHeader", "sp_KPIServices", udpID, ar);
 
