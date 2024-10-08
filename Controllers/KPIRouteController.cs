@@ -34,6 +34,7 @@ namespace MVC_API.Controllers
 
                     List<DeliveryHeaderOut> listHeader = new List<DeliveryHeaderOut>();
                     foreach (DataRow dr in dt.Rows)
+
                     {
                         listHeader.Add(new DeliveryHeaderOut
                         {

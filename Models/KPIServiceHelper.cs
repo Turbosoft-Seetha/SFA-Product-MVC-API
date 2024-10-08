@@ -1002,7 +1002,6 @@ namespace MVC_API.Models
 
     public class SelTransferOut
     {
-
         public string ID { get; set; }
         public string TransID { get; set; }
         public string RouteCode { get; set; }
@@ -1033,6 +1032,17 @@ namespace MVC_API.Models
         public string udjlqty { get; set; }
         public string CatId { get; set; }
         public string SubCatId { get; set; }
+
+    }
+    public class OrderCountOut
+    {
+
+        
+        public string SalesOrderCount { get; set; }
+        public string QuotationCount { get; set; }
+
+
+
 
     }
 }

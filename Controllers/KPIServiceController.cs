@@ -3149,8 +3149,8 @@ namespace MVC_API.Controllers
                         listItems.Add(new DelCountOut
                         {
                             plannedDel = dr["planned"].ToString(),
-                            NotDel = dr["TransIn"].ToString(),
-                            TotalDel = dr["ND"].ToString(),
+                            NotDel = dr["ND"].ToString(),
+                            TotalDel = dr["Delivered"].ToString(),
                             TotalPD = dr["PD"].ToString(),
 
                         });
@@ -3251,6 +3251,7 @@ namespace MVC_API.Controllers
 
                     List<SelTransferOut> listHeader = new List<SelTransferOut>();
                     foreach (DataRow dr in dt.Rows)
+
                     {
                         listHeader.Add(new SelTransferOut
                         {
@@ -3343,6 +3344,58 @@ namespace MVC_API.Controllers
                 dm.TraceService("GetTransferDetail Exception - " + ex.Message.ToString());
             }
             dm.TraceService("GetTransferDetail ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
+        public string SelOrderCount([FromForm] SelVisitIN inputParams)
+        {
+            dm.TraceService("SelOrderCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("SelOrderCount", "sp_KPIServices", rotID.ToString(), ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<OrderCountOut> listItems = new List<OrderCountOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new OrderCountOut
+                        {
+                            SalesOrderCount = dr["Order"].ToString(),
+                            QuotationCount = dr["Quotation"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelOrderCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelOrderCount ENDED - " + DateTime.Now);
             dm.TraceService("==================");
 
 
