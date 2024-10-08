@@ -50,6 +50,7 @@ namespace MVC_API.Controllers
                             Time = dr["CTime"].ToString(),
                             DelStatus = dr["ord_DeliveryStatus"].ToString(),
                             paymentmode= dr["ord_PayMode"].ToString(),
+                            Status = dr["Status"].ToString(),
                         });
                     }
 

@@ -30,7 +30,8 @@ namespace MVC_API.Models
         public string Time { get; set; }
         public string DelStatus { get; set; }
         public string paymentmode { get; set; }
-        
+        public string Status { get; set; }
+
 
     }
     public class DeliveryDetailIn
