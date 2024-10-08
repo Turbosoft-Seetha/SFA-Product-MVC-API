@@ -3149,8 +3149,8 @@ namespace MVC_API.Controllers
                         listItems.Add(new DelCountOut
                         {
                             plannedDel = dr["planned"].ToString(),
-                            NotDel = dr["TransIn"].ToString(),
-                            TotalDel = dr["ND"].ToString(),
+                            NotDel = dr["ND"].ToString(),
+                            TotalDel = dr["Delivered"].ToString(),
                             TotalPD = dr["PD"].ToString(),
 
                         });
