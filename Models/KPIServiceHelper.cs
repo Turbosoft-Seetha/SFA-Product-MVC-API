@@ -1034,4 +1034,15 @@ namespace MVC_API.Models
         public string SubCatId { get; set; }
 
     }
+    public class OrderCountOut
+    {
+
+        
+        public string SalesOrderCount { get; set; }
+        public string QuotationCount { get; set; }
+
+
+
+
+    }
 }

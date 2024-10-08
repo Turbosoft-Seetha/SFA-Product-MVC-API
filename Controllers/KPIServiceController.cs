@@ -3351,6 +3351,58 @@ namespace MVC_API.Controllers
         }
 
 
+        public string SelOrderCount([FromForm] SelVisitIN inputParams)
+        {
+            dm.TraceService("SelOrderCount STARTED -" + DateTime.Now);
+            dm.TraceService("====================");
+
+            try
+            {
+                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { arh_ID };
+
+                DataTable dt = dm.loadList("SelOrderCount", "sp_KPIServices", rotID.ToString(), ar);
+
+                if (dt.Rows.Count > 0)
+                {
+                    List<OrderCountOut> listItems = new List<OrderCountOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+
+                        listItems.Add(new OrderCountOut
+                        {
+                            SalesOrderCount = dr["Order"].ToString(),
+                            QuotationCount = dr["Quotation"].ToString(),
+
+                        });
+                    }
+
+                    string JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listItems
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+                dm.TraceService("SelOrderCount Exception - " + ex.Message.ToString());
+            }
+            dm.TraceService("SelOrderCount ENDED - " + DateTime.Now);
+            dm.TraceService("==================");
+
+
+            return JSONString;
+        }
+
+
     }
 
 
