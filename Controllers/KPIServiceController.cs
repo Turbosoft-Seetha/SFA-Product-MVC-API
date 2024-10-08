@@ -3131,16 +3131,18 @@ namespace MVC_API.Controllers
         }
 
 
-        public string SelDeliveryCount([FromForm] SelVisitIN inputParams)
+        public string SelDeliveryCount([FromForm] DelCountIn inputParams)
         {
             dm.TraceService("SelDeliveryCount STARTED -" + DateTime.Now);
             dm.TraceService("====================");
 
             try
             {
-                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
-                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
-                string[] ar = { arh_ID };
+                string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+                string udpId = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string date = DateTime.Parse(inputParams.date.ToString()).ToString("yyyyMMdd");
+
+                string[] ar = { date, udpId };
 
                 DataTable dt = dm.loadList("SelDeliveryCount", "sp_KPIServices", rotID.ToString(), ar);
 

@@ -986,6 +986,7 @@ namespace MVC_API.Models
         public string UserID { get; set; }
         public string rotID { get; set; }
         public string udpId { get; set; }
+        public string date { get; set; }
 
     }
     public class DelCountOut
