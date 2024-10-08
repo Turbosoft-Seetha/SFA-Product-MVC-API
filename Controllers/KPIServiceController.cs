@@ -2372,13 +2372,15 @@ namespace MVC_API.Controllers
 
                             for (int i = 0; i < ar.Length; i++)
                             {
-                                //if (i > 0)
-                                //{
+                                if (i == 0)
+                                {
+                                    imag = url + ar[i];
+                                }
+                                else
+                                {
                                     imag = imag + "," + url + ar[i];
-                                //}
-                                
+                                }
                             }
-
                         }
                         else
                         {
@@ -2397,7 +2399,7 @@ namespace MVC_API.Controllers
                             {
                                 //if (i > 0)
                                 //{
-                                    Sign = Sign + "," + url + ar2[i];
+                                    Sign = Sign + url + ar2[i];
                                 //}
                                 
                             }
@@ -3021,9 +3023,9 @@ namespace MVC_API.Controllers
 
             try
             {
-                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
-                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
-                string[] ar = { arh_ID };
+                string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+                string udpId = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string[] ar = { udpId };
 
                 DataTable dt = dm.loadList("VisitCounts", "sp_KPIServices", rotID.ToString(), ar);
 
