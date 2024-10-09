@@ -53,6 +53,7 @@ namespace MVC_API.Models
         public string odd_LowerQty { get; set; }
         public string sold_HigherQty { get; set; }
         public string sold_LowerQty { get; set; }
+        public string OrdDelStatus { get; set; }
 
     }
     public class CusPlannedVisitHeaderInKPI

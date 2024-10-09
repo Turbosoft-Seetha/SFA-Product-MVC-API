@@ -33,7 +33,6 @@ namespace MVC_API.Controllers
             {
                 if (dt.Rows.Count > 0)
                 {
-
                     List<DeliveryHeaderOut> listHeader = new List<DeliveryHeaderOut>();
                     foreach (DataRow dr in dt.Rows)
 
@@ -111,7 +110,8 @@ namespace MVC_API.Controllers
                             odd_LowerQty = dr["odd_LowerQty"].ToString(),
                             sold_HigherQty = dr["soldhuomqty"].ToString(),
                             sold_LowerQty = dr["soldluomqty"].ToString(),
-                            
+                            OrdDelStatus = dr["OrdDelStatus"].ToString(),
+
                         });
                     }
 
