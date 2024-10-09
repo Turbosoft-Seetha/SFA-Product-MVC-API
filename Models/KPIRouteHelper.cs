@@ -78,6 +78,7 @@ namespace MVC_API.Models
     public class SelCusVisitDetailInKPI
     {
         public string udp_ID { get; set; }
+        public string date { get; set; }
 
     }
     public class CusVisitDetailOut
@@ -90,13 +91,16 @@ namespace MVC_API.Models
         public string cusStartdatetime { get; set; }
         public string cusExitdatetime { get; set; }
         public string visitSeqNo { get; set; }
-        
+        public string Duration { get; set; }
+        public string Status { get; set; }
+
     }
     public class ActualVisitHeaderInKPI
     {
         public string rotID { get; set; }
         public string UserID { get; set; }
         public string udpId { get; set; }
+        public string date { get; set; }
 
     }
     public class ActualVisitHeaderOut
@@ -117,6 +121,7 @@ namespace MVC_API.Models
         public string rotID { get; set; }
         public string UserID { get; set; }
         public string udpId { get; set; }
+        public string date { get; set; }
 
     }
     public class ProductiveVisitHeaderOut
@@ -137,6 +142,7 @@ namespace MVC_API.Models
         public string rotID { get; set; }
         public string UserID { get; set; }
         public string udpId { get; set; }
+        public string date { get; set; }
 
     }
     public class NonProductiveVisitHeaderOut

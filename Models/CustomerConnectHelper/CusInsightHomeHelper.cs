@@ -9,6 +9,7 @@ namespace MVC_API.Models
     {
 
     }
+
     public class InsCusInsightHome
     {
         public string UserID { get; set; }
@@ -19,6 +20,7 @@ namespace MVC_API.Models
 
 
     }
+
     public class OutCusInsightHome
     {
         public string Invoice { get; set; }

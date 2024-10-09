@@ -79,7 +79,6 @@ namespace MVC_API.Controllers.Customer_Connect
             return JSONString;
         }
 
-
         public string SelectAllCustomerInsight([FromForm] InsSelectAllCustomerInsight inputParams)
         {
 
@@ -172,7 +171,6 @@ namespace MVC_API.Controllers.Customer_Connect
             return JSONString;
         }
 
-
         public string CusInsightProfileDetail([FromForm] InCusInsightProfile inputParams)
         {
 
@@ -226,6 +224,7 @@ namespace MVC_API.Controllers.Customer_Connect
             dm.TraceService("==========================");
             return JSONString;
         }
+
         public string SelectAreaForCusInsHome([FromForm] AreaOutStandingIn inputParams)
         {
             dm.TraceService("SelectAreaForCusInsHome STARTED -" + DateTime.Now);
@@ -277,6 +276,7 @@ namespace MVC_API.Controllers.Customer_Connect
 
             return JSONString;
         }
+
         public string SelectSubAreaForCusInsHome([FromForm] SubAreaOutStandingIn inputParams)
         {
             dm.TraceService("SelectSubAreaForCusInsHome STARTED -" + DateTime.Now);
@@ -329,6 +329,7 @@ namespace MVC_API.Controllers.Customer_Connect
 
             return JSONString;
         }
+
         public string SelectRouteForCusInsHome([FromForm] RouteOutStandingIn inputParams)
         {
             dm.TraceService("SelectRouteForCusInsHome STARTED -" + DateTime.Now);
@@ -381,7 +382,6 @@ namespace MVC_API.Controllers.Customer_Connect
 
             return JSONString;
         }
-
 
         public string SelectCustomerInsightCount([FromForm] InsSelectAllCustomerInsight inputParams)
         {

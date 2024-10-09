@@ -3025,6 +3025,7 @@ namespace MVC_API.Controllers
             {
                 string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
                 string udpId = inputParams.udpId == null ? "0" : inputParams.udpId;
+
                 string[] ar = { udpId };
 
                 DataTable dt = dm.loadList("VisitCounts", "sp_KPIServices", rotID.ToString(), ar);
@@ -3085,9 +3086,10 @@ namespace MVC_API.Controllers
 
             try
             {
-                string rotID = inputParams.udpId == null ? "0" : inputParams.udpId;
-                string arh_ID = inputParams.udpId == null ? "0" : inputParams.udpId;
-                string[] ar = { arh_ID };
+                string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
+                string udpId = inputParams.udpId == null ? "0" : inputParams.udpId;
+                string date = DateTime.Parse(inputParams.date.ToString()).ToString("yyyyMMdd");
+                string[] ar = { date, udpId };
 
                 DataTable dt = dm.loadList("SelInventoryandVantoVan", "sp_KPIServices", rotID.ToString(), ar);
 
@@ -3317,7 +3319,7 @@ namespace MVC_API.Controllers
 
                         listItems.Add(new SelTransferDetailOut
                         {
-                            Prd_Name = dr["prd_id"].ToString(),
+                            Prd_Name = dr["prd_Name"].ToString(),
                             prd_Code = dr["prd_Code"].ToString(),
                             turnouthqty = dr["vvd_HQty"].ToString(),
                             turnouthuom = dr["vvd_HUOM"].ToString(),

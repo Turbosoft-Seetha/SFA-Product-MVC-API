@@ -207,8 +207,11 @@ namespace MVC_API.Controllers
             {
 
                 string udp_ID = inputParams.udp_ID == null ? "0" : inputParams.udp_ID;
+                string date = DateTime.Parse(inputParams.date.ToString()).ToString("yyyyMMdd");
 
-                DataTable dtorders = dm.loadList("SelCusVisitDetail", "sp_KPIServices", udp_ID.ToString());
+                string[] ar = { date };
+
+                DataTable dtorders = dm.loadList("SelCusVisitDetail", "sp_KPIServices", udp_ID.ToString(), ar);
 
                 if (dtorders.Rows.Count > 0)
                 {
@@ -217,17 +220,17 @@ namespace MVC_API.Controllers
                     {
 
                         listItems.Add(new CusVisitDetailOut
-                        {
-                           
+                        {                         
                             
                             cus_ID = dr["cus_ID"].ToString(),
                             cus_code = dr["cus_Code"].ToString(),
                             cus_name = dr["cus_Name"].ToString(),
-                            Arcus_name = dr["cus_NameArabic"].ToString(),
-                           
+                            Arcus_name = dr["cus_NameArabic"].ToString(),                           
                             cusStartdatetime = dr["cusstartdatetime"].ToString(),
                             cusExitdatetime = dr["cusexitdatetime"].ToString(),
                             visitSeqNo= dr["PlanSeq"].ToString(),
+                            Duration = dr["Duration"].ToString(),
+                            Status = dr["Status"].ToString(),
                         });
                     }
 
@@ -259,7 +262,9 @@ namespace MVC_API.Controllers
         {
             dm.TraceService("SelActualVisitHeader STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
-            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
+
+            string date = DateTime.Parse(inputParams.date.ToString()).ToString("yyyyMMdd");
+            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID, date };
             string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
 
             DataTable dt = dm.loadList("SelActualVisitHeader", "sp_KPIServices", udpID, ar);
@@ -316,7 +321,9 @@ namespace MVC_API.Controllers
         {
             dm.TraceService("SelProductiveVisitHeader STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
-            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
+
+            string date = DateTime.Parse(inputParams.date.ToString()).ToString("yyyyMMdd");
+            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID , date };
             string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
 
             DataTable dt = dm.loadList("SelProductiveVisitHeader", "sp_KPIServices", udpID, ar);
@@ -374,7 +381,9 @@ namespace MVC_API.Controllers
         {
             dm.TraceService("SelNonProductiveVisitHeader STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
-            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID };
+
+            string date = DateTime.Parse(inputParams.date.ToString()).ToString("yyyyMMdd");
+            string[] ar = { inputParams.rotID == null ? "0" : inputParams.rotID , date };
             string udpID = inputParams.udpId == null ? "0" : inputParams.udpId;
 
             DataTable dt = dm.loadList("SelNonProductiveVisitHeader", "sp_KPIServices", udpID, ar);
@@ -383,7 +392,6 @@ namespace MVC_API.Controllers
             {
                 if (dt.Rows.Count > 0)
                 {
-
                     List<NonProductiveVisitHeaderOut> listHeader = new List<NonProductiveVisitHeaderOut>();
                     foreach (DataRow dr in dt.Rows)
                     {
