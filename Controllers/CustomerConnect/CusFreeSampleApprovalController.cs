@@ -18,13 +18,13 @@ namespace MVC_API.Controllers.CustomerConnect
         // GET: CusFreeSampleApproval
         DataModel dm = new DataModel();
         string JSONString = string.Empty;
-        public string PostFreeSampleApproval([FromForm] PostfreeSampleData inputParams)
+        public string PostFreeSampleApproval([FromForm] CusPostfreeSampleData inputParams)
         {
             dm.TraceService("PostReturnFreeSampleApproval STARTED " + DateTime.Now.ToString());
             dm.TraceService("============================================");
             try
             {
-                List<PostFreeSamplelDetData> itemData = JsonConvert.DeserializeObject<List<PostFreeSamplelDetData>>(inputParams.JSONString);
+                List<CusPostFreeSamplelDetData> itemData = JsonConvert.DeserializeObject<List<CusPostFreeSamplelDetData>>(inputParams.JSONString);
                 try
                 {
 
@@ -42,7 +42,7 @@ namespace MVC_API.Controllers.CustomerConnect
                         {
                             writer.WriteStartDocument(true);
                             writer.WriteStartElement("r");
-                            foreach (PostFreeSamplelDetData id in itemData)
+                            foreach (CusPostFreeSamplelDetData id in itemData)
                             {
                                 string[] arr = { id.PrdID.ToString(), id.HigherQty.ToString(), id.HigherUOM.ToString(), id.LowerQty.ToString(), id.LowerUOM.ToString() };
                                 string[] arrName = { "PrdID", "HigherQty", "HigherUOM", "LowerQty", "LowerUOM" };
@@ -59,13 +59,13 @@ namespace MVC_API.Controllers.CustomerConnect
                         string[] arr = { CusId.ToString(), RotId.ToString(), UdpId.ToString(), OrderId.ToString(), InputXml.ToString() };
                         DataTable dt = dm.loadList("FreeSampleApproval", "sp_SFA_App_Sales", userID.ToString(), arr);
 
-                        List<GetFreeSampleApprovalStatus> listStatus = new List<GetFreeSampleApprovalStatus>();
+                        List<CusGetFreeSampleApprovalStatus> listStatus = new List<CusGetFreeSampleApprovalStatus>();
                         if (dt.Rows.Count > 0)
                         {
-                            List<GetFreeSampleApprovalStatus> listHeader = new List<GetFreeSampleApprovalStatus>();
+                            List<CusGetFreeSampleApprovalStatus> listHeader = new List<CusGetFreeSampleApprovalStatus>();
                             foreach (DataRow dr in dt.Rows)
                             {
-                                listHeader.Add(new GetFreeSampleApprovalStatus
+                                listHeader.Add(new CusGetFreeSampleApprovalStatus
                                 {
                                     Res = dr["Res"].ToString(),
                                     Title = dr["Title"].ToString(),
@@ -107,7 +107,7 @@ namespace MVC_API.Controllers.CustomerConnect
             dm.TraceService("========================================");
             return JSONString;
         }
-        public string GetFreeSampleApprovalHeaderStatus([FromForm] GetFreeHeaderStatus inputParams)
+        public string GetFreeSampleApprovalHeaderStatus([FromForm] CusGetFreeHeaderStatus inputParams)
         {
             dm.TraceService("GetFreeSampleApprovalheaderStatus STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
@@ -122,10 +122,10 @@ namespace MVC_API.Controllers.CustomerConnect
             {
                 if (dtStatus.Rows.Count > 0)
                 {
-                    List<GetHeaderStatus> listHeader = new List<GetHeaderStatus>();
+                    List<CusGetHeaderStatus> listHeader = new List<CusGetHeaderStatus>();
                     foreach (DataRow dr in dtStatus.Rows)
                     {
-                        listHeader.Add(new GetHeaderStatus
+                        listHeader.Add(new CusGetHeaderStatus
                         {
                             ApprovalStatus = dr["Status"].ToString()
 
@@ -156,7 +156,7 @@ namespace MVC_API.Controllers.CustomerConnect
 
             return JSONString;
         }
-        public string GetFreeSampleApprovalDetailStatus([FromForm] GetFreeHeaderStatus inputParams)
+        public string GetFreeSampleApprovalDetailStatus([FromForm] CusGetFreeHeaderStatus inputParams)
         {
             dm.TraceService("GetFreeSampleApprovalDetailStatus STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
@@ -170,10 +170,10 @@ namespace MVC_API.Controllers.CustomerConnect
             {
                 if (dtReturnStatus.Rows.Count > 0)
                 {
-                    List<GetDetFreeSapmpleApprovalStatus> listHeader = new List<GetDetFreeSapmpleApprovalStatus>();
+                    List<CusGetDetFreeSapmpleApprovalStatus> listHeader = new List<CusGetDetFreeSapmpleApprovalStatus>();
                     foreach (DataRow dr in dtReturnStatus.Rows)
                     {
-                        listHeader.Add(new GetDetFreeSapmpleApprovalStatus
+                        listHeader.Add(new CusGetDetFreeSapmpleApprovalStatus
                         {
                             ApprovalStatus = dr["Status"].ToString(),
                             ProductId = dr["fsa_prd_ID"].ToString(),
@@ -208,13 +208,13 @@ namespace MVC_API.Controllers.CustomerConnect
         }
 
         //--------------FOC---------------
-        public string PostCustomerFOCApproval([FromForm] PostCustomerFOC inputParams)
+        public string PostCustomerFOCApproval([FromForm] CusPostCustomerFOC inputParams)
         {
             dm.TraceService("PostCustomerFOCApproval STARTED " + DateTime.Now.ToString());
             dm.TraceService("============================================");
             try
             {
-                List<PostCustomerFOCApprovalDetData> itemData = JsonConvert.DeserializeObject<List<PostCustomerFOCApprovalDetData>>(inputParams.JSONString);
+                List<CusPostCustomerFOCApprovalDetData> itemData = JsonConvert.DeserializeObject<List<CusPostCustomerFOCApprovalDetData>>(inputParams.JSONString);
                 try
                 {
 
@@ -231,7 +231,7 @@ namespace MVC_API.Controllers.CustomerConnect
                         {
                             writer.WriteStartDocument(true);
                             writer.WriteStartElement("r");
-                            foreach (PostCustomerFOCApprovalDetData id in itemData)
+                            foreach (CusPostCustomerFOCApprovalDetData id in itemData)
                             {
                                 string[] arr = { id.prdID.ToString(), id.HUOM.ToString(), id.HQty.ToString(), id.LUOM.ToString(), id.LQty.ToString(), id.totalqty.ToString() };
                                 string[] arrName = { "prdID", "HUOM", "HQty", "LUOM", "LQty", "totalqty" };
@@ -248,13 +248,13 @@ namespace MVC_API.Controllers.CustomerConnect
                         string[] arr = { CusId.ToString(), FromDate.ToString(), ToDate.ToString(), userID.ToString(), Commend, InputXml.ToString() };
                         DataTable dt = dm.loadList("InsertFOCApp", "sp_Masters_UOM", RotId.ToString(), arr);
 
-                        List<GetFOCApprovalStatus> listStatus = new List<GetFOCApprovalStatus>();
+                        List<CusGetFOCApprovalStatus> listStatus = new List<CusGetFOCApprovalStatus>();
                         if (dt.Rows.Count > 0)
                         {
-                            List<GetFOCApprovalStatus> listHeader = new List<GetFOCApprovalStatus>();
+                            List<CusGetFOCApprovalStatus> listHeader = new List<CusGetFOCApprovalStatus>();
                             foreach (DataRow dr in dt.Rows)
                             {
-                                listHeader.Add(new GetFOCApprovalStatus
+                                listHeader.Add(new CusGetFOCApprovalStatus
                                 {
                                     Res = dr["Res"].ToString(),
                                     Title = dr["Title"].ToString(),
@@ -296,7 +296,7 @@ namespace MVC_API.Controllers.CustomerConnect
             dm.TraceService("========================================");
             return JSONString;
         }
-        public string GetFOCList([FromForm] FOCDetailIn inputParams)
+        public string GetFOCList([FromForm] CusFOCDetailIn inputParams)
         {
             dm.TraceService("SelectCFOCList STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
@@ -312,15 +312,15 @@ namespace MVC_API.Controllers.CustomerConnect
             {
                 if (headerData.Rows.Count > 0)
                 {
-                    List<FOCList> listDetail = new List<FOCList>();
+                    List<CusFOCList> listDetail = new List<CusFOCList>();
                     foreach (DataRow dr in headerData.Rows)
                     {
-                        List<FOCApproveDetail> FOCDetail = new List<FOCApproveDetail>();
+                        List<CusFOCApproveDetail> FOCDetail = new List<CusFOCApproveDetail>();
                         foreach (DataRow dts in DetailData.Rows)
                         {
                             if (dr["cfh_ID"].ToString() == dts["cfa_cfh_ID"].ToString())
                             {
-                                FOCDetail.Add(new FOCApproveDetail
+                                FOCDetail.Add(new CusFOCApproveDetail
                                 {
                                     prdID = dts["prdID"].ToString(),
                                     HUOM = dts["HUOM"].ToString(),
@@ -331,7 +331,7 @@ namespace MVC_API.Controllers.CustomerConnect
                                 });
                             }
                         }
-                        listDetail.Add(new FOCList
+                        listDetail.Add(new CusFOCList
                         {
 
                             HeaderId = dr["HeaderId"].ToString(),
@@ -370,7 +370,58 @@ namespace MVC_API.Controllers.CustomerConnect
         }
 
 
-        //-----------------credit limi---------------
+        //-----------------credit limit---------------
+        public string CancelDelOrder([FromForm] CusCancelDelOrderInparas inputParams)
+        {
+            dm.TraceService("CancelDelOrder STARTED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+
+            string Status_Value = inputParams.Status_Value == null ? "0" : inputParams.Status_Value;
+            string OrdId = inputParams.OrdId == null ? "0" : inputParams.OrdId;
+            string UserId = inputParams.UserId == null ? "0" : inputParams.UserId;
+
+            string[] arr = { Status_Value, UserId };
+
+            DataTable dt = dm.loadList("CancelDelOrders", "sp_SFA_App", OrdId, arr);
+            try
+            {
+                if (dt.Rows.Count > 0)
+                {
+                    List<CusCancelDelOrderOutparas> list = new List<CusCancelDelOrderOutparas>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        list.Add(new CusCancelDelOrderOutparas
+                        {
+                            Res = dr["Res"].ToString(),
+                            Desc = dr["Desc"].ToString(),
+
+                        });
+                    }
+
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = list
+                    });
+
+                    return JSONString;
+                }
+                else
+                {
+                    dm.TraceService("NoDataRes");
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                dm.TraceService("GetUnAssigned  " + ex.Message.ToString());
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+            }
+
+            dm.TraceService("CancelDelOrder ENDED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+
+            return JSONString;
+        }
 
     }
 }
