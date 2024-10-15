@@ -179,10 +179,10 @@ namespace MVC_API.Controllers
             {
                 if (dtDeliveryStatus.Rows.Count > 0)
                 {
-                    List<GetlortransreqApprovalHeaderStatus> listHeader = new List<GetlortransreqApprovalHeaderStatus>();
+                    List<GetInvReconfApprHeaderStatusOut> listHeader = new List<GetInvReconfApprHeaderStatusOut>();
                     foreach (DataRow dr in dtDeliveryStatus.Rows)
                     {
-                        listHeader.Add(new GetlortransreqApprovalHeaderStatus
+                        listHeader.Add(new GetInvReconfApprHeaderStatusOut
                         {
                             ApprovalStatus = dr["iah_Status"].ToString()
 

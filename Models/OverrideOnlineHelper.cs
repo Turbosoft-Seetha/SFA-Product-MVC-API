@@ -39,4 +39,28 @@ namespace MVC_API.Models
 
     }
 
+    public class GetOverrideApprHeaderStatusIn
+    {
+        public string TransID { get; set; }
+        public string rotID { get; set; }
+
+    }
+
+    public class GetOverrideApprHeaderStatusOut
+    {
+        public string ApprovalStatus { get; set; }
+    }
+
+    public class GetOverrideApprDetailStatusIn
+    {
+        public string TransID { get; set; }
+        public string rotID { get; set; }
+
+    }
+    public class GetOverrideApprDetailStatusOut
+    {
+        public string ApprovalStatus { get; set; }        
+
+    }
+
 }

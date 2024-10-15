@@ -70,4 +70,9 @@ namespace MVC_API.Models
         //public string InvoiceID { get; set; }
 
     }
+    public class GetInvReconfApprHeaderStatusOut
+    {
+        public string ApprovalReason { get; set; }
+        public string ApprovalStatus { get; set; }
+    }
 }

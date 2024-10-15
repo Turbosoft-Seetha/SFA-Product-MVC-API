@@ -3307,7 +3307,6 @@ namespace MVC_API.Controllers
             {
 
                 string ord_ID = inputParams.ID == null ? "0" : inputParams.ID;
-
                 DataTable dtorders = dm.loadList("SelTransferDet", "sp_KPIServices", ord_ID.ToString());
 
                 if (dtorders.Rows.Count > 0)
