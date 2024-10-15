@@ -138,22 +138,35 @@ namespace MVC_API.Models.CustomerConnectHelper
         public string Res { get; set; }
         public string Title { get; set; }
         public string Descr { get; set; }
+        public string TransID { get; set; }
 
     }
-    public class CusCancelDelOrderInparas
+
+    public class CusGetOverrideApprHeaderStatusIn
     {
-        public string Status_Value { get; set; }
-        public string OrdId { get; set; }
-        public string UserId { get; set; }
+        public string TransID { get; set; }
+        public string rotID { get; set; }
 
     }
-    public class CusCancelDelOrderOutparas
+
+    public class CusGetOverrideApprHeaderStatusOut
     {
-        public string Res { get; set; }
-        public string Desc { get; set; }
-        
+        public string ApprovalStatus { get; set; }
+    }
+
+    public class CusGetOverrideApprDetailStatusIn
+    {
+        public string TransID { get; set; }
+        public string rotID { get; set; }
+
+    }
+    public class CusGetOverrideApprDetailStatusOut
+    {
+        public string ApprovalStatus { get; set; }
 
     }
     #endregion
 
 }
+    
+
