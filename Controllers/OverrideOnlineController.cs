@@ -76,7 +76,8 @@ namespace MVC_API.Controllers
                         {
                             Res = dr["Res"].ToString(),
                             Title = dr["Title"].ToString(),
-                            Descr = dr["Descr"].ToString()
+                            Descr = dr["Descr"].ToString(),
+                            TransID = dr["TransID"].ToString()
 
 
                         });
@@ -124,7 +125,6 @@ namespace MVC_API.Controllers
                         listHeader.Add(new GetOverrideApprHeaderStatusOut
                         {
                             ApprovalStatus = dr["ooh_ApprovalStatus"].ToString()
-
                         });
                     }
 
@@ -152,7 +152,6 @@ namespace MVC_API.Controllers
 
             return JSONString;
         }
-
         public string GetOverrideApprDetailStatus([FromForm] GetOverrideApprDetailStatusIn inputParams)
         {
             dm.TraceService("GetOverrideApprDetailStatus STARTED " + DateTime.Now.ToString());
@@ -174,7 +173,6 @@ namespace MVC_API.Controllers
                         listHeader.Add(new GetOverrideApprDetailStatusOut
                         {
                             ApprovalStatus = dr["ood_ApprovalStatus"].ToString()
-
                         });
                     }
 
