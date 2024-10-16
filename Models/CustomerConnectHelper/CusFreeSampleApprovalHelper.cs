@@ -141,19 +141,6 @@ namespace MVC_API.Models.CustomerConnectHelper
         public string TransID { get; set; }
 
     }
-
-    public class CusGetOverrideApprHeaderStatusIn
-    {
-        public string TransID { get; set; }
-        public string rotID { get; set; }
-
-    }
-
-    public class CusGetOverrideApprHeaderStatusOut
-    {
-        public string ApprovalStatus { get; set; }
-    }
-
     public class CusGetOverrideApprDetailStatusIn
     {
         public string TransID { get; set; }
@@ -162,7 +149,8 @@ namespace MVC_API.Models.CustomerConnectHelper
     }
     public class CusGetOverrideApprDetailStatusOut
     {
-        public string ApprovalStatus { get; set; }
+        public string HeaderStatus { get; set; }
+        public string DetailStatus { get; set; }
 
     }
     #endregion

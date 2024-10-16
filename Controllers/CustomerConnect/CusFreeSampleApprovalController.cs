@@ -452,60 +452,12 @@ namespace MVC_API.Controllers.CustomerConnect
             dm.TraceService("==================");
             return JSONString;
         }
-        public string GetOverrideApprHeaderStatus([FromForm] CusGetOverrideApprHeaderStatusIn inputParams)
-        {
-            dm.TraceService("GetOverrideApprHeaderStatus STARTED " + DateTime.Now.ToString());
-            dm.TraceService("======================================");
-            string TransID = inputParams.TransID == null ? "0" : inputParams.TransID;
-            string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
-
-            string[] arr = { rotID.ToString() };
-            DataTable dtDeliveryStatus = dm.loadList("SelStatusForOverrideApprHeader", "sp_OverrideOnline", TransID.ToString(), arr);
-
-            try
-            {
-                if (dtDeliveryStatus.Rows.Count > 0)
-                {
-                    List<CusGetOverrideApprHeaderStatusOut> listHeader = new List<CusGetOverrideApprHeaderStatusOut>();
-                    foreach (DataRow dr in dtDeliveryStatus.Rows)
-                    {
-                        listHeader.Add(new CusGetOverrideApprHeaderStatusOut
-                        {
-                            ApprovalStatus = dr["ooh_ApprovalStatus"].ToString()
-                        });
-                    }
-
-                    JSONString = JsonConvert.SerializeObject(new
-                    {
-                        result = listHeader
-                    });
-
-                    return JSONString;
-                }
-                else
-                {
-                    dm.TraceService("NoDataRes");
-                    JSONString = "NoDataRes";
-                }
-            }
-            catch (Exception ex)
-            {
-                dm.TraceService("GetOverrideApprHeaderStatus  " + ex.Message.ToString());
-                JSONString = "NoDataSQL - " + ex.Message.ToString();
-            }
-
-            dm.TraceService("GetOverrideApprHeaderStatus ENDED " + DateTime.Now.ToString());
-            dm.TraceService("======================================");
-
-            return JSONString;
-        }
         public string GetOverrideApprDetailStatus([FromForm] CusGetOverrideApprDetailStatusIn inputParams)
         {
             dm.TraceService("GetOverrideApprDetailStatus STARTED " + DateTime.Now.ToString());
             dm.TraceService("======================================");
             string TransID = inputParams.TransID == null ? "0" : inputParams.TransID;
             string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
-
 
             string[] arr = { rotID.ToString() };
             DataTable dtReturnStatus = dm.loadList("SelStatusForOverrideApprDetail", "sp_OverrideOnline", TransID.ToString(), arr);
@@ -519,7 +471,9 @@ namespace MVC_API.Controllers.CustomerConnect
                     {
                         listHeader.Add(new CusGetOverrideApprDetailStatusOut
                         {
-                            ApprovalStatus = dr["ood_ApprovalStatus"].ToString()
+                            HeaderStatus = dr["ooh_ApprovalStatus"].ToString(),
+                            DetailStatus = dr["ood_ApprovalStatus"].ToString()
+
                         });
                     }
 
@@ -547,7 +501,7 @@ namespace MVC_API.Controllers.CustomerConnect
 
             return JSONString;
         }
-
+       
     }
 
 }
