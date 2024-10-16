@@ -23,7 +23,7 @@ namespace MVC_API.Models
     public class JsonDataOverride
     {
         public string CrLmt { get; set; }
-        public string AvlLmt { get; set; }
+        public string AvlLmt { get; set; } = "0";
         public string TotLmt { get; set; }
         public string InvID { get; set; }
         public string OverDate { get; set; }
@@ -60,7 +60,8 @@ namespace MVC_API.Models
     }
     public class GetOverrideApprDetailStatusOut
     {
-        public string ApprovalStatus { get; set; }        
+        public string HeaderStatus { get; set; }     
+        public string DetailStatus { get; set; }
 
     }
 
