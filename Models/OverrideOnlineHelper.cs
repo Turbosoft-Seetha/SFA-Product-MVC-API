@@ -17,20 +17,11 @@ namespace MVC_API.Models
         public string rot_ID { get; set; }
         public string cus_ID { get; set; }
         public string Type { get; set; }
-        public string Json { get; set; }
+        public string ff1 { get; set; }
+        public string ff2 { get; set; }
+        public string ff3 { get; set; }
+        public string ff4 { get; set; }
     }
-
-    public class JsonDataOverride
-    {
-        public string CrLmt { get; set; }
-        public string AvlLmt { get; set; } = "0";
-        public string TotLmt { get; set; }
-        public string InvID { get; set; }
-        public string OverDate { get; set; }
-        public string CrDays { get; set; }
-
-    }
-
     public class OverrideApprOut
     {
         public string Res { get; set; }
@@ -38,19 +29,7 @@ namespace MVC_API.Models
         public string Descr { get; set; }
         public string TransID { get; set; }
 
-    }
-
-    public class GetOverrideApprHeaderStatusIn
-    {
-        public string TransID { get; set; }
-        public string rotID { get; set; }
-
-    }
-
-    public class GetOverrideApprHeaderStatusOut
-    {
-        public string ApprovalStatus { get; set; }
-    }
+    }   
 
     public class GetOverrideApprDetailStatusIn
     {
@@ -60,8 +39,7 @@ namespace MVC_API.Models
     }
     public class GetOverrideApprDetailStatusOut
     {
-        public string HeaderStatus { get; set; }     
-        public string DetailStatus { get; set; }
+        public string Status { get; set; }  
 
     }
 
