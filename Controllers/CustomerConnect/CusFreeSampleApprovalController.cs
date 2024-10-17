@@ -627,7 +627,8 @@ namespace MVC_API.Controllers.CustomerConnect
                 string ooa_ID = inputParams.ooa_ID == null ? "0" : inputParams.ooa_ID;
                 string userId = inputParams.UserId == null ? "0" : inputParams.UserId;
                 string status = inputParams.Status == null ? "0" : inputParams.Status;
-                DataTable dt = dm.loadList("PostOverRideApproval", "sp_CustomerConnect", ooa_ID);
+                string[] arr = { status.ToString(), userId.ToString() };
+                DataTable dt = dm.loadList("PostOverRideApproval", "sp_CustomerConnect", ooa_ID,arr);
 
                 List<CCFreeSampleApprovalStatus> listStatus = new List<CCFreeSampleApprovalStatus>();
                 if (dt.Rows.Count > 0)
