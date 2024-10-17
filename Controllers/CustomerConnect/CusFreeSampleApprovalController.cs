@@ -12,6 +12,7 @@ using MVC_API.Models.CustomerConnectHelper;
 using Newtonsoft.Json;
 using MVC_API.Models.ApprovalHelper;
 using System.Net.NetworkInformation;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace MVC_API.Controllers.CustomerConnect
 {
@@ -394,14 +395,239 @@ namespace MVC_API.Controllers.CustomerConnect
         {
             dm.TraceService("PostFOCApproval STARTED " + DateTime.Now.ToString());
             dm.TraceService("============================================");
+            List<CCFOCApprovalDet> itemData = JsonConvert.DeserializeObject<List<CCFOCApprovalDet>>(inputParams.JSONString);
+            try
+            {
+                string userId = inputParams.userId == null ? "0" : inputParams.userId;
+                string HeaderID = inputParams.HeaderId == null ? "0" : inputParams.HeaderId;
+                string Remarks = inputParams.remarks == null ? "0" : inputParams.remarks;
+                string InputXml = "";
+                using (var sw = new StringWriter())
+                {
+                    using (var writer = XmlWriter.Create(sw))
+                    {
+
+                        writer.WriteStartDocument(true);
+                        writer.WriteStartElement("r");
+                        int c = 0;
+                        foreach (CCFOCApprovalDet id in itemData)
+                        {
+                            string[] arr = {  id.cfh_ID.ToString() };
+                            string[] arrName = { "cfh_ID" };
+                            dm.createNode(arr, arrName, writer);
+                        }
+
+                        writer.WriteEndElement();
+                        writer.WriteEndDocument();
+                        writer.Close();
+                    }
+                    InputXml = sw.ToString();
+                }
+
+                try
+                {
+                    string[] arr = {HeaderID.ToString() ,userId.ToString(), Remarks.ToString()};
+                    DataTable dt = dm.loadList("PostFOCApproval", "sp_CustomerConnect", InputXml.ToString(),arr);
+
+                    List<CCFreeSampleApprovalStatus> listStatus = new List<CCFreeSampleApprovalStatus>();
+                    if (dt.Rows.Count > 0)
+                    {
+                        List<CCFreeSampleApprovalStatus> listHeader = new List<CCFreeSampleApprovalStatus>();
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            listHeader.Add(new CCFreeSampleApprovalStatus
+                            {
+                                Status = dr["Status"].ToString(),
+                                Res = dr["Res"].ToString(),
+                            });
+                        }
+                        JSONString = JsonConvert.SerializeObject(new
+                        {
+                            result = listHeader
+                        });
+
+                        return JSONString;
+                    }
+                    else
+                    {
+                        dm.TraceService("NoDataRes");
+                        JSONString = "NoDataRes";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    dm.TraceService(ex.Message.ToString());
+                    JSONString = "NoDataSQL - " + ex.Message.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                dm.TraceService(ex.Message.ToString());
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+            }
+
+            dm.TraceService("PostFOCApproval ENDED " + DateTime.Now.ToString());
+            dm.TraceService("========================================");
+            return JSONString;
+        }
+        public string PostFOCRejection([FromForm] CCFOCApprovalIn inputParams)
+        {
+            dm.TraceService("PostFOCRejection STARTED " + DateTime.Now.ToString());
+            dm.TraceService("============================================");
+
+                List<CCFOCApprovalDet> itemData = JsonConvert.DeserializeObject<List<CCFOCApprovalDet>>(inputParams.JSONString);
+                try
+                {
+                    string userId = inputParams.userId == null ? "0" : inputParams.userId;
+                    string HeaderID = inputParams.HeaderId == null ? "0" : inputParams.HeaderId;
+                    string Remarks = inputParams.remarks == null ? "0" : inputParams.remarks;
+                    string InputXml = "";
+                    using (var sw = new StringWriter())
+                    {
+                        using (var writer = XmlWriter.Create(sw))
+                        {
+
+                            writer.WriteStartDocument(true);
+                            writer.WriteStartElement("r");
+                            int c = 0;
+                            foreach (CCFOCApprovalDet id in itemData)
+                            {
+                                string[] arr = { id.cfh_ID.ToString() };
+                                string[] arrName = { "cfh_ID" };
+                                dm.createNode(arr, arrName, writer);
+                            }
+
+                            writer.WriteEndElement();
+                            writer.WriteEndDocument();
+                            writer.Close();
+                        }
+                        InputXml = sw.ToString();
+                    }
+
+                    try
+                    {
+                        string[] arr = { HeaderID.ToString(), userId.ToString(), Remarks.ToString() };
+                        DataTable dt = dm.loadList("PostFOCRejection", "sp_CustomerConnect", InputXml.ToString(), arr);
+
+                        List<CCFreeSampleApprovalStatus> listStatus = new List<CCFreeSampleApprovalStatus>();
+                        if (dt.Rows.Count > 0)
+                        {
+                            List<CCFreeSampleApprovalStatus> listHeader = new List<CCFreeSampleApprovalStatus>();
+                            foreach (DataRow dr in dt.Rows)
+                            {
+                                listHeader.Add(new CCFreeSampleApprovalStatus
+                                {
+                                    Status = dr["Status"].ToString(),
+                                    Res = dr["Res"].ToString(),
+                                });
+                            }
+                            JSONString = JsonConvert.SerializeObject(new
+                            {
+                                result = listHeader
+                            });
+
+                            return JSONString;
+                        }
+                        else
+                        {
+                            dm.TraceService("NoDataRes");
+                            JSONString = "NoDataRes";
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        dm.TraceService(ex.Message.ToString());
+                        JSONString = "NoDataSQL - " + ex.Message.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    dm.TraceService(ex.Message.ToString());
+                    JSONString = "NoDataSQL - " + ex.Message.ToString();
+                }
+
+                dm.TraceService("PostFOCRejection ENDED " + DateTime.Now.ToString());
+                dm.TraceService("========================================");
+                return JSONString;
+
+            }
+
+        //-----------------credit limit---------------
+       
+        public string GetOverRideDetails(CusFOCHeaderIn InputParams)
+        {
+            dm.TraceService("GetOverRideDetails STARTED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+            string Status_Value = InputParams.Status_Value == null ? "0" : InputParams.Status_Value;
+
+            DataTable dt = dm.loadList("ListOverRideCC", "sp_CustomerConnect", Status_Value.ToString());
+            try
+            {
+                if (dt.Rows.Count > 0)
+                {
+                    List<CCOverRideOut> listHeader = new List<CCOverRideOut>();
+                    foreach (DataRow dr in dt.Rows)
+                    {
+                        listHeader.Add(new CCOverRideOut
+                        {
+                            ooa_ID = dr["ooa_ID"].ToString(),
+                            ooa_cse_ID = dr["ooa_cse_ID"].ToString(),
+                            ooa_udp_ID = dr["ooa_udp_ID"].ToString(),
+                            ooa_rot_ID = dr["ooa_rot_ID"].ToString(),
+                            ooa_cus_ID = dr["ooa_cus_ID"].ToString(),
+                            ooa_TransID = dr["ooa_TransID"].ToString(),
+                            ooa_Type = dr["ooa_Type"].ToString(),
+                            FlexiField1 = dr["FlexiField1"].ToString(),
+                            FlexiField2 = dr["FlexiField2"].ToString(),
+                            FlexiField3 = dr["FlexiField3"].ToString(),
+                            FlexiField4 = dr["FlexiField4"].ToString(),
+                            ooa_ApprovalStatus = dr["ooa_ApprovalStatus"].ToString(),
+                            CreatedBy = dr["CreatedBy"].ToString(),
+                            ModifiedBy = dr["ModifiedBy"].ToString(),
+                            ModifiedDate = dr["ModifiedDate"].ToString(),
+                            Status = dr["Status"].ToString(),
+                            ooa_CurrentLevel = dr["ooa_CurrentLevel"].ToString(),
+                            ooa_wfm_ID = dr["ooa_wfm_ID"].ToString(),
+                          
+                        });
+            }
+
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = listHeader
+                    });
+
+            return JSONString;
+                }
+                else
+                {
+                    dm.TraceService("NoDataRes");
+                    JSONString = "NoDataRes";
+                }
+            }
+            catch (Exception ex)
+            {
+                dm.TraceService("GetOverRideDetails   " + ex.Message.ToString());
+                JSONString = "NoDataSQL - " + ex.Message.ToString();
+            }
+
+            dm.TraceService("GetOverRideDetails  ENDED " + DateTime.Now.ToString());
+            dm.TraceService("======================================");
+
+            return JSONString;
+        }
+        public string PostOverRideApproveReject([FromForm] CCOverRideApproveIn inputParams)
+        {
+            dm.TraceService("PostFOCApproval STARTED " + DateTime.Now.ToString());
+            dm.TraceService("============================================");
 
             try
             {
-                string reasonId = inputParams.reasonId == null ? "0" : inputParams.reasonId;
-                string cfh_ID = inputParams.cfh_ID == null ? "0" : inputParams.cfh_ID;
-                string userId = inputParams.userId == null ? "0" : inputParams.userId;
-                string[] arr = { cfh_ID.ToString(), userId.ToString() };
-                DataTable dt = dm.loadList("PostFOCApproval", "sp_CustomerConnect", reasonId, arr);
+  
+                string ooa_ID = inputParams.ooa_ID == null ? "0" : inputParams.ooa_ID;
+                string userId = inputParams.UserId == null ? "0" : inputParams.UserId;
+                string status = inputParams.Status == null ? "0" : inputParams.Status;
+                DataTable dt = dm.loadList("PostOverRideApproval", "sp_CustomerConnect", ooa_ID);
 
                 List<CCFreeSampleApprovalStatus> listStatus = new List<CCFreeSampleApprovalStatus>();
                 if (dt.Rows.Count > 0)
@@ -440,253 +666,5 @@ namespace MVC_API.Controllers.CustomerConnect
             dm.TraceService("========================================");
             return JSONString;
         }
-        public string PostFOCRejection([FromForm] CCFOCApprovalIn inputParams)
-        {
-            dm.TraceService("PostFOCRejection STARTED " + DateTime.Now.ToString());
-            dm.TraceService("============================================");
-
-            try
-            {
-                string reasonId = inputParams.reasonId == null ? "0" : inputParams.reasonId;
-                string cfh_ID = inputParams.cfh_ID == null ? "0" : inputParams.cfh_ID;
-                string userId = inputParams.userId == null ? "0" : inputParams.userId;
-                string[] arr = { cfh_ID.ToString(), userId.ToString() };
-                DataTable dt = dm.loadList("PostFOCRejection", "sp_CustomerConnect", reasonId, arr);
-
-                List<CCFreeSampleApprovalStatus> listStatus = new List<CCFreeSampleApprovalStatus>();
-                if (dt.Rows.Count > 0)
-                {
-                    List<CCFreeSampleApprovalStatus> listHeader = new List<CCFreeSampleApprovalStatus>();
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        listHeader.Add(new CCFreeSampleApprovalStatus
-                        {
-                            Status = dr["Status"].ToString(),
-                            Res = dr["Res"].ToString(),
-
-                        });
-                    }
-
-                    JSONString = JsonConvert.SerializeObject(new
-                    {
-                        result = listHeader
-                    });
-
-                    return JSONString;
-                }
-                else
-                {
-                    dm.TraceService("NoDataRes");
-                    JSONString = "NoDataRes";
-                }
-            }
-            catch (Exception ex)
-            {
-                dm.TraceService(ex.Message.ToString());
-                JSONString = "NoDataSQL - " + ex.Message.ToString();
-            }
-
-            dm.TraceService("PostFOCRejection ENDED " + DateTime.Now.ToString());
-            dm.TraceService("========================================");
-            return JSONString;
-
-        }
-
-        //-----------------credit limit---------------
-        public string InsOverrideOnlineApproval([FromForm] CusOverrideApprIn inputParams)
-        {
-            dm.TraceService("InsOverrideOnlineApproval STARTED -" + DateTime.Now.ToString());
-            dm.TraceService("====================");
-            try
-            {
-                string cse_ID = inputParams.cse_ID == null ? "0" : inputParams.cse_ID;
-                string udp_ID = inputParams.udp_ID == null ? "0" : inputParams.udp_ID;
-                string rot_ID = inputParams.rot_ID == null ? "0" : inputParams.rot_ID;
-                string cus_ID = inputParams.cus_ID == null ? "0" : inputParams.cus_ID;
-                string Type = inputParams.Type == null ? "" : inputParams.Type;
-
-                List<CusJsonDataOverride> itemData = JsonConvert.DeserializeObject<List<CusJsonDataOverride>>(inputParams.Json);
-
-                string DetailXml = "";
-
-                using (var sw = new StringWriter())
-                {
-                    using (var writer = XmlWriter.Create(sw))
-                    {
-
-                        writer.WriteStartDocument(true);
-                        writer.WriteStartElement("r");
-                        int c = 0;
-                        foreach (CusJsonDataOverride id in itemData)
-                        {
-                            string[] arr = { id.CrLmt.ToString(), id.AvlLmt.ToString(), id.TotLmt.ToString(), id.InvID.ToString(), id.OverDate.ToString(), id.CrDays.ToString() };
-                            string[] arrName = { "CrLmt", "AvlLmt", "TotLmt", "InvID", "OverDate", "CrDays" };
-                            dm.createNode(arr, arrName, writer);
-                        }
-
-                        writer.WriteEndElement();
-                        writer.WriteEndDocument();
-                        writer.Close();
-                    }
-                    DetailXml = sw.ToString();
-                }
-
-
-                string[] ar = { udp_ID.ToString(), rot_ID.ToString(), cus_ID.ToString(), Type.ToString(), DetailXml.ToString() };
-                DataTable dt = dm.loadList("InsOverrideApproval", "sp_OverrideOnline", cse_ID.ToString(), ar);
-
-
-                if (dt.Rows.Count > 0)
-                {
-                    List<CusOverrideApprOut> listoutput = new List<CusOverrideApprOut>();
-                    foreach (DataRow dr in dt.Rows)
-                    {
-                        listoutput.Add(new CusOverrideApprOut
-                        {
-                            Res = dr["Res"].ToString(),
-                            Title = dr["Title"].ToString(),
-                            Descr = dr["Descr"].ToString(),
-                            TransID = dr["TransID"].ToString()
-
-
-                        });
-                    }
-                    JSONString = JsonConvert.SerializeObject(new
-                    {
-                        result = listoutput
-                    });
-
-                    return JSONString;
-                }
-                else
-                {
-                    JSONString = "NoDataRes";
-                    dm.TraceService("NoDataRes");
-                }
-            }
-            catch (Exception ex)
-            {
-                JSONString = "NoDataSQL - " + ex.Message.ToString();
-                dm.TraceService(" InsOverrideOnlineApproval Exception - " + ex.Message.ToString());
-                dm.TraceService(ex.Message.ToString());
-            }
-            dm.TraceService("InsOverrideOnlineApproval ENDED - " + DateTime.Now.ToString());
-            dm.TraceService("==================");
-            return JSONString;
-        }
-        public string GetOverrideApprDetailStatus([FromForm] CusGetOverrideApprDetailStatusIn inputParams)
-        {
-            dm.TraceService("GetOverrideApprDetailStatus STARTED " + DateTime.Now.ToString());
-            dm.TraceService("======================================");
-            string TransID = inputParams.TransID == null ? "0" : inputParams.TransID;
-            string rotID = inputParams.rotID == null ? "0" : inputParams.rotID;
-
-            string[] arr = { rotID.ToString() };
-            DataTable dtReturnStatus = dm.loadList("SelStatusForOverrideApprDetail", "sp_OverrideOnline", TransID.ToString(), arr);
-
-            try
-            {
-                if (dtReturnStatus.Rows.Count > 0)
-                {
-                    List<CusGetOverrideApprDetailStatusOut> listHeader = new List<CusGetOverrideApprDetailStatusOut>();
-                    foreach (DataRow dr in dtReturnStatus.Rows)
-                    {
-                        listHeader.Add(new CusGetOverrideApprDetailStatusOut
-                        {
-                            HeaderStatus = dr["ooh_ApprovalStatus"].ToString(),
-                            DetailStatus = dr["ood_ApprovalStatus"].ToString()
-
-                        });
-                    }
-
-                    JSONString = JsonConvert.SerializeObject(new
-                    {
-                        result = listHeader
-                    });
-
-                    return JSONString;
-                }
-                else
-                {
-                    dm.TraceService("NoDataRes");
-                    JSONString = "NoDataRes";
-                }
-            }
-            catch (Exception ex)
-            {
-                dm.TraceService(ex.Message.ToString());
-                JSONString = "NoDataSQL - " + ex.Message.ToString();
-            }
-
-            dm.TraceService("GetOverrideApprDetailStatus ENDED " + DateTime.Now.ToString());
-            dm.TraceService("======================================");
-
-            return JSONString;
-        }
-
-        //public string GetOverRideHeader(CusOverrideHeader inputParams)
-        //{
-
-        //    dm.TraceService("SelectCFOCList STARTED " + DateTime.Now.ToString());
-        //    dm.TraceService("======================================");
-        //    string Status_Value = inputParams.Status_Value == null ? "0" : inputParams.Status_Value;
-
-        //    DataTable dt = dm.loadList("ListOverRideCC", "sp_CustomerConnect", Status_Value.ToString());
-        //    try
-        //    {
-        //        if (dt.Rows.Count > 0)
-        //        {
-        //            List<CCFOCApprovalHeaderOut> listHeader = new List<CCFOCApprovalHeaderOut>();
-        //            foreach (DataRow dr in dt.Rows)
-        //            {
-        //                listHeader.Add(new CCFOCApprovalHeaderOut
-        //                {
-        //                    cus_Code = dr["cus_Code"].ToString(),
-        //                    cus_Name = dr["cus_Name"].ToString(),
-        //                    rot_Name = dr["rot_Name"].ToString(),
-        //                    rot_Code = dr["rot_Code"].ToString(),
-        //                    usr_Name = dr["usr_Name"].ToString(),
-        //                    cfh_ID = dr["cfh_ID"].ToString(),
-        //                    cfh_RtnId = dr["cfh_RtnId"].ToString(),
-        //                    CreatedDate = dr["CreatedDate"].ToString(),
-        //                    CreatedBy = dr["CreatedBy"].ToString(),
-        //                    ApprovalStatus = dr["ApprovalStatus"].ToString(),
-        //                    ModifiedDate = dr["ModifiedDate"].ToString(),
-        //                    ModifiedBy = dr["ModifiedBy"].ToString(),
-        //                    rsn_Name = dr["rsn_Name"].ToString(),
-
-        //                });
-        //            }
-
-        //            JSONString = JsonConvert.SerializeObject(new
-        //            {
-        //                result = listHeader
-        //            });
-
-        //            return JSONString;
-        //        }
-        //        else
-        //        {
-        //            dm.TraceService("NoDataRes");
-        //            JSONString = "NoDataRes";
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        dm.TraceService("SelectCFOCList   " + ex.Message.ToString());
-        //        JSONString = "NoDataSQL - " + ex.Message.ToString();
-        //    }
-
-        //    dm.TraceService("SelectCFOCList  ENDED " + DateTime.Now.ToString());
-        //    dm.TraceService("======================================");
-
-        //    return JSONString;
-        //}
-
-
     }
-
-
-
-
 }

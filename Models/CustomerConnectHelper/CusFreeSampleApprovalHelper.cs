@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Web;
 
 namespace MVC_API.Models.CustomerConnectHelper
@@ -71,7 +72,6 @@ namespace MVC_API.Models.CustomerConnectHelper
         public string rsn_Name { get; set; }
     }
     #endregion
-
     #region foc
     public class CusFOCHeaderIn
     {
@@ -118,56 +118,47 @@ namespace MVC_API.Models.CustomerConnectHelper
 
     public class CCFOCApprovalIn
     {
-        public string cfh_ID { get; set; }
-        public string reasonId { get; set; }
+        public string HeaderId { get; set; }
         public string userId { get; set; }
+        public string remarks { get; set; }
+        public string JSONString { get; set; }
+    }
+    public class CCFOCApprovalDet
+    {
+        public string cfh_ID { get; set; }
     }
     #endregion
-
-    public class CusOverrideApprIn
+    #region override
+    public class CCOverRideOut
     {
-        public string cse_ID { get; set; }
-        public string udp_ID { get; set; }
-        public string rot_ID { get; set; }
-        public string cus_ID { get; set; }
-        public string Type { get; set; }
-        public string Json { get; set; }
+        public string ooa_ID { get; set; }
+        public string ooa_cse_ID { get; set; }
+        public string ooa_udp_ID { get; set; }
+        public string ooa_rot_ID { get; set; }
+        public string ooa_cus_ID { get; set; }
+        public string ooa_TransID { get; set; }
+        public string ooa_Type { get; set; }       
+        public string FlexiField1 { get; set; }
+        public string FlexiField2 { get; set; }
+        public string FlexiField3 { get; set; }
+        public string FlexiField4 { get; set; }
+        public string ooa_ApprovalStatus { get; set; }
+        public string CreatedBy { get; set; }
+        public string CreatedDate { get; set; }
+        public string ModifiedBy { get; set; }
+        public string ModifiedDate { get; set; }
+        public string Status { get; set; }
+        public string ooa_CurrentLevel { get; set; }
+        public string ooa_wfm_ID { get; set; }
     }
-
-    public class CusJsonDataOverride
+    public class CCOverRideApproveIn
     {
-        public string CrLmt { get; set; }
-        public string AvlLmt { get; set; }
-        public string TotLmt { get; set; }
-        public string InvID { get; set; }
-        public string OverDate { get; set; }
-        public string CrDays { get; set; }
-    }
+        public string ooa_ID { get; set; }
+        public string Status { get; set; }
+        public string UserId { get; set; }
 
-    public class CusOverrideApprOut
-    {
-        public string Res { get; set; }
-        public string Title { get; set; }
-        public string Descr { get; set; }
-        public string TransID { get; set; }
     }
-
-    public class CusGetOverrideApprDetailStatusIn
-    {
-        public string TransID { get; set; }
-        public string rotID { get; set; }
-    }
-
-    public class CusGetOverrideApprDetailStatusOut
-    {
-        public string HeaderStatus { get; set; }
-        public string DetailStatus { get; set; }
-    }
-
-    public class CusOverrideHeader
-    {
-        public string Status_Value { get; set; }
-    }
+    #endregion
 }
 
 
