@@ -26,7 +26,7 @@ namespace MVC_API.Controllers.License
         DataModel dm = new DataModel();
         string JSONString = string.Empty;
 
-        public string GetProjectConsumedLicense([FromForm] ConsumedLicenseIn inputParams)
+        public string GetProjectConsumedLicense()
         {
             dm.TraceService("GetProjectConsumedLicense STARTED");
             dm.TraceService("======================================");
@@ -34,14 +34,14 @@ namespace MVC_API.Controllers.License
             try
             {
                 dm.TraceService("begin try");
-                string LicenseKey = inputParams.LicenseKey == null ? "0" : inputParams.LicenseKey;
+                //string LicenseKey = inputParams.LicenseKey == null ? "0" : inputParams.LicenseKey;
                 string ProjectLicenseKey = ConfigurationManager.AppSettings.Get("LicenseKey");
 
-                dm.TraceService("LicenseKey inpara: " + LicenseKey);
+                //dm.TraceService("LicenseKey inpara: " + LicenseKey);
                 dm.TraceService("LicenseKey of Project in web config: " + ProjectLicenseKey);
 
-                if (LicenseKey == ProjectLicenseKey)
-                {
+                //if (LicenseKey == ProjectLicenseKey)
+                //{
                     dm.TraceService("inside if , Licensekey Matches");
 
                     DataTable dt = dm.loadList("LicenseMasterCounts", "sp_LicenseManagement");
@@ -71,7 +71,7 @@ namespace MVC_API.Controllers.License
                             LicenseInpara LicenseIn = new LicenseInpara();
                             LicenseIn = new LicenseInpara
                             {
-                                LicenseKey = LicenseKey.ToString(),
+                                LicenseKey = ProjectLicenseKey.ToString(),
                                 RouteCount = listdata[0].RouteCount,
                                 InventoryUserCount = listdata[0].InventoryUserCount,
                                 BackOfficeUserCount = listdata[0].BackOfficeUserCount,
@@ -91,29 +91,43 @@ namespace MVC_API.Controllers.License
                             if (Json != null)
                             {
                                 // Deserialize and re-serialize for formatting
-                                var jsonObject = JsonConvert.DeserializeObject<JObject>(Json);
-                                string formattedJson = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
+                                //var jsonObject = JsonConvert.DeserializeObject<JObject>(Json);
+                                //string formattedJson = JsonConvert.SerializeObject(jsonObject, Formatting.Indented);
 
-                                ResponseData responseData = JsonConvert.DeserializeObject<ResponseData>(formattedJson);
-                                JObject result = (JObject)responseData.result[0];
+                                //ResponseData responseData = JsonConvert.DeserializeObject<ResponseData>(formattedJson);
+                                //JObject result = (JObject)responseData.result[0];
 
-                                listdata.Add(new ConsumedLicenseOut
+                                ResponseData responseData = JsonConvert.DeserializeObject<ResponseData>(Json);
+
+                                string res = responseData.Result.Res;
+                                string title = responseData.Result.Title;
+                                string descr = responseData.Result.Descr;
+
+                                dm.TraceService($"WebService Response - Res: {res}, Title: {title}, Description: {descr}");
+
+
+                                if (res == "1")
                                 {
-                                    RouteCount = result["RouteCount"].ToString(),
-                                    InventoryUserCount = result["InventoryUserCount"].ToString(),
-                                    BackOfficeUserCount = result["BackOfficeUserCount"].ToString(),
-                                    CustomerConnectUserCount = result["CustomerConnectUserCount"].ToString(),
-                                    SFA_AppUserCount = result["SFA_AppUserCount"].ToString(),
-                                });
+                                    listdata.Add(new ConsumedLicenseOut
+                                    {
+                                        RouteCount = listdata[0].RouteCount.ToString(),
+                                        InventoryUserCount = listdata[0].InventoryUserCount.ToString(),
+                                        BackOfficeUserCount = listdata[0].BackOfficeUserCount.ToString(),
+                                        CustomerConnectUserCount = listdata[0].CustomerConnectUserCount.ToString(),
+                                        SFA_AppUserCount = listdata[0].SFA_AppUserCount.ToString(),
+                                    });
 
-
-                                JSONString = JsonConvert.SerializeObject(new
+                                }
+                                else
                                 {
-                                    result = listdata
-                                });
+                                    dm.TraceService("GetProjectConsumedLicense() License API Returns Failure Response.");
+                                    JSONString = "Error - License API Returns Failure Response";
+                                }
 
-                                return JSONString;
 
+                               
+
+                                
                             }
                             else
                             {
@@ -161,12 +175,12 @@ namespace MVC_API.Controllers.License
                         return JSONString;
 
                     }
-                }
-                else
-                {
-                    dm.TraceService("The license key you entered does not match the expected key. Please check and try again.");
-                    JSONString = "The license key you entered does not match the expected key. Please check and try again.";
-                }
+                //}
+                //else
+                //{
+                //    dm.TraceService("The license key you entered does not match the expected key. Please check and try again.");
+                //    JSONString = "The license key you entered does not match the expected key. Please check and try again.";
+                //}
             }
             catch (Exception ex)
             {
@@ -261,15 +275,15 @@ namespace MVC_API.Controllers.License
         }
         public class Result
         {
-            public string RouteCount { get; set; }
-            public string InventoryUserCount { get; set; }
-            public string BackOfficeUserCount { get; set; }
-            public string CustomerConnectUserCount { get; set; }
-            public string SFA_AppUserCount { get; set; }
+            public string Res { get; set; }
+            public string Title { get; set; }
+            public string Descr { get; set; }
+          
         }
         public class ResponseData
         {
-            public JArray result { get; set; }
+            public Result Result { get; set; }
+           // public JArray result { get; set; }
         }
     }
 }
