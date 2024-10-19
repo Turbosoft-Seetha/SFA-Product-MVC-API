@@ -21,6 +21,7 @@ namespace MVC_API.Models
         public string ff2 { get; set; }
         public string ff3 { get; set; }
         public string ff4 { get; set; }
+        public string ff5 { get; set; }
     }
     public class OverrideApprOut
     {
