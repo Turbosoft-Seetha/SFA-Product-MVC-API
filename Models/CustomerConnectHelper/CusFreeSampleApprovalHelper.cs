@@ -134,14 +134,17 @@ namespace MVC_API.Models.CustomerConnectHelper
         public string ooa_ID { get; set; }
         public string ooa_cse_ID { get; set; }
         public string ooa_udp_ID { get; set; }
-        public string ooa_rot_ID { get; set; }
-        public string ooa_cus_ID { get; set; }
+        public string rot_Code { get; set; }
+        public string rot_Name { get; set; }
+        public string cus_Code { get; set; }
+        public string cus_Name { get; set; }
         public string ooa_TransID { get; set; }
         public string ooa_Type { get; set; }       
-        public string FlexiField1 { get; set; }
-        public string FlexiField2 { get; set; }
-        public string FlexiField3 { get; set; }
-        public string FlexiField4 { get; set; }
+        public string TotalInvAmt { get; set; }
+        public string AvailableCreditLimit { get; set; }
+        public string TotalCreditLimit { get; set; }
+        public string TotalOutstanding { get; set; }
+        public string TotalCreditDays { get; set; }
         public string ooa_ApprovalStatus { get; set; }
         public string CreatedBy { get; set; }
         public string CreatedDate { get; set; }

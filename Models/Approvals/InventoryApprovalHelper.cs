@@ -486,6 +486,9 @@ namespace MVC_API.Models.ApprovalHelper
         public string VoidTransactionHeader { get; set; }
         public string MustSellHeader { get; set; }
         public string UnschVisit { get; set; }
+        public string PendingSampleApprovalHeader { get; set; }
+        public string PendingCustomerFOCApprovalHeader { get; set; }
+        public string PendingOverRideApprovalHeader { get; set; }
 
     }
 

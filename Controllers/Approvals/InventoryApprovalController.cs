@@ -1136,8 +1136,10 @@ namespace MVC_API.Controllers.Approvals
                             SettlementApprovalHeader = dr["PendingSettlement"].ToString(),
                             VoidTransactionHeader = dr["PendingVoidTransaction"].ToString(),
                             MustSellHeader = dr["PendingMustSell"].ToString(),
-                            UnschVisit = dr["PendingUnschVisit"].ToString()
-
+                            UnschVisit = dr["PendingUnschVisit"].ToString(),
+                            PendingSampleApprovalHeader = dr["PendingSampleApprovalHeader"].ToString(),
+                            PendingCustomerFOCApprovalHeader = dr["PendingCustomerFOCApprovalHeader"].ToString(),
+                            PendingOverRideApprovalHeader = dr["PendingOverRideApprovalHeader"].ToString(),
 
                         });
                     }
