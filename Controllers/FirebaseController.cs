@@ -39,43 +39,45 @@ namespace MVC_API.Controllers
 
             }
             else
-            { 
-               RtnID Input = JsonConvert.DeserializeObject<RtnID>(rawContent);
-              rtnID = Input.rnt_ID.ToString();
-             }
+            {
+                RtnID Input = JsonConvert.DeserializeObject<RtnID>(rawContent);
+                rtnID = Input.rnt_ID.ToString();
+            }
             string Jsonstring = "";
 
-            DataTable dt = dm.loadList("GetPendingPush", "sp_PushNotification",rtnID);
+            DataTable dt = dm.loadList("GetPendingPush", "sp_PushNotification", rtnID);
             foreach (DataRow row in dt.Rows)
             {
                 string Mode = row["rnt_Mode"].ToString();
-                string jsonPath ="";
+                string DeviceToken = "";
+                string jsonPath = "";
 
-                if (Mode=="C")
+                if (Mode == "C")
                 {
 
-                     jsonPath = AppDomain.CurrentDomain.BaseDirectory + "Settings\\google-services.json";
+                    jsonPath = AppDomain.CurrentDomain.BaseDirectory + "Settings\\google-services.json";
+                    DeviceToken = row["user_Token"].ToString();
 
                 }
-                else if (Mode=="S")
+                else if (Mode == "S")
                 {
                     jsonPath = AppDomain.CurrentDomain.BaseDirectory + "Settings\\sfa-product_Firebase.json";
-
+                    DeviceToken = row["rot_Token"].ToString();
                 }
                 try
                 {
 
 
 
-                        if (FirebaseApp.DefaultInstance == null)
+                    if (FirebaseApp.DefaultInstance == null)
+                    {
+                        FirebaseApp.Create(new AppOptions
                         {
-                            FirebaseApp.Create(new AppOptions
-                            {
-                                Credential = GoogleCredential.FromFile(jsonPath) // Path to your service account key file
-                            });
-                        }
+                            Credential = GoogleCredential.FromFile(jsonPath) // Path to your service account key file
+                        });
+                    }
 
-                        string DeviceToken = row["user_Token"].ToString();
+
                     string title = row["rnt_Header"].ToString();
                     string body = row["rnt_Desc"].ToString();
 
@@ -106,7 +108,7 @@ namespace MVC_API.Controllers
                     Console.WriteLine("Successfully sent message: " + res);
                     string rntID = row["rnt_ID"].ToString();
                     dm.loadList("UpdateSendStats", "sp_PushNotification", rntID);
-                   
+
 
                 }
                 catch (Exception ex)
@@ -207,4 +209,4 @@ namespace MVC_API.Controllers
 
         }
     }
-    }
+}
