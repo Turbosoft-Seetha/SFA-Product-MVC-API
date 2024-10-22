@@ -39,43 +39,47 @@ namespace MVC_API.Controllers
 
             }
             else
-            { 
-               RtnID Input = JsonConvert.DeserializeObject<RtnID>(rawContent);
-              rtnID = Input.rnt_ID.ToString();
-             }
+            {
+                RtnID Input = JsonConvert.DeserializeObject<RtnID>(rawContent);
+                rtnID = Input.rnt_ID.ToString();
+            }
             string Jsonstring = "";
+            string JSONString = "";
 
-            DataTable dt = dm.loadList("GetPendingPush", "sp_PushNotification",rtnID);
+            DataTable dt = dm.loadList("GetPendingPush", "sp_PushNotification", rtnID);
             foreach (DataRow row in dt.Rows)
             {
                 string Mode = row["rnt_Mode"].ToString();
-                string jsonPath ="";
-
-                if (Mode=="C")
+                string DeviceToken = "";
+                string jsonPath = "";
+                dm.TraceService("Mode:" + Mode);
+                if (Mode == "C")
                 {
 
-                     jsonPath = AppDomain.CurrentDomain.BaseDirectory + "Settings\\google-services.json";
+                    jsonPath = AppDomain.CurrentDomain.BaseDirectory + "Settings\\google-services.json";
+                    DeviceToken = row["user_Token"].ToString();
 
                 }
-                else if (Mode=="S")
+                else if (Mode == "S")
                 {
                     jsonPath = AppDomain.CurrentDomain.BaseDirectory + "Settings\\sfa-product_Firebase.json";
-
+                    DeviceToken = row["rot_Token"].ToString();
                 }
+                dm.TraceService("Token:" + DeviceToken);
                 try
                 {
 
 
 
-                        if (FirebaseApp.DefaultInstance == null)
+                    if (FirebaseApp.DefaultInstance == null)
+                    {
+                        FirebaseApp.Create(new AppOptions
                         {
-                            FirebaseApp.Create(new AppOptions
-                            {
-                                Credential = GoogleCredential.FromFile(jsonPath) // Path to your service account key file
-                            });
-                        }
+                            Credential = GoogleCredential.FromFile(jsonPath) // Path to your service account key file
+                        });
+                    }
 
-                        string DeviceToken = row["user_Token"].ToString();
+
                     string title = row["rnt_Header"].ToString();
                     string body = row["rnt_Desc"].ToString();
 
@@ -103,26 +107,42 @@ namespace MVC_API.Controllers
                     var message = ConvertToFirebaseMessage(notificationMessage);
 
                     string res = await FirebaseMessaging.DefaultInstance.SendAsync(message);
-                    Console.WriteLine("Successfully sent message: " + res);
+                    dm.TraceService("Successfully sent message: " + res);
                     string rntID = row["rnt_ID"].ToString();
-                    dm.loadList("UpdateSendStats", "sp_PushNotification", rntID);
-                   
+                    DataTable ds = dm.loadList("UpdateSendStats", "sp_PushNotification", rntID);
+                    if (ds != null)
+                    {
+                        if (ds.Rows.Count > 0)
+                        {
+                            int Res = Int32.Parse(ds.Rows[0]["Res"].ToString());
+                            dm.TraceService("RES:" + Res);
+                        }
+
+                    }
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = "SuccessFully Sent"
+                    }, Formatting.None, new JsonSerializerSettings
+                    {
+                        StringEscapeHandling = StringEscapeHandling.EscapeHtml
+                    });
 
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error sending message: " + ex.Message);
+                    dm.TraceService("Error sending message: " + ex.Message);
+                    JSONString = JsonConvert.SerializeObject(new
+                    {
+                        result = "Failure"
+                    }, Formatting.None, new JsonSerializerSettings
+                    {
+                        StringEscapeHandling = StringEscapeHandling.EscapeHtml
+                    });
                 }
             }
 
-            string JSONString = JsonConvert.SerializeObject(new
-            {
-                result = ""
-            }, Formatting.None, new JsonSerializerSettings
-            {
-                StringEscapeHandling = StringEscapeHandling.EscapeHtml
-            });
-            dm.TraceService("Final JSON string-Firebase" + JSONString);
+
+
 
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
             response.Content = new StringContent(JSONString, Encoding.UTF8, "application/json");
@@ -207,4 +227,5 @@ namespace MVC_API.Controllers
 
         }
     }
-    }
+
+}
