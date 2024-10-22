@@ -255,7 +255,7 @@ namespace MVC_API.Models
         public string Total { get; set; }
         public string Signature { get; set; }
         public string RetReqSeq { get; set; }
-
+        public string BatchJSONString { get; set; }
 
 
     }
@@ -278,6 +278,16 @@ namespace MVC_API.Models
         public string GrandTotal { get; set; }
 
 
+    }
+    public class SRBatchData
+    {
+        public string BatchNumber { get; set; }
+        public string ExpiryDate { get; set; }
+        public string BaseUOM { get; set; }
+        public string OrderedQty { get; set; }
+        public string AdjustedQty { get; set; }
+        public string LoadInQty { get; set; }
+        public string itm_ID { get; set; }
     }
     public class ScheduledReturnout
     {
@@ -419,24 +429,32 @@ namespace MVC_API.Models
         public string HQty { get; set; }
         public string LUOM { get; set; }
         public string LQty { get; set; }
-
-
         public string prd_Name { get; set; }
-
         public string prd_code { get; set; }
         public string prd_LongDesc { get; set; }
         public string prd_cat_id { get; set; }
         public string prd_sub_ID { get; set; }
         public string prd_brd_ID { get; set; }
-
         public string prd_NameArabic { get; set; }
         public string prd_LongDescArabic { get; set; }
         public string prd_Image { get; set; }
         public string HigherPrice { get; set; }
         public string LowerPrice { get; set; }
         public string VatPerc { get; set; }
+        public string prd_IsBatchItem { get; set; }
+        public List<RTNInvoiceBatchSerial> BatchSerial { get; set; }
 
 
+    }
+    public class RTNInvoiceBatchSerial
+    {
+        public string BatchNumber { get; set; }
+        public string ExpiryDate { get; set; }
+        public string BaseUOM { get; set; }
+        public string OrderedQty { get; set; }
+        public string AdjustedQty { get; set; }
+        public string LoadInQty { get; set; }
+        public string ind_itm_ID { get; set; }
     }
 
     public class PostAttachment
@@ -466,6 +484,7 @@ namespace MVC_API.Models
         public string rrd_LineTotal { get; set; }
         public string rrd_Vat { get; set; }
         public string rrd_GrandTotal { get; set; }
+        public string prd_IsBatchItem { get; set; }
 
     }
 
@@ -479,7 +498,19 @@ namespace MVC_API.Models
     {
         public string rrh_inv_ID { get; set; }
         public string inv_InvoiceID { get; set; }
-
+        public List<GetReturnItemInvoiceBatch> BatchSerial { get; set; }
+    }
+    public class GetReturnItemInvoiceBatch
+    {
+        public string BatchNumber { get; set; }
+        public string ExpiryDate { get; set; }
+        public string BaseUOM { get; set; }
+        public string OrderedQty { get; set; }
+        public string AdjustedQty { get; set; }
+        public string LoadInQty { get; set; }
+        public string inv_InvoiceID { get; set; }
+        public string inv_itm_ID { get; set; }
+        public string inv_ID { get; set; }
     }
 
 
@@ -501,6 +532,7 @@ namespace MVC_API.Models
         public string udpID { get; set; }
         public string Type { get; set; }
         public string InvId { get; set; }
+        public string BatchData { get; set; }
 
 
     }
@@ -514,6 +546,17 @@ namespace MVC_API.Models
 
         public string amount { get; set; }
         public string rsnid { get; set; }
+    } 
+    public class InsMultipleInvReturnReqBatch
+    {
+        public string BatchNumber { get; set; }
+        public string ExpiryDate { get; set; }
+        public string BaseUOM { get; set; }
+        public string OrderedQty { get; set; }
+        public string AdjustedQty { get; set; }
+        public string LoadInQty { get; set; }
+        public string itm_ID { get; set; }
+        public string inv_ID { get; set; }
     }
     public class InsMultipleInvReturnReqStatus
     {
