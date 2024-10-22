@@ -1099,6 +1099,8 @@ namespace MVC_API.Controllers
                                     AdjustedQty = drDetails["slb_AdjustedQty"].ToString(),
                                     LoadInQty = drDetails["slb_LoadInQty"].ToString(),
                                     ind_itm_ID = drDetails["ind_itm_ID"].ToString(),
+                                    inv_ID = drDetails["inv_ID"].ToString(),
+                                  
                                 });
                             }
                         }
@@ -1560,24 +1562,23 @@ namespace MVC_API.Controllers
                         List<GetReturnItemInvoiceBatch> listBatchSerial = new List<GetReturnItemInvoiceBatch>();
                         foreach (DataRow drDetails in batchData.Rows)
                         {
-                            if (dr["sld_ID"].ToString() == drDetails["slb_sld_ID"].ToString() && dr["sld_itm_ID"].ToString() == drDetails["sld_itm_ID"].ToString())
+                            if (dr["rrh_inv_ID"].ToString() == drDetails["rrb_inv_id"].ToString())
                             {
                                 listBatchSerial.Add(new GetReturnItemInvoiceBatch
                                 {
-                                    BatchNumber = drDetails["slb_Number"].ToString(),
-                                    ExpiryDate = drDetails["slb_ExpiryDate"].ToString(),
-                                    BaseUOM = drDetails["slb_BaseUOM"].ToString(),
-                                    OrderedQty = drDetails["slb_OrderedQty"].ToString(),
-                                    AdjustedQty = drDetails["slb_AdjustedQty"].ToString(),
-                                    LoadInQty = drDetails["slb_LoadInQty"].ToString(),
-                                    inv_InvoiceID = drDetails["inv_InvoiceID"].ToString(),
-                                    inv_itm_ID = drDetails["inv_itm_ID"].ToString(),
-                                    inv_ID= drDetails["inv_ID"].ToString(),
+                                    BatchNumber = drDetails["BatchNumber"].ToString(),
+                                    ExpiryDate = drDetails["ExpiryDate"].ToString(),
+                                    BaseUOM = drDetails["BaseUOM"].ToString(),
+                                    OrderedQty = drDetails["OrderedQty"].ToString(),
+                                    AdjustedQty = drDetails["AdjustedQty"].ToString(),
+                                    LoadInQty = drDetails["LoadInQty"].ToString(),
+                                    itm_ID = drDetails["rrd_prd_ID"].ToString(),
+                                    inv_ID = drDetails["inv_ID"].ToString(),
 
                                 });
                             }
                         }
-
+                       
                         listHeader.Add(new GetReturnItemInvoiceOut
                         {
 

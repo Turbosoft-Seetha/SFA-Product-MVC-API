@@ -455,6 +455,7 @@ namespace MVC_API.Models
         public string AdjustedQty { get; set; }
         public string LoadInQty { get; set; }
         public string ind_itm_ID { get; set; }
+        public string inv_ID { get; set; }
     }
 
     public class PostAttachment
@@ -508,8 +509,7 @@ namespace MVC_API.Models
         public string OrderedQty { get; set; }
         public string AdjustedQty { get; set; }
         public string LoadInQty { get; set; }
-        public string inv_InvoiceID { get; set; }
-        public string inv_itm_ID { get; set; }
+        public string itm_ID { get; set; }
         public string inv_ID { get; set; }
     }
 
