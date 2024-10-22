@@ -20,10 +20,20 @@ namespace MVC_API.Models
         public string ReqID { get; set; }
         public string Type { get; set; }
         public string cus_ID { get; set; }
+        public string JsonBatch { get; set; }
 
 
     }
 
+    public class PostMustSellBatchData
+    {
+        public string PrdID { get; set; } = "";
+        public string BatchNum { get; set; } = "";
+        public string BatchQty { get; set; } = "";
+        public string BatchExpiry { get; set; } = "";
+
+
+    }
     public class PostMustSellItemData
     {
         public string ItemId { get; set; }
