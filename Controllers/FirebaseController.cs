@@ -52,7 +52,7 @@ namespace MVC_API.Controllers
                 string Mode = row["rnt_Mode"].ToString();
                 string DeviceToken = "";
                 string jsonPath = "";
-
+                dm.TraceService("Mode:" + Mode);
                 if (Mode == "C")
                 {
 
@@ -65,6 +65,7 @@ namespace MVC_API.Controllers
                     jsonPath = AppDomain.CurrentDomain.BaseDirectory + "Settings\\sfa-product_Firebase.json";
                     DeviceToken = row["rot_Token"].ToString();
                 }
+                dm.TraceService("Token:" + DeviceToken);
                 try
                 {
 
@@ -106,7 +107,7 @@ namespace MVC_API.Controllers
                     var message = ConvertToFirebaseMessage(notificationMessage);
 
                     string res = await FirebaseMessaging.DefaultInstance.SendAsync(message);
-                    Console.WriteLine("Successfully sent message: " + res);
+                    dm.TraceService("Successfully sent message: " + res);
                     string rntID = row["rnt_ID"].ToString();
                     DataTable ds = dm.loadList("UpdateSendStats", "sp_PushNotification", rntID);
                     if (ds != null)
@@ -114,6 +115,7 @@ namespace MVC_API.Controllers
                         if (ds.Rows.Count > 0)
                         {
                             int Res = Int32.Parse(ds.Rows[0]["Res"].ToString());
+                            dm.TraceService("RES:" + Res);
                         }
 
                     }
@@ -128,7 +130,7 @@ namespace MVC_API.Controllers
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error sending message: " + ex.Message);
+                    dm.TraceService("Error sending message: " + ex.Message);
                     JSONString = JsonConvert.SerializeObject(new
                     {
                         result = "Failure"
@@ -225,4 +227,5 @@ namespace MVC_API.Controllers
 
         }
     }
+
 }
