@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -74,13 +75,17 @@ namespace MVC_API.Controllers
             try
             {
                 List<PostDeliveryItemData> itemData = JsonConvert.DeserializeObject<List<PostDeliveryItemData>>(inputParams.JSONString);
+                List<PostDeliveryBatchData> BatchData = JsonConvert.DeserializeObject<List<PostDeliveryBatchData>>(inputParams.JsonBatch);
                 try
                 {
                     string OrderID = inputParams.OrderId == null ? "0" : inputParams.OrderId;
                     string status = inputParams.Status == null ? "PA" : inputParams.Status;
                     string userID = inputParams.UserId == null ? "0" : inputParams.UserId;
                     string finalAmount = inputParams.FinalAmount == null ? "0" : inputParams.FinalAmount;
+
                     string InputXml = "";
+                    string BatchDetailXml = "";
+
                     using (var sw = new StringWriter())
                     {
                         using (var writer = XmlWriter.Create(sw))
@@ -102,10 +107,31 @@ namespace MVC_API.Controllers
                         }
                         InputXml = sw.ToString();
                     }
+                    using (var sw = new StringWriter())
+                    {
+                        using (var writer = XmlWriter.Create(sw))
+                        {
+
+                            writer.WriteStartDocument(true);
+                            writer.WriteStartElement("r");
+                            int c = 0;
+                            foreach (PostDeliveryBatchData id in BatchData)
+                            {
+                                string[] arrBatch = { id.PrdID.ToString(), id.BatchNum.ToString(), id.BatchExpiry.ToString(), id.BatchQty.ToString() };
+                                string[] arrNameBatch = { "PrdID", "BatchNum", "BatchExpiry", "BatchQty" };
+                                dm.createNode(arrBatch, arrNameBatch, writer);
+                            }
+
+                            writer.WriteEndElement();
+                            writer.WriteEndDocument();
+                            writer.Close();
+                        }
+                        BatchDetailXml = sw.ToString();
+                    }
 
                     try
                     {
-                        string[] arr = { userID.ToString(), finalAmount.ToString(), status.ToString(), InputXml.ToString() };
+                        string[] arr = { userID.ToString(), finalAmount.ToString(), status.ToString(), InputXml.ToString(), BatchDetailXml.ToString() };
                         string Value = dm.SaveData("sp_DeliveryApproval", "InsPartialDeliveryForApproval", OrderID.ToString(), arr);
                         int Output = Int32.Parse(Value);
                         List<GetDeliveryInsertStatus> listStatus = new List<GetDeliveryInsertStatus>();

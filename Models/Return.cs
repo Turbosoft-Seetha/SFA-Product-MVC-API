@@ -159,6 +159,7 @@ namespace MVC_API.Models
         public string ReturnType { get; set; }
         public string ReturnMode { get; set; }
         public string cus_ID { get; set; }
+        public string JsonBatch { get; set; }
 
 
     }
@@ -565,5 +566,13 @@ namespace MVC_API.Models
         public string ReqID { get; set; }
     }
 
+    public class PostReturnBatchData
+    {
+        public string PrdID { get; set; } = "";
+        public string BatchNum { get; set; } = "";
+        public string BatchQty { get; set; } = "";
+        public string BatchExpiry { get; set; } = "";
 
+
+    }
 }

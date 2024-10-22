@@ -148,6 +148,7 @@ namespace MVC_API.Controllers
             try
             {
                 List<PostReturnItemData> itemData = JsonConvert.DeserializeObject<List<PostReturnItemData>>(inputParams.JSONString);
+                List<PostReturnBatchData> BatchData = JsonConvert.DeserializeObject<List<PostReturnBatchData>>(inputParams.JsonBatch);
                 try
                 {
                     string ReturnID = inputParams.ReturnID == null ? "0" : inputParams.ReturnID;
@@ -161,6 +162,8 @@ namespace MVC_API.Controllers
                     string cus_ID = inputParams.cus_ID == null ? "" : inputParams.cus_ID;
 
                     string InputXml = "";
+                    string BatchDetailXml = "";
+
                     using (var sw = new StringWriter())
                     {
                         using (var writer = XmlWriter.Create(sw))
@@ -181,12 +184,34 @@ namespace MVC_API.Controllers
                             writer.Close();
                         }
                         InputXml = sw.ToString();
+                    }
 
+                    using (var sw = new StringWriter())
+                    {
+                        using (var writer = XmlWriter.Create(sw))
+                        {
+
+                            writer.WriteStartDocument(true);
+                            writer.WriteStartElement("r");
+                            int c = 0;
+                            foreach (PostReturnBatchData id in BatchData)
+                            {
+                                string[] arrBatch = { id.PrdID.ToString(), id.BatchNum.ToString(), id.BatchExpiry.ToString(), id.BatchQty.ToString() };
+                                string[] arrNameBatch = { "PrdID", "BatchNum", "BatchExpiry", "BatchQty" };
+                                dm.createNode(arrBatch, arrNameBatch, writer);
+                            }
+
+                            writer.WriteEndElement();
+                            writer.WriteEndDocument();
+                            writer.Close();
+                        }
+                        BatchDetailXml = sw.ToString();
                     }
 
                     try
                     {
-                        string[] arr = { userID.ToString(), status.ToString(), InputXml.ToString(), udpID.ToString(), rotID.ToString(),ReqID.ToString(),ReturnMode.ToString(),ReturnType.ToString() ,cus_ID.ToString()};
+                        string[] arr = { userID.ToString(), status.ToString(), InputXml.ToString(), udpID.ToString(), rotID.ToString(),ReqID.ToString(),
+                            ReturnMode.ToString(),ReturnType.ToString() ,cus_ID.ToString(), BatchDetailXml.ToString()};
                         DataTable dt = dm.loadList("InsReturnForApproval","sp_ReturnRequest",  ReturnID.ToString(), arr);
                        
                         List<GetReturnInsertStatus> listStatus = new List<GetReturnInsertStatus>();

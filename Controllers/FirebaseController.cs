@@ -28,8 +28,10 @@ namespace MVC_API.Controllers
         [HttpPost]
         public async Task<HttpResponseMessage> PushSingleMessage()
         {
-
+            string controllerName = GetType().Name;
+            dm.TraceService("----------------PushMsgToToken Starts------------- ", controllerName);
             string rawContent = string.Empty;
+
             rawContent = await Request.Content.ReadAsStringAsync();
             string rtnID = "";
 
@@ -45,6 +47,7 @@ namespace MVC_API.Controllers
             }
             string Jsonstring = "";
             string JSONString = "";
+            dm.TraceService("----------------DB query call starts------------- ", controllerName);
 
             DataTable dt = dm.loadList("GetPendingPush", "sp_PushNotification", rtnID);
             foreach (DataRow row in dt.Rows)
@@ -52,7 +55,7 @@ namespace MVC_API.Controllers
                 string Mode = row["rnt_Mode"].ToString();
                 string DeviceToken = "";
                 string jsonPath = "";
-                dm.TraceService("Mode:" + Mode);
+                dm.TraceService("Mode:" + Mode, controllerName);
                 if (Mode == "C")
                 {
 
@@ -65,7 +68,7 @@ namespace MVC_API.Controllers
                     jsonPath = AppDomain.CurrentDomain.BaseDirectory + "Settings\\sfa-product_Firebase.json";
                     DeviceToken = row["rot_Token"].ToString();
                 }
-                dm.TraceService("Token:" + DeviceToken);
+                dm.TraceService("Token:" + DeviceToken, controllerName);
                 try
                 {
 
@@ -107,7 +110,7 @@ namespace MVC_API.Controllers
                     var message = ConvertToFirebaseMessage(notificationMessage);
 
                     string res = await FirebaseMessaging.DefaultInstance.SendAsync(message);
-                    dm.TraceService("Successfully sent message: " + res);
+                    dm.TraceService("Successfully sent message: " + res, controllerName);
                     string rntID = row["rnt_ID"].ToString();
                     DataTable ds = dm.loadList("UpdateSendStats", "sp_PushNotification", rntID);
                     if (ds != null)
@@ -115,7 +118,7 @@ namespace MVC_API.Controllers
                         if (ds.Rows.Count > 0)
                         {
                             int Res = Int32.Parse(ds.Rows[0]["Res"].ToString());
-                            dm.TraceService("RES:" + Res);
+                            dm.TraceService("RES:" + Res, controllerName);
                         }
 
                     }
@@ -127,10 +130,12 @@ namespace MVC_API.Controllers
                         StringEscapeHandling = StringEscapeHandling.EscapeHtml
                     });
 
+                    dm.TraceService("----------------PushMsgToToken ends------------- ", controllerName);
+
                 }
                 catch (Exception ex)
                 {
-                    dm.TraceService("Error sending message: " + ex.Message);
+                    dm.TraceService("Error sending message: " + ex.Message, controllerName);
                     JSONString = JsonConvert.SerializeObject(new
                     {
                         result = "Failure"
@@ -146,9 +151,10 @@ namespace MVC_API.Controllers
 
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
             response.Content = new StringContent(JSONString, Encoding.UTF8, "application/json");
-            dm.TraceService("Ending Time For Pasrsing Call" + DateTime.Now.ToString());
+            dm.TraceService("Ending Time For Pasrsing Call" + DateTime.Now.ToString(), controllerName);
             return response;
         }
+
         static FirebaseAdmin.Messaging.Message ConvertToFirebaseMessage(NotificationMessage notificationMessage)
         {
             return new FirebaseAdmin.Messaging.Message()

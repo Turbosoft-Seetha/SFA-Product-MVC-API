@@ -37,6 +37,7 @@ namespace MVC_API.Models
         public string FinalAmount { get; set; }
         public string Status { get; set; }
         public string JSONString { get; set; }
+        public string JsonBatch { get; set; }
     }
     public class GetDeliveryInsertStatus
     {
@@ -47,7 +48,13 @@ namespace MVC_API.Models
     {
         public string prdid { get; set; }
         public string ApprovalStatus { get; set; }
-
+    }
+    public class PostDeliveryBatchData
+    {
+        public string PrdID { get; set; } = "";
+        public string BatchNum { get; set; } = "";
+        public string BatchQty { get; set; } = "";
+        public string BatchExpiry { get; set; } = "";
 
 
     }
