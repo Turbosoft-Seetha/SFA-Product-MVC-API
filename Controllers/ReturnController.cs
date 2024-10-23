@@ -1587,7 +1587,7 @@ namespace MVC_API.Controllers
                         List<GetReturnItemInvoiceBatch> listBatchSerial = new List<GetReturnItemInvoiceBatch>();
                         foreach (DataRow drDetails in batchData.Rows)
                         {
-                            if (dr["rrh_inv_ID"].ToString() == drDetails["rrb_inv_id"].ToString())
+                            if (dr["rrh_inv_ID"].ToString() == drDetails["inv_id"].ToString())
                             {
                                 listBatchSerial.Add(new GetReturnItemInvoiceBatch
                                 {
