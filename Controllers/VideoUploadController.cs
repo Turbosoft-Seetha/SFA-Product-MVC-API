@@ -230,8 +230,8 @@ namespace MVC_API.Controllers
                     if (audioFile != null && audioFile.ContentLength > 0)
                     {
                         var folderName = DateTime.Now.ToString("ddMMyyyy");
-                        //var physicalPath = Path.Combine(Server.MapPath("~/UploadFiles/AudioFiles"));
-                        var physicalPath = "D:\\turbosoft\\mvcapi\\SFA-Product-MVC-API\\UploadFiles\\AudioFiles";
+                        var physicalPath = Path.Combine(Server.MapPath("~/UploadFiles/AudioFiles"));
+                        //var physicalPath = "D:\\turbosoft\\mvcapi\\SFA-Product-MVC-API\\UploadFiles\\AudioFiles";
                         // Ensure directory exists
                         if (!Directory.Exists(physicalPath))
                         {
