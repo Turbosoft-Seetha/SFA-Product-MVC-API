@@ -20,7 +20,7 @@ namespace MVC_API.Controllers
 {
     public class OverrideOnlineController : Controller
     {
-        // GET: OrderCancel
+        // GET: OverrideOnline
         DataModel dm = new DataModel();
         string JSONString = string.Empty;
         [System.Web.Http.HttpPost]

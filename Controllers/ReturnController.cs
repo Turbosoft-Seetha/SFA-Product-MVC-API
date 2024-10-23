@@ -16,6 +16,11 @@ using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
 using Stimulsoft.Report;
 using Stimulsoft.Report.Dictionary;
 using System.Configuration;
+using System.Drawing.Drawing2D;
+using static Stimulsoft.Report.Func;
+using Org.BouncyCastle.Asn1.Ocsp;
+using Stimulsoft.Blockly.Blocks.Maths;
+
 namespace MVC_API.Controllers
 {
     public class ReturnController : Controller
@@ -143,6 +148,7 @@ namespace MVC_API.Controllers
             try
             {
                 List<PostReturnItemData> itemData = JsonConvert.DeserializeObject<List<PostReturnItemData>>(inputParams.JSONString);
+                List<PostReturnBatchData> BatchData = JsonConvert.DeserializeObject<List<PostReturnBatchData>>(inputParams.JsonBatch);
                 try
                 {
                     string ReturnID = inputParams.ReturnID == null ? "0" : inputParams.ReturnID;
@@ -156,6 +162,8 @@ namespace MVC_API.Controllers
                     string cus_ID = inputParams.cus_ID == null ? "" : inputParams.cus_ID;
 
                     string InputXml = "";
+                    string BatchDetailXml = "";
+
                     using (var sw = new StringWriter())
                     {
                         using (var writer = XmlWriter.Create(sw))
@@ -176,12 +184,34 @@ namespace MVC_API.Controllers
                             writer.Close();
                         }
                         InputXml = sw.ToString();
+                    }
 
+                    using (var sw = new StringWriter())
+                    {
+                        using (var writer = XmlWriter.Create(sw))
+                        {
+
+                            writer.WriteStartDocument(true);
+                            writer.WriteStartElement("r");
+                            int c = 0;
+                            foreach (PostReturnBatchData id in BatchData)
+                            {
+                                string[] arrBatch = { id.PrdID.ToString(), id.BatchNum.ToString(), id.BatchExpiry.ToString(), id.BatchQty.ToString() };
+                                string[] arrNameBatch = { "PrdID", "BatchNum", "BatchExpiry", "BatchQty" };
+                                dm.createNode(arrBatch, arrNameBatch, writer);
+                            }
+
+                            writer.WriteEndElement();
+                            writer.WriteEndDocument();
+                            writer.Close();
+                        }
+                        BatchDetailXml = sw.ToString();
                     }
 
                     try
                     {
-                        string[] arr = { userID.ToString(), status.ToString(), InputXml.ToString(), udpID.ToString(), rotID.ToString(),ReqID.ToString(),ReturnMode.ToString(),ReturnType.ToString() ,cus_ID.ToString()};
+                        string[] arr = { userID.ToString(), status.ToString(), InputXml.ToString(), udpID.ToString(), rotID.ToString(),ReqID.ToString(),
+                            ReturnMode.ToString(),ReturnType.ToString() ,cus_ID.ToString(), BatchDetailXml.ToString()};
                         DataTable dt = dm.loadList("InsReturnForApproval","sp_ReturnRequest",  ReturnID.ToString(), arr);
                        
                         List<GetReturnInsertStatus> listStatus = new List<GetReturnInsertStatus>();
@@ -490,6 +520,7 @@ namespace MVC_API.Controllers
             try
             {
                 List<SRItemIDs> itemData = JsonConvert.DeserializeObject<List<SRItemIDs>>(inputParams.JSONString);
+                List<SRBatchData> BatchData = JsonConvert.DeserializeObject<List<SRBatchData>>(inputParams.BatchJSONString);
                 try
                 {
                     string cseID = inputParams.cseID == null ? "0" : inputParams.cseID;
@@ -509,6 +540,7 @@ namespace MVC_API.Controllers
                     string RetReqSeq= inputParams.RetReqSeq == null ? "" : inputParams.RetReqSeq;
 
                     string InputXml = "";
+                    string InputBatchXml = "";
                     string img = "";
 
                     dm.TraceService("PostScheduledReturnRequest InputXml:" + InputXml);
@@ -535,6 +567,36 @@ namespace MVC_API.Controllers
                                 writer.Close();
                             }
                             InputXml = sw.ToString();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        dm.TraceService(ex.Message.ToString());
+                        JSONString = "Issue while creating Xml - " + ex.Message.ToString();
+                    }
+
+                    try
+                    {
+                        using (var sw = new StringWriter())
+                        {
+                            using (var writer = XmlWriter.Create(sw))
+                            {
+
+                                writer.WriteStartDocument(true);
+                                writer.WriteStartElement("r");
+                                int c = 0;
+                                foreach (SRBatchData id in BatchData)
+                                {
+                                    string[] arr = { id.BatchNumber.ToString(), id.ExpiryDate.ToString(), id.BaseUOM.ToString(), id.OrderedQty.ToString(), id.AdjustedQty.ToString(), id.LoadInQty.ToString(), id.itm_ID.ToString() };
+                                    string[] arrName = { "BatchNumber", "ExpiryDate", "BaseUOM", "OrderedQty", "AdjustedQty", "LoadInQty", "itm_ID" };
+                                    dm.createNode(arr, arrName, writer);
+                                }
+                                
+                                writer.WriteEndElement();
+                                writer.WriteEndDocument();
+                                writer.Close();
+                            }
+                            InputBatchXml = sw.ToString();
                         }
                     }
                     catch (Exception ex)
@@ -571,7 +633,7 @@ namespace MVC_API.Controllers
 
 
 
-                            byte[] imageBytes = Convert.FromBase64String(ImageBase64);
+                            byte[] imageBytes = System.Convert.FromBase64String(ImageBase64);
 
                             // Save or process the image as needed
                             string imageFileName = DateTime.Now.ToString("HHmmss") + InvoiceID + "_Uploaded.jpg"; // Set a suitable file name
@@ -599,7 +661,7 @@ namespace MVC_API.Controllers
                     try
                     {
                         string[] arr = { rotID.ToString(), cusID.ToString(), cseID.ToString(), type.ToString(), date.ToString(), Remark.ToString(), InputXml.ToString(), 
-                            InvoiceID.ToString(), UserID.ToString(), SubTotal.ToString(), Vat.ToString(), Total.ToString(), Signpath ,RetReqSeq};
+                            InvoiceID.ToString(), UserID.ToString(), SubTotal.ToString(), Vat.ToString(), Total.ToString(), Signpath ,RetReqSeq , InputBatchXml.ToString()};
 
                         DataTable dtDN = dm.loadList("InsScheduledReturn", "sp_ReturnRequest", udpID, arr);
                         if (dtDN.Rows.Count > 0)
@@ -653,8 +715,6 @@ namespace MVC_API.Controllers
             dm.TraceService("========================================");
             return JSONString;
         }
-
-
 
         public string PostScheduleRtnImage([FromForm] SRImageIn inputParams)
         {
@@ -1037,39 +1097,61 @@ namespace MVC_API.Controllers
             dm.TraceService("======================================");
 
             string rotID = inputParams.inv_ID == null ? "0" : inputParams.inv_ID;
-          
-            DataTable dtreturn = dm.loadList("SelReturnRequestInvoiceDetailData", "sp_ReturnRequest", rotID.ToString());
+            string[] arr = {  };
+
+            DataSet dtreturn = dm.loadListDS("SelReturnRequestInvoiceDetailData", "sp_ReturnRequest", rotID.ToString(), arr);  
+            DataTable itemData = dtreturn.Tables[0];
+            DataTable batchData = dtreturn.Tables[1];
 
             try
             {
-                if (dtreturn.Rows.Count > 0)
+                if (itemData.Rows.Count > 0)
                 {
                     List<GetRtnRequestInvoiceDetail> listHeader = new List<GetRtnRequestInvoiceDetail>();
-                    foreach (DataRow drDetails in dtreturn.Rows)
+                    foreach (DataRow dr in itemData.Rows)
                     {
+                        List<RTNInvoiceBatchSerial> listBatchSerial = new List<RTNInvoiceBatchSerial>();
+                        foreach (DataRow drDetails in batchData.Rows)
+                        {
+                            if (dr["ind_itm_ID"].ToString() == drDetails["ind_itm_ID"].ToString())
+                            {
+                                listBatchSerial.Add(new RTNInvoiceBatchSerial
+                                {
+                                    BatchNumber = drDetails["slb_Number"].ToString(),
+                                    ExpiryDate = drDetails["slb_ExpiryDate"].ToString(),
+                                    BaseUOM = drDetails["slb_BaseUOM"].ToString(),
+                                    OrderedQty = drDetails["slb_OrderedQty"].ToString(),
+                                    AdjustedQty = drDetails["slb_AdjustedQty"].ToString(),
+                                    LoadInQty = drDetails["slb_LoadInQty"].ToString(),
+                                    ind_itm_ID = drDetails["ind_itm_ID"].ToString(),
+                                    inv_ID = drDetails["inv_ID"].ToString(),
+                                  
+                                });
+                            }
+                        }
+
                         listHeader.Add(new GetRtnRequestInvoiceDetail
                         {
 
-                            prd_ID = drDetails["ind_itm_ID"].ToString(),
-                            HUOM = drDetails["HUOM"].ToString(),
-                            HQty = drDetails["HQty"].ToString(),
-                            LUOM = drDetails["LUOM"].ToString(),
-                            LQty = drDetails["LQty"].ToString(),
-
-                            prd_Name = drDetails["prd_Name"].ToString(),
-
-
-                            prd_LongDesc = drDetails["prd_ItemLongDesc"].ToString(),
-                            prd_cat_id = drDetails["prd_cat_ID"].ToString(),
-                            prd_sub_ID = drDetails["prd_sct_ID"].ToString(),
-                            prd_brd_ID = drDetails["prd_brd_ID"].ToString(),
-                            prd_NameArabic = drDetails["prd_NameArabic"].ToString(),
-                            prd_LongDescArabic = drDetails["prd_ArabicItemLongDesc"].ToString(),
-                            prd_Image = drDetails["prd_Image"].ToString(),
-                            HigherPrice = drDetails["ind_HigherPrice"].ToString(),
-                            LowerPrice = drDetails["ind_LowerPrice"].ToString(),
-                            VatPerc = drDetails["ind_VATPerc"].ToString(),
-                            prd_code = drDetails["prd_Code"].ToString(),
+                            prd_ID = dr["ind_itm_ID"].ToString(),
+                            HUOM = dr["HUOM"].ToString(),
+                            HQty = dr["HQty"].ToString(),
+                            LUOM = dr["LUOM"].ToString(),
+                            LQty = dr["LQty"].ToString(),
+                            prd_Name = dr["prd_Name"].ToString(),
+                            prd_LongDesc = dr["prd_ItemLongDesc"].ToString(),
+                            prd_cat_id = dr["prd_cat_ID"].ToString(),
+                            prd_sub_ID = dr["prd_sct_ID"].ToString(),
+                            prd_brd_ID = dr["prd_brd_ID"].ToString(),
+                            prd_NameArabic = dr["prd_NameArabic"].ToString(),
+                            prd_LongDescArabic = dr["prd_ArabicItemLongDesc"].ToString(),
+                            prd_Image = dr["prd_Image"].ToString(),
+                            HigherPrice = dr["ind_HigherPrice"].ToString(),
+                            LowerPrice = dr["ind_LowerPrice"].ToString(),
+                            VatPerc = dr["ind_VATPerc"].ToString(),
+                            prd_code = dr["prd_Code"].ToString(),                          
+                            prd_IsBatchItem = dr["prd_IsBatchItem"].ToString(),
+                            BatchSerial = listBatchSerial,
                         });
                     }
 
@@ -1097,7 +1179,6 @@ namespace MVC_API.Controllers
             dm.TraceService("======================================");
             return JSONString;
         }
-
 
         public string GetActionTakenScheduleRtnData([FromForm] SRRequestHeaderIn inputParams)
         {
@@ -1341,10 +1422,6 @@ namespace MVC_API.Controllers
             return JSONString;
         }
 
-
-
-
-
         public string GetReturnPDF([FromForm] ReturnPDFIn inputParams)
         {
             dm.TraceService("GetOrderPDF STARTED ");
@@ -1423,8 +1500,6 @@ namespace MVC_API.Controllers
             return JSONString;
         }
 
-
-
         public string GetMultipleInvoiceItem([FromForm] GetMultipleInvoiceItemiN inputParams)
         {
             dm.TraceService("GetMultipleInvoiceItem STARTED " + DateTime.Now.ToString());
@@ -1436,6 +1511,7 @@ namespace MVC_API.Controllers
 
             string[] arr = { Cus_ID.ToString() };
             DataTable dtreturn = dm.loadList("SelectItemFromMultipleInv", "sp_ReturnRequest", Rot_ID.ToString(), arr);
+           
 
             try
             {
@@ -1458,8 +1534,8 @@ namespace MVC_API.Controllers
                             rrd_LowerPrice = drDetails["rrd_LowerPrice"].ToString(),
                             rrd_LineTotal = drDetails["rrd_LineTotal"].ToString(),
                             rrd_Vat = drDetails["rrd_Vat"].ToString(),
-                            rrd_GrandTotal = drDetails["rrd_GrandTotal"].ToString()
-
+                            rrd_GrandTotal = drDetails["rrd_GrandTotal"].ToString(),
+                            prd_IsBatchItem = drDetails["prd_IsBatchItem"].ToString(),
 
                         });
                     }
@@ -1488,7 +1564,6 @@ namespace MVC_API.Controllers
             return JSONString;
         }
 
-
         public string GetReturnItemInvoice([FromForm] GetReturnItemInvoiceIn inputParams)
         {
             dm.TraceService("GetReturnItemInvoice STARTED " + DateTime.Now.ToString());
@@ -1496,22 +1571,45 @@ namespace MVC_API.Controllers
 
             string prd_ID = inputParams.prd_ID == null ? "0" : inputParams.prd_ID;
 
-
-            DataTable dtreturn = dm.loadList("SelectReturnItemInv", "sp_ReturnRequest", prd_ID.ToString());
+            string[] arr = { };
+            DataSet dtreturn = dm.loadListDS("SelectReturnItemInv", "sp_ReturnRequest", prd_ID.ToString(), arr);
+            DataTable itemData = dtreturn.Tables[0];
+            DataTable batchData = dtreturn.Tables[1];
 
             try
             {
-                if (dtreturn.Rows.Count > 0)
+                if (itemData.Rows.Count > 0)
                 {
                     List<GetReturnItemInvoiceOut> listHeader = new List<GetReturnItemInvoiceOut>();
-                    foreach (DataRow drDetails in dtreturn.Rows)
+                    foreach (DataRow dr in itemData.Rows)
                     {
+
+                        List<GetReturnItemInvoiceBatch> listBatchSerial = new List<GetReturnItemInvoiceBatch>();
+                        foreach (DataRow drDetails in batchData.Rows)
+                        {
+                            if (dr["rrh_inv_ID"].ToString() == drDetails["inv_id"].ToString())
+                            {
+                                listBatchSerial.Add(new GetReturnItemInvoiceBatch
+                                {
+                                    BatchNumber = drDetails["BatchNumber"].ToString(),
+                                    ExpiryDate = drDetails["ExpiryDate"].ToString(),
+                                    BaseUOM = drDetails["BaseUOM"].ToString(),
+                                    OrderedQty = drDetails["OrderedQty"].ToString(),
+                                    AdjustedQty = drDetails["AdjustedQty"].ToString(),
+                                    LoadInQty = drDetails["LoadInQty"].ToString(),
+                                    itm_ID = drDetails["rrd_prd_ID"].ToString(),
+                                    inv_ID = drDetails["inv_ID"].ToString(),
+
+                                });
+                            }
+                        }
+                       
                         listHeader.Add(new GetReturnItemInvoiceOut
                         {
 
-                            rrh_inv_ID = drDetails["rrh_inv_ID"].ToString(),
-                            inv_InvoiceID = drDetails["inv_InvoiceID"].ToString(),
-
+                            rrh_inv_ID = dr["rrh_inv_ID"].ToString(),
+                            inv_InvoiceID = dr["inv_InvoiceID"].ToString(),
+                            BatchSerial = listBatchSerial,
 
                         });
                     }
@@ -1603,7 +1701,6 @@ namespace MVC_API.Controllers
             return JSONString;
         }
 
-
         public string InsMultipleInvReturnReq([FromForm] InsMultipleInvReturnReqHeader inputParams)
         {
             dm.TraceService("InsMultipleInvReturnReq STARTED " + DateTime.Now.ToString());
@@ -1611,6 +1708,7 @@ namespace MVC_API.Controllers
             try
             {
                 List<InsMultipleInvReturnReqDetails> itemData = JsonConvert.DeserializeObject<List<InsMultipleInvReturnReqDetails>>(inputParams.Detaildata);
+                List<InsMultipleInvReturnReqBatch> BatchData = JsonConvert.DeserializeObject<List<InsMultipleInvReturnReqBatch>>(inputParams.BatchData);
                 try
                 {
                     string rotid = inputParams.rotid == null ? "0" : inputParams.rotid;
@@ -1646,9 +1744,41 @@ namespace MVC_API.Controllers
                         InputXml = sw.ToString();
                     }
 
+                    string InputBatchXml = "";
+
                     try
                     {
-                        string[] arr = { rotid.ToString(), cusid.ToString(), cseID.ToString(), Type.ToString(), InvId.ToString(), InputXml.ToString(), subtotal, Amount, usrid };
+                        using (var sw = new StringWriter())
+                        {
+                            using (var writer = XmlWriter.Create(sw))
+                            {
+
+                                writer.WriteStartDocument(true);
+                                writer.WriteStartElement("r");
+                                int c = 0;
+                                foreach (InsMultipleInvReturnReqBatch id in BatchData)
+                                {
+                                    string[] arr = { id.BatchNumber.ToString(), id.ExpiryDate.ToString(), id.BaseUOM.ToString(), id.OrderedQty.ToString(), id.AdjustedQty.ToString(), id.LoadInQty.ToString(), id.itm_ID.ToString(), id.inv_ID.ToString() };
+                                    string[] arrName = { "BatchNumber", "ExpiryDate", "BaseUOM", "OrderedQty", "AdjustedQty", "LoadInQty", "itm_ID" , "inv_ID" };
+                                    dm.createNode(arr, arrName, writer);
+                                }
+
+                                writer.WriteEndElement();
+                                writer.WriteEndDocument();
+                                writer.Close();
+                            }
+                            InputBatchXml = sw.ToString();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        dm.TraceService(ex.Message.ToString());
+                        JSONString = "Issue while creating Xml - " + ex.Message.ToString();
+                    }
+
+                    try
+                    {
+                        string[] arr = { rotid.ToString(), cusid.ToString(), cseID.ToString(), Type.ToString(), InvId.ToString(), InputXml.ToString(), subtotal, Amount, usrid , InputBatchXml.ToString() };
                         DataTable dt = dm.loadList("InsMutipleInvReturnReq", "sp_AppServices", udpID.ToString(), arr);
 
                         List<InsMultipleInvReturnReqStatus> listStatus = new List<InsMultipleInvReturnReqStatus>();

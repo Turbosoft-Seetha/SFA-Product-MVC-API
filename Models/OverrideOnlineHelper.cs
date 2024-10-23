@@ -17,11 +17,11 @@ namespace MVC_API.Models
         public string rot_ID { get; set; }
         public string cus_ID { get; set; }
         public string Type { get; set; }
-        public string ff1 { get; set; }
-        public string ff2 { get; set; }
-        public string ff3 { get; set; }
-        public string ff4 { get; set; }
-        public string ff5 { get; set; }
+        public string ff1 { get; set; } = "";
+        public string ff2 { get; set; } = "";
+        public string ff3 { get; set; } = "";
+        public string ff4 { get; set; } = "";
+        public string ff5 { get; set; } = "";
     }
     public class OverrideApprOut
     {

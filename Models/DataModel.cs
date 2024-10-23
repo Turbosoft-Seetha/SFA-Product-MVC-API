@@ -412,13 +412,18 @@ namespace MVC_API.Models
         }
 
 
-        public void TraceService(string content)
+        public void TraceService(string content, string callingControllerName = null)
         {
             try
             {
-                StackTrace stackTrace = new StackTrace();
-                string callingMethodName = stackTrace.GetFrame(1).GetMethod().Name;
-                string callingControllerName = stackTrace.GetFrame(1).GetMethod().DeclaringType.Name;
+
+                if (callingControllerName == null)
+                {
+                    StackTrace stackTrace = new StackTrace();
+                    string callingMethodName = stackTrace.GetFrame(1).GetMethod().Name;
+                    callingControllerName = stackTrace.GetFrame(1).GetMethod().DeclaringType.Name;
+                }
+
 
 
                 string LogPath = HttpRuntime.AppDomainAppPath;

@@ -32,6 +32,7 @@ namespace MVC_API.Controllers
             try
             {
                 List<PostMustSellItemData> itemData = JsonConvert.DeserializeObject<List<PostMustSellItemData>>(inputParams.JSONString);
+                List<PostMustSellBatchData> BatchData = JsonConvert.DeserializeObject<List<PostMustSellBatchData>>(inputParams.JsonBatch);
                 try
                 {
                     
@@ -44,6 +45,8 @@ namespace MVC_API.Controllers
                     string cus_ID = inputParams.cus_ID == null ? "0" : inputParams.cus_ID;
 
                     string InputXml = "";
+                    string BatchDetailXml = "";
+
                     using (var sw = new StringWriter())
                     {
                         using (var writer = XmlWriter.Create(sw))
@@ -66,9 +69,32 @@ namespace MVC_API.Controllers
                         InputXml = sw.ToString();
                     }
 
+                    using (var sw = new StringWriter())
+                    {
+                        using (var writer = XmlWriter.Create(sw))
+                        {
+
+                            writer.WriteStartDocument(true);
+                            writer.WriteStartElement("r");
+                            int c = 0;
+                            foreach (PostMustSellBatchData id in BatchData)
+                            {
+                                string[] arrBatch = { id.PrdID.ToString(), id.BatchNum.ToString(), id.BatchExpiry.ToString(), id.BatchQty.ToString() };
+                                string[] arrNameBatch = { "PrdID", "BatchNum", "BatchExpiry", "BatchQty" };
+                                dm.createNode(arrBatch, arrNameBatch, writer);
+                            }
+
+                            writer.WriteEndElement();
+                            writer.WriteEndDocument();
+                            writer.Close();
+                        }
+                        BatchDetailXml = sw.ToString();
+                    }
+
                     try
                     {
-                        string[] arr = { userID.ToString(), status.ToString(), InputXml.ToString(), udpID.ToString(), rotID.ToString(),  ReturnMode.ToString(),  cus_ID.ToString() };
+                        string[] arr = { userID.ToString(), status.ToString(), InputXml.ToString(), udpID.ToString(), rotID.ToString(),  
+                            ReturnMode.ToString(),  cus_ID.ToString(), BatchDetailXml.ToString()};
                         DataTable dt = dm.loadList("InsMustSellApproval", "sp_AppServices", ReqID.ToString(), arr);
 
                         List<GetMSInsertStatus> listStatus = new List<GetMSInsertStatus>();
@@ -82,7 +108,6 @@ namespace MVC_API.Controllers
                                     Mode = dr["Res"].ToString(),
                                     Status = dr["Status"].ToString(),
                                     TransID = dr["TransID"].ToString()
-
                                 });
                             }
 
