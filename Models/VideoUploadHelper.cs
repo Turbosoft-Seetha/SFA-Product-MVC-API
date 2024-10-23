@@ -26,4 +26,10 @@ namespace MVC_API.Models
         public string Descr { get; set; }
         public string ReturnId { get; set; }
     }
+    public class PostAudioIn
+    {
+        public string AudioCode { get; set; }
+        public string UserID { get; set; }
+        public string Remarks { get; set; }
+    }
 }

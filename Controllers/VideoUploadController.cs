@@ -207,5 +207,79 @@ namespace MVC_API.Controllers
         //    }
         //}
 
+        public string PostAudioFile([FromForm] PostAudioIn inputParams)
+        {
+            string JSONString = "";
+            dm.TraceService("PostAudioFile STARTED " + DateTime.Now.ToString());
+
+            string AudioCode = inputParams.AudioCode ?? "0";
+            string UserID = inputParams.UserID ?? "0";
+            string Remarks = inputParams.Remarks ?? "";
+
+            try
+            {
+                var HttpReq = HttpContext.Request;
+                dm.TraceService("HttpReq : " + HttpReq);
+
+                try
+                {
+                    HttpPostedFileBase audioFile = HttpReq.Files[0];
+                    dm.TraceService("HttpReq Count: " + HttpReq.Files.Count);
+                    string audioPath = "";
+
+                    if (audioFile != null && audioFile.ContentLength > 0)
+                    {
+                        var folderName = DateTime.Now.ToString("ddMMyyyy");
+                        //var physicalPath = Path.Combine(Server.MapPath("~/UploadFiles/AudioFiles"));
+                        var physicalPath = "D:\\turbosoft\\mvcapi\\SFA-Product-MVC-API\\UploadFiles\\AudioFiles";
+                        // Ensure directory exists
+                        if (!Directory.Exists(physicalPath))
+                        {
+                            Directory.CreateDirectory(physicalPath);
+                            dm.TraceService("Directory Created");
+                        }
+
+                        string fileName = DateTime.Now.ToString("HHmmss") + Path.GetFileName(audioFile.FileName);
+                        string fullPath = Path.Combine(physicalPath, fileName);
+                        audioFile.SaveAs(fullPath);
+
+                        audioPath = "../UploadFiles/AudioFiles/" + fileName;
+                        dm.TraceService("AudioFile: " + audioFile.FileName);
+                    }
+
+                    string[] arr = { audioPath, Remarks, UserID };
+                    dm.TraceService("Params: " + string.Join(", ", arr));
+
+                    // Call stored procedure to insert audio details into DB
+                    DataTable dt = dm.loadList("InsAudioFile", "sp_SurveyVideo", AudioCode, arr);
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        JSONString = JsonConvert.SerializeObject(new { result = "Success" });
+                    }
+                    else
+                    {
+                        JSONString = "NoDataRes";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    dm.TraceService(ex.Message.ToString());
+                    JSONString = "Error - " + ex.Message;
+                }
+            }
+            catch (Exception ex)
+            {
+                dm.TraceService(ex.Message.ToString());
+                JSONString = "Error - " + ex.Message;
+            }
+
+            dm.TraceService("PostAudioFile ENDED ");
+            return JSONString;
+        }
+
+
+
+
+
     }
 }
