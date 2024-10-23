@@ -42,19 +42,21 @@ namespace MVC_API.Controllers
                         List<PromotionBatchSerial> listBatchSerial = new List<PromotionBatchSerial>();
                         foreach (DataRow drDetails in batchData.Rows)
                         {
-                            if (dr["sld_ID"].ToString() == drDetails["pib_sld_id"].ToString() && dr["sld_itm_ID"].ToString() == drDetails["pib_prd_ID"].ToString())
+                            if (dr["sld_ID"].ToString() == drDetails["slb_sld_ID"].ToString() && dr["sld_itm_ID"].ToString() == drDetails["sld_itm_ID"].ToString())
                             {
                                 listBatchSerial.Add(new PromotionBatchSerial
-                                {                                    
-                                    pib_ID = drDetails["pib_ID"].ToString(),
-                                    pib_Number = drDetails["pib_Number"].ToString(),
-                                    pib_ExpiryDate = drDetails["pib_ExpiryDate"].ToString(),
-                                    pib_BaseUOM = drDetails["pib_BaseUOM"].ToString(),
-                                    pib_Qty = drDetails["pib_Qty"].ToString(),
-                                    pib_sal_id = drDetails["pib_sal_id"].ToString(),
-                                    pib_sld_id = drDetails["pib_sld_id"].ToString(),
-                                    pib_prd_ID = drDetails["pib_prd_ID"].ToString(),
-
+                                {
+                                    slb_sal_ID = drDetails["slb_sal_ID"].ToString(),
+                                    slb_sld_ID = drDetails["slb_sld_ID"].ToString(),
+                                    slb_Number = drDetails["slb_Number"].ToString(),
+                                    slb_ExpiryDate = drDetails["slb_ExpiryDate"].ToString(),
+                                    slb_BaseUOM = drDetails["slb_BaseUOM"].ToString(),
+                                    slb_OrderedQty = drDetails["slb_OrderedQty"].ToString(),
+                                    slb_AdjustedQty = drDetails["slb_AdjustedQty"].ToString(),
+                                    slb_LoadInQty = drDetails["slb_LoadInQty"].ToString(),
+                                    inv_InvoiceID = drDetails["inv_InvoiceID"].ToString(),
+                                    sld_itm_ID = drDetails["sld_itm_ID"].ToString(),
+                                    slb_id = drDetails["slb_id"].ToString(),
 
                                 });
                             }
@@ -68,24 +70,6 @@ namespace MVC_API.Controllers
                             prd_IsBatchItem = dr["prd_IsBatchItem"].ToString(),
                             BatchSerial = listBatchSerial,
 
-                            //sal_number = dr["sal_number"].ToString(),
-                            //sal_ID = dr["sal_ID"].ToString(),
-                            //sld_itm_ID = dr["sld_itm_ID"].ToString(),
-                            //sld_HQty = dr["sld_HQty"].ToString(),
-                            //sld_PieceQty = dr["sld_PieceQty"].ToString(),
-                            //sal_cus_ID = dr["sal_cus_ID"].ToString(),
-                            //inv_InvoiceID = dr["inv_InvoiceID"].ToString(),
-                            //sld_HigherUOM = dr["sld_HigherUOM"].ToString(),
-                            //sld_LowerUOM = dr["sld_LowerUOM"].ToString(),
-                            //sld_HUOMRtnAmount = dr["sld_HUOMRtnAmount"].ToString(),
-                            //sld_LUOMRtnAmount = dr["sld_LUOMRtnAmount"].ToString(),
-                            //ind_Discount = dr["ind_Discount"].ToString(),
-                            //ind_PieceDiscount = dr["ind_PieceDiscount"].ToString(),
-                            //BalanceAmount = dr["BalanceAmount"].ToString(),
-                            //spa_prm_ID = dr["spa_prm_ID"].ToString(),
-                            //prt_Value = dr["prt_Value"].ToString(),
-                            //sld_TransType = dr["sld_TransType"].ToString(),
-                            //CreatedDate = dr["CreatedDate"].ToString(),
 
                         }); ;
                     }
