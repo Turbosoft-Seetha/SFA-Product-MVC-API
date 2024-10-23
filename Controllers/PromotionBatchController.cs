@@ -64,12 +64,14 @@ namespace MVC_API.Controllers
 
                         listItems.Add(new PromotionBatchDetailOut
                         {
+                            sal_ID = dr["sal_ID"].ToString(),
+                            sld_itm_ID = dr["sld_itm_ID"].ToString(),
+                            spa_prm_ID = dr["spa_prm_ID"].ToString(),
                             spa_prd_ID = dr["spa_prd_ID"].ToString(),
                             ElgQty = dr["ElgQty"].ToString(),
                             spi_QualifiedQty = dr["spi_QualifiedQty"].ToString(),
                             prd_IsBatchItem = dr["prd_IsBatchItem"].ToString(),
                             BatchSerial = listBatchSerial,
-
 
                         }); ;
                     }

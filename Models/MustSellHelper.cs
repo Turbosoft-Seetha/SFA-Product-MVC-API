@@ -20,7 +20,7 @@ namespace MVC_API.Models
         public string ReqID { get; set; }
         public string Type { get; set; }
         public string cus_ID { get; set; }
-        public string JsonBatch { get; set; }
+        public string JsonBatch { get; set; } = "";
 
 
     }

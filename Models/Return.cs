@@ -159,7 +159,7 @@ namespace MVC_API.Models
         public string ReturnType { get; set; }
         public string ReturnMode { get; set; }
         public string cus_ID { get; set; }
-        public string JsonBatch { get; set; }
+        public string JsonBatch { get; set; } = "";
 
 
     }

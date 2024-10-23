@@ -18,11 +18,14 @@ namespace MVC_API.Models
 
     public class PromotionBatchDetailOut
     {
+        public string sal_ID { get; set; }
+        public string sld_itm_ID { get; set; }
+        public string spa_prm_ID { get; set; }
         public string spa_prd_ID { get; set; }
         public string ElgQty { get; set; }
         public string spi_QualifiedQty { get; set; }
         public string prd_IsBatchItem { get; set; }
-        public List<PromotionBatchSerial> BatchSerial { get; set; }  
+        public List<PromotionBatchSerial> BatchSerial { get; set; } 
 
     }
 
