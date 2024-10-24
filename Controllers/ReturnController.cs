@@ -1571,45 +1571,23 @@ namespace MVC_API.Controllers
 
             string prd_ID = inputParams.prd_ID == null ? "0" : inputParams.prd_ID;
 
-            string[] arr = { };
-            DataSet dtreturn = dm.loadListDS("SelectReturnItemInv", "sp_ReturnRequest", prd_ID.ToString(), arr);
-            DataTable itemData = dtreturn.Tables[0];
-            DataTable batchData = dtreturn.Tables[1];
+         
+            DataTable dtreturn = dm.loadList("SelectReturnItemInv", "sp_ReturnRequest", prd_ID.ToString());
+           
 
             try
             {
-                if (itemData.Rows.Count > 0)
+                if (dtreturn.Rows.Count > 0)
                 {
                     List<GetReturnItemInvoiceOut> listHeader = new List<GetReturnItemInvoiceOut>();
-                    foreach (DataRow dr in itemData.Rows)
+                    foreach (DataRow dr in dtreturn.Rows)
                     {
 
-                        List<GetReturnItemInvoiceBatch> listBatchSerial = new List<GetReturnItemInvoiceBatch>();
-                        foreach (DataRow drDetails in batchData.Rows)
-                        {
-                            if (dr["rrh_inv_ID"].ToString() == drDetails["inv_id"].ToString())
-                            {
-                                listBatchSerial.Add(new GetReturnItemInvoiceBatch
-                                {
-                                    BatchNumber = drDetails["BatchNumber"].ToString(),
-                                    ExpiryDate = drDetails["ExpiryDate"].ToString(),
-                                    BaseUOM = drDetails["BaseUOM"].ToString(),
-                                    OrderedQty = drDetails["OrderedQty"].ToString(),
-                                    AdjustedQty = drDetails["AdjustedQty"].ToString(),
-                                    LoadInQty = drDetails["LoadInQty"].ToString(),
-                                    itm_ID = drDetails["rrd_prd_ID"].ToString(),
-                                    inv_ID = drDetails["inv_ID"].ToString(),
-
-                                });
-                            }
-                        }
-                       
                         listHeader.Add(new GetReturnItemInvoiceOut
                         {
 
                             rrh_inv_ID = dr["rrh_inv_ID"].ToString(),
                             inv_InvoiceID = dr["inv_InvoiceID"].ToString(),
-                            BatchSerial = listBatchSerial,
 
                         });
                     }
@@ -1646,17 +1624,40 @@ namespace MVC_API.Controllers
             string invID = inputParams.invID == null ? "0" : inputParams.invID;
             string prdID = inputParams.prdID == null ? "0" : inputParams.prdID;
 
-
             string[] arr = { prdID.ToString() };
-            DataTable dtreturn = dm.loadList("SelectItemFromMultipleInvDetail", "sp_ReturnRequest", invID.ToString(), arr);
+            DataSet dtreturn = dm.loadListDS("SelectItemFromMultipleInvDetail", "sp_ReturnRequest", invID.ToString(), arr);
+            DataTable itemData = dtreturn.Tables[0];
+            DataTable batchData = dtreturn.Tables[1];
 
             try
             {
-                if (dtreturn.Rows.Count > 0)
+                if (itemData.Rows.Count > 0)
                 {
                     List<GetMultipleInvoiceItemOut> listHeader = new List<GetMultipleInvoiceItemOut>();
-                    foreach (DataRow drDetails in dtreturn.Rows)
+                    foreach (DataRow drDetails in itemData.Rows)
                     {
+
+                        List<GetReturnItemInvoiceBatch> listBatchSerial = new List<GetReturnItemInvoiceBatch>();
+                        foreach (DataRow drBatch in batchData.Rows)
+                        {
+                            if (drDetails["prd_ID"].ToString() == drBatch["prd_ID"].ToString() && drDetails["inv_ID"].ToString() == drBatch["inv_ID"].ToString())
+                            {
+                                listBatchSerial.Add(new GetReturnItemInvoiceBatch
+                                {
+                                    BatchNumber = drBatch["BatchNumber"].ToString(),
+                                    ExpiryDate = drBatch["ExpiryDate"].ToString(),
+                                    BaseUOM = drBatch["BaseUOM"].ToString(),
+                                    OrderedQty = drBatch["OrderedQty"].ToString(),
+                                    AdjustedQty = drBatch["AdjustedQty"].ToString(),
+                                    LoadInQty = drBatch["LoadInQty"].ToString(),
+                                    itm_ID = drBatch["prd_ID"].ToString(),
+                                    inv_ID = drBatch["inv_ID"].ToString(),
+
+                                });
+                            }
+                        }
+
+
                         listHeader.Add(new GetMultipleInvoiceItemOut
                         {
 
@@ -1671,8 +1672,9 @@ namespace MVC_API.Controllers
                             rrd_LowerPrice = drDetails["rrd_LowerPrice"].ToString(),
                             rrd_LineTotal = drDetails["rrd_LineTotal"].ToString(),
                             rrd_Vat = drDetails["rrd_Vat"].ToString(),
-                            rrd_GrandTotal = drDetails["rrd_GrandTotal"].ToString()
-
+                            rrd_GrandTotal = drDetails["rrd_GrandTotal"].ToString(),
+                            prd_IsBatchItem = drDetails["prd_IsBatchItem"].ToString(),
+                            BatchSerial = listBatchSerial,
 
                         });
                     }

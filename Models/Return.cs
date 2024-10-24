@@ -487,20 +487,8 @@ namespace MVC_API.Models
         public string rrd_Vat { get; set; }
         public string rrd_GrandTotal { get; set; }
         public string prd_IsBatchItem { get; set; }
-
-    }
-
-    public class GetReturnItemInvoiceIn
-    {
-        public string prd_ID { get; set; }
-    }
-
-
-    public class GetReturnItemInvoiceOut
-    {
-        public string rrh_inv_ID { get; set; }
-        public string inv_InvoiceID { get; set; }
         public List<GetReturnItemInvoiceBatch> BatchSerial { get; set; }
+
     }
     public class GetReturnItemInvoiceBatch
     {
@@ -514,6 +502,18 @@ namespace MVC_API.Models
         public string inv_ID { get; set; }
     }
 
+    public class GetReturnItemInvoiceIn
+    {
+        public string prd_ID { get; set; }
+    }
+
+
+    public class GetReturnItemInvoiceOut
+    {
+        public string rrh_inv_ID { get; set; }
+        public string inv_InvoiceID { get; set; }
+    }
+   
 
     public class GetMultipleInvoiceItemDetIn
     {
