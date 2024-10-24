@@ -505,6 +505,7 @@ namespace MVC_API.Models
     public class GetReturnItemInvoiceIn
     {
         public string prd_ID { get; set; }
+        public string rot_ID { get; set; }
     }
 
 

@@ -1570,9 +1570,10 @@ namespace MVC_API.Controllers
             dm.TraceService("======================================");
 
             string prd_ID = inputParams.prd_ID == null ? "0" : inputParams.prd_ID;
+            string rot_ID = inputParams.rot_ID == null ? "0" : inputParams.rot_ID;
 
-         
-            DataTable dtreturn = dm.loadList("SelectReturnItemInv", "sp_ReturnRequest", prd_ID.ToString());
+            string[] arr = { rot_ID.ToString() };
+            DataTable dtreturn = dm.loadList("SelectReturnItemInv", "sp_ReturnRequest", prd_ID.ToString(), arr);
            
 
             try
