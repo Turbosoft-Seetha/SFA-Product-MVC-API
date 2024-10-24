@@ -879,11 +879,30 @@ namespace MVC_API.Controllers
                 try
                 {
 
-                    string userID = inputParams.UserId == null ? "0" : inputParams.UserId;
-                    string CusId = inputParams.CusId == null ? "0" : inputParams.CusId;
-                    string RotId = inputParams.RotId == null ? "0" : inputParams.RotId;
-                    string UdpId = inputParams.UdpId == null ? "0" : inputParams.UdpId;
+                    string userID = inputParams.ord_usr_ID == null ? "0" : inputParams.ord_usr_ID;
+                    string CusId = inputParams.cus_ID == null ? "0" : inputParams.cus_ID;
+                    string RotId = inputParams.ord_rot_ID == null ? "0" : inputParams.ord_rot_ID;
+                    string UdpId = inputParams.ord_udp_ID == null ? "0" : inputParams.ord_udp_ID;
                     string OrderId = inputParams.OrderID == null ? "0" : inputParams.OrderID;
+                    string ord_SubTotal_WODiscount = inputParams.ord_SubTotal_WODiscount == null ? "0" : inputParams.ord_SubTotal_WODiscount; 
+                    string ord_cse_ID = inputParams.ord_cse_ID== null ? "0" : inputParams.ord_cse_ID; 
+                    string VoidUser = inputParams.VoidUser == null ? "0" : inputParams.VoidUser;
+                    string Void = inputParams.Void == null ? "0" : inputParams.Void;
+                    string VoidMode = inputParams.VoidMode == null ? "0" : inputParams.VoidMode;
+                    string VoidPlatform = inputParams.VoidPlatform== null ? "0" : inputParams.VoidPlatform;
+                    string VoidTime = inputParams.VoidTime == null ? "0" : inputParams.VoidTime;
+                    string CreationMode = inputParams.CreationMode== null ? "0" : inputParams.CreationMode;
+                    string Discount = inputParams.Discount == null ? "0" : inputParams.Discount;
+                    string GeoCode = inputParams.GeoCode == null ? "0" : inputParams.GeoCode;
+                    string GeoCodeName = inputParams.GeoCodeName == null ? "0" : inputParams.GeoCodeName;
+                    string ord_AppOrderID = inputParams.ord_AppOrderID == null ? "0" : inputParams.ord_AppOrderID;
+                    string ord_Platform = inputParams.ord_Platform == null ? "0" : inputParams.ord_Platform;
+                    string ord_GrandTotal = inputParams.ord_GrandTotal == null ? "0" : inputParams.ord_GrandTotal;
+                    string ord_Type = inputParams.ord_Type== null ? "0" : inputParams.ord_Type;
+                    string ord_SubTotal = inputParams.ord_SubTotal == null ? "0" : inputParams.ord_SubTotal;
+                    string ord_VAT = inputParams.ord_VAT == null ? "0" : inputParams.ord_VAT;
+
+
 
                     //string Status = inputParams.Status == null ? "" : inputParams.Status;
                     string InputXml = "";
@@ -895,8 +914,13 @@ namespace MVC_API.Controllers
                             writer.WriteStartElement("r");
                             foreach (PostFreeSamplelDetData id in itemData)
                             {
-                                string[] arr = { id.PrdID.ToString(), id.HigherQty.ToString(), id.HigherUOM.ToString(), id.LowerQty.ToString(), id.LowerUOM.ToString() };
-                                string[] arrName = { "PrdID", "HigherQty", "HigherUOM", "LowerQty", "LowerUOM" };
+                                string[] arr = { id.itmID.ToString(), id.HigherQty.ToString(), id.HigherUOM.ToString(), id.LowerQty.ToString(), id.LowerUOM.ToString(),
+                                 id.HigherPrice.ToString(), id.LowerPrice.ToString(), id.Price.ToString(), id.TotalQty.ToString(), id.odd_VATPercent.ToString(), 
+                                 id.odd_Discount.ToString(), id.odd_SubTotal.ToString(),
+                                 id.odd_VATAmount.ToString(), id.odd_GrandTotal.ToString(),  id.odd_TransType.ToString(),id.odd_StdHigherPrice.ToString(), 
+                                 id.odd_StdLowerPrice.ToString(), id.odd_SellingHigherPrice.ToString(), id.odd_SellingLowerPrice.ToString()};
+                                string[] arrName = { "itmID", "HigherQty", "HigherUOM", "LowerQty", "LowerUOM", "HigherPrice", "LowerPrice", "Price", "TotalQty",
+                                "odd_VATPercent","odd_Discount","odd_TransType","odd_SubTotal","odd_VATAmount","odd_GrandTotal","odd_StdHigherPrice","odd_StdLowerPrice","odd_SellingHigherPrice","odd_SellingLowerPrice" };
                                 dm.createNode(arr, arrName, writer);
                             }
                             writer.WriteEndElement();
@@ -907,7 +931,11 @@ namespace MVC_API.Controllers
                     }
                     try
                     {
-                        string[] arr = { CusId.ToString(), RotId.ToString(), UdpId.ToString(), OrderId.ToString(), InputXml.ToString() };
+                        string[] arr = { CusId.ToString(), RotId.ToString(), UdpId.ToString(), OrderId.ToString(), ord_Platform.ToString(),
+                            ord_Type.ToString(), GeoCode.ToString(), GeoCodeName.ToString(), CreationMode.ToString(), ord_cse_ID.ToString(),
+                            ord_AppOrderID.ToString(), ord_SubTotal.ToString(), ord_VAT.ToString(), ord_GrandTotal.ToString(), Void.ToString(),
+                            VoidUser.ToString(), VoidMode.ToString(), VoidTime.ToString(), VoidPlatform.ToString(), Discount.ToString(),
+                            ord_SubTotal_WODiscount.ToString(), InputXml.ToString() };
                         DataTable dt = dm.loadList("FreeSampleApproval", "sp_SFA_App_Sales", userID.ToString(), arr);
 
                         List<GetFreeSampleApprovalStatus> listStatus = new List<GetFreeSampleApprovalStatus>();

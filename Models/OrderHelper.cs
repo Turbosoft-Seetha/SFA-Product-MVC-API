@@ -290,21 +290,59 @@ namespace MVC_API.Models
     }
     public class PostfreeSampleData
     {
+        //public string OrderID { get; set; }
+        //public string RotId { get; set; }
+        //public string CusId { get; set; }
+        //public string UserId { get; set; }
+        //public string UdpId { get; set; }
+
+        //public string JSONString { get; set; }
         public string OrderID { get; set; }
-        public string RotId { get; set; }
-        public string CusId { get; set; }
-        public string UserId { get; set; }
-        public string UdpId { get; set; }
+        public string cus_ID { get; set; }
+        public string ord_rot_ID { get; set; }
+        public string ord_usr_ID { get; set; }
+        public string ord_Platform { get; set; }
         public string JSONString { get; set; }
+        public string ord_cse_ID { get; set; }
+        public string GeoCode { get; set; }
+        public string GeoCodeName { get; set; }
+        public string CreationMode { get; set; }
+        public string ord_udp_ID { get; set; }
+        public string ord_AppOrderID { get; set; }
+        public string ord_SubTotal { get; set; }
+        public string ord_VAT { get; set; }
+        public string ord_GrandTotal { get; set; }
+        public string VoidMode { get; set; }
+        public string VoidTime { get; set; }
+        public string Void { get; set; }
+        public string VoidUser { get; set; }
+        public string VoidPlatform { get; set; }
+        public string Discount { get; set; }
+        public string ord_SubTotal_WODiscount { get; set; }
+        public string ord_Type { get; set; }
 
     }
     public class PostFreeSamplelDetData
     {
-        public string PrdID { get; set; }
+        public string itmID { get; set; }
         public string HigherQty { get; set; }
         public string HigherUOM { get; set; }
         public string LowerQty { get; set; }
         public string LowerUOM { get; set; }
+        public string HigherPrice { get; set; }
+        public string LowerPrice { get; set; }
+        public string Price { get; set; }
+        public string TotalQty { get; set; }
+        public string odd_VATPercent { get; set; }
+        public string odd_Discount { get; set; }
+        public string odd_TransType { get; set; }
+        public string odd_SubTotal { get; set; }
+        public string odd_VATAmount { get; set; }
+        public string odd_GrandTotal { get; set; }
+        public string odd_StdHigherPrice { get; set; }
+        public string odd_StdLowerPrice { get; set; }
+        public string odd_SellingHigherPrice { get; set; }
+        public string odd_SellingLowerPrice { get; set; }
     }
     public class GetFreeSampleApprovalStatus
     {
